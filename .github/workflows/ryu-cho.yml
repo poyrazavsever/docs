@@ -17,9 +17,11 @@ jobs:
         uses: vuejs-translations/ryu-cho@v1
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
-          username: "github-actions[bot]"
-          email: "41898282+github-actions[bot]@users.noreply.github.com"
-          upstream-repo: https://github.com/vuejs/docs.git
+          username: 'github-actions[bot]'
+          email: '41898282+github-actions[bot]@users.noreply.github.com'
+          upstream-repo: https://github.com/poyrazavsever/vuejs-docs-tr.git
           upstream-repo-branch: main
-          head-repo: https://github.com/poyrazavsever/vuejs-docs-tr.git
+          head-repo: https://github.com/vuejs/docs.git
           head-repo-branch: main
+          workflow-name: 'Ryu-Cho (Upstream Sync)'
+          track-from: 037a76daf60b0638e2837e8daa3174262e37af65
