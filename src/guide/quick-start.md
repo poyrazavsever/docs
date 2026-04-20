@@ -6,29 +6,29 @@ footer: false
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 
-# Quick Start {#quick-start}
+# Hızlı Başlangıç {#quick-start}
 
-## Try Vue Online {#try-vue-online}
+## Vue'yu Çevrimiçi Deneyin {#try-vue-online}
 
-- To quickly get a taste of Vue, you can try it directly in our [Playground](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==).
+- Vue'yu hızlıca tatmak için, doğrudan [Playground](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==) üzerinden deneyebilirsiniz.
 
-- If you prefer a plain HTML setup without any build steps, you can use this [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) as your starting point.
+- Herhangi bir derleme adımı olmadan düz bir HTML kurulumunu tercih ederseniz, başlangıç noktanız olarak bu [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/)'ı kullanabilirsiniz.
 
-- If you are already familiar with Node.js and the concept of build tools, you can also try a complete build setup right within your browser on [StackBlitz](https://vite.new/vue).
+- Node.js'e ve derleme araçları konseptine zaten aşinaysanız, doğrudan tarayıcınızın içinde, [StackBlitz](https://vite.new/vue) üzerinde eksiksiz bir derleme kurulumunu da deneyebilirsiniz.
 
-- To get a walkthrough of the recommended setup, watch this interactive [Scrimba](http://scrimba.com/links/vue-quickstart) tutorial that shows you how to run, edit, and deploy your first Vue app.
+- Önerilen kurulumun bir incelemesi için, size ilk Vue uygulamanızı nasıl çalıştıracağınızı, düzenleyeceğinizi ve dağıtacağınızı gösteren bu etkileşimli [Scrimba](http://scrimba.com/links/vue-quickstart) eğitimini izleyebilirsiniz.
 
-## Creating a Vue Application {#creating-a-vue-application}
+## Bir Vue Uygulaması Oluşturmak {#creating-a-vue-application}
 
-:::tip Prerequisites
+:::tip Ön Koşullar
 
-- Familiarity with the command line
-- Install [Node.js](https://nodejs.org/) version `^20.19.0 || >=22.12.0`
+- Komut satırı aşinalığı
+- `^20.19.0 || >=22.12.0` sürümünde [Node.js](https://nodejs.org/) yükleyin
   :::
 
-In this section we will introduce how to scaffold a Vue [Single Page Application](/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine. The created project will be using a build setup based on [Vite](https://vite.dev/) and allow us to use Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs).
+Bu bölümde, yerel makinenizde bir Vue [Tek Sayfalı Uygulama (Single Page Application)](/guide/extras/ways-of-using-vue#single-page-application-spa) taslağını nasıl oluşturacağınızı tanıtacağız. Oluşturulan proje, [Vite](https://vite.dev/) tabanlı bir derleme kurulumunu kullanacak ve Vue [Tek Dosyalı Bileşenler](/guide/scaling-up/sfc) (SFC'ler) (Single-File Components) kullanmamıza olanak tanıyacaktır.
 
-Make sure you have an up-to-date version of [Node.js](https://nodejs.org/) installed and your current working directory is the one where you intend to create a project. Run the following command in your command line (without the `$` sign):
+Güncel bir [Node.js](https://nodejs.org/) sürümünün yüklü olduğundan ve mevcut çalışma dizininizin projeyi oluşturmak istediğiniz dizin olduğundan emin olun. Komut satırınızda aşağıdaki komutu (baştaki `$` işareti olmadan) çalıştırın:
 
 ::: code-group
 
@@ -41,22 +41,23 @@ $ pnpm create vue@latest
 ```
 
 ```sh [yarn]
-# For Yarn (v1+)
+# Yarn (v1+) için
 $ yarn create vue
 
-# For Yarn Modern (v2+)
+# Modern Yarn (v2+) için
 $ yarn create vue@latest
-  
-# For Yarn ^v4.11
+
+# Yarn ^v4.11 için
 $ yarn dlx create-vue@latest
 ```
 
 ```sh [bun]
 $ bun create vue@latest
 ```
+
 :::
 
-This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool. You will be presented with prompts for several optional features such as TypeScript and testing support:
+Bu komut, resmi Vue proje iskeleti oluşturma aracı olan [create-vue](https://github.com/vuejs/create-vue)'yu yükleyecek ve çalıştıracaktır. TypeScript ve test desteği gibi çeşitli isteğe bağlı özellikler için size birtakım sorular sunulacaktır:
 
 <div class="language-sh"><pre><code><span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Project name: <span style="color:#888;">… <span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span></span></span>
 <span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add TypeScript? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Yes</span></span>
@@ -72,7 +73,7 @@ This command will install and execute [create-vue](https://github.com/vuejs/crea
 <span style="color:#A6ACCD;">Scaffolding project in ./<span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span>...</span>
 <span style="color:#A6ACCD;">Done.</span></code></pre></div>
 
-If you are unsure about an option, simply choose `No` by hitting enter for now. Once the project is created, follow the instructions to install dependencies and start the dev server:
+Eğer bir seçenekten emin değilseniz, şimdilik enter tuşuna basarak `No` seçeneğini onaylayabilirsiniz. Proje oluşturulduktan sonra, bağımlılıkları yüklemek ve geliştirme sunucusunu (dev server) başlatmak için talimatları izleyin:
 
 ::: code-group
 
@@ -102,15 +103,14 @@ $ bun run dev
 
 :::
 
+Artık ilk Vue projeniz çalışıyor olmalı! Oluşturulan projedeki örnek bileşenlerin, [Options API (Seçenekler API'si)](/guide/introduction#options-api) yerine [Composition API (Bileşim API'si)](/guide/introduction#composition-api) ve `<script setup>` kullanılarak yazıldığına dikkat edin. İşte bazı ek ipuçları:
 
-You should now have your first Vue project running! Note that the example components in the generated project are written using the [Composition API](/guide/introduction#composition-api) and `<script setup>`, rather than the [Options API](/guide/introduction#options-api). Here are some additional tips:
+- Önerilen IDE kurulumu [Visual Studio Code](https://code.visualstudio.com/) + [Vue - Official extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)'dır (Resmi Eklenti). Eğer diğer editörleri kullanıyorsanız, [IDE desteği bölümüne](/guide/scaling-up/tooling#ide-support) göz atın.
+- Arka uç (backend) framework'leriyle entegrasyon da dahil olmak üzere araçlarla (tooling) ilgili daha fazla detay, [Araçlar Kılavuzu](/guide/scaling-up/tooling)'nda tartışılmıştır.
+- Altta yatan derleme aracı Vite hakkında daha fazla bilgi edinmek için [Vite dokümanlarına](https://vite.dev/) göz atın.
+- Eğer TypeScript kullanmayı seçerseniz, [TypeScript Kullanım Kılavuzu](typescript/overview)'na göz atın.
 
-- The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Vue - Official extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar). If you use other editors, check out the [IDE support section](/guide/scaling-up/tooling#ide-support).
-- More tooling details, including integration with backend frameworks, are discussed in the [Tooling Guide](/guide/scaling-up/tooling).
-- To learn more about the underlying build tool Vite, check out the [Vite docs](https://vite.dev/).
-- If you choose to use TypeScript, check out the [TypeScript Usage Guide](typescript/overview).
-
-When you are ready to ship your app to production, run the following:
+Uygulamanızı üretime (production) taşımaya hazır olduğunuzda, aşağıdakileri çalıştırın:
 
 ::: code-group
 
@@ -132,26 +132,25 @@ $ bun run build
 
 :::
 
+Bu, uygulamanızın projenin `./dist` dizininde üretime hazır bir derlemesini oluşturacaktır. Uygulamanızı üretime taşımakla ilgili daha fazla bilgi edinmek için [Üretim Dağıtım Kılavuzu](/guide/best-practices/production-deployment)'na göz atın.
 
-This will create a production-ready build of your app in the project's `./dist` directory. Check out the [Production Deployment Guide](/guide/best-practices/production-deployment) to learn more about shipping your app to production.
+[Sonraki Adımlar >](#next-steps)
 
-[Next Steps >](#next-steps)
+## Vue'yu CDN'den Kullanmak {#using-vue-from-cdn}
 
-## Using Vue from CDN {#using-vue-from-cdn}
-
-You can use Vue directly from a CDN via a script tag:
+Vue'yu doğrudan bir CDN üzerinden bir `script` etiketi aracılığıyla kullanabilirsiniz:
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
-Here we are using [unpkg](https://unpkg.com/), but you can also use any CDN that serves npm packages, for example [jsdelivr](https://www.jsdelivr.com/package/npm/vue) or [cdnjs](https://cdnjs.com/libraries/vue). Of course, you can also download this file and serve it yourself.
+Burada [unpkg](https://unpkg.com/) kullanıyoruz, ancak npm paketleri sunan herhangi bir CDN'yi (örneğin [jsdelivr](https://www.jsdelivr.com/package/npm/vue) veya [cdnjs](https://cdnjs.com/libraries/vue)) de kullanabilirsiniz. Elbette bu dosyayı indirip kendiniz de sunabilirsiniz.
 
-When using Vue from a CDN, there is no "build step" involved. This makes the setup a lot simpler, and is suitable for enhancing static HTML or integrating with a backend framework. However, you won't be able to use the Single-File Component (SFC) syntax.
+Vue'yu bir CDN'den kullanırken işin içine bir "derleme adımı" girmez. Bu, kurulumu çok daha basit hale getirir ve statik HTML'yi geliştirmek veya bir arka uç framework'ü ile entegre olmak için uygundur. Ancak, Tek Dosyalı Bileşen (SFC) sözdizimini (syntax) kullanamazsınız.
 
-### Using the Global Build {#using-the-global-build}
+### Global Derlemeyi Kullanmak {#using-the-global-build}
 
-The above link loads the _global build_ of Vue, where all top-level APIs are exposed as properties on the global `Vue` object. Here is a full example using the global build:
+Yukarıdaki bağlantı, tüm üst düzey API'lerin global `Vue` nesnesi üzerinde özellikler (properties) olarak sunulduğu Vue _global derlemesini_ yükler. İşte global derlemeyi kullanan eksiksiz bir örnek:
 
 <div class="options-api">
 
@@ -166,14 +165,14 @@ The above link loads the _global build_ of Vue, where all top-level APIs are exp
   createApp({
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'Merhaba Vue!'
       }
     }
   }).mount('#app')
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/QWJwJLp)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/QWJwJLp)
 
 </div>
 
@@ -189,7 +188,7 @@ The above link loads the _global build_ of Vue, where all top-level APIs are exp
 
   createApp({
     setup() {
-      const message = ref('Hello vue!')
+      const message = ref('Merhaba Vue!')
       return {
         message
       }
@@ -198,17 +197,17 @@ The above link loads the _global build_ of Vue, where all top-level APIs are exp
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/eYQpQEG)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/eYQpQEG)
 
 :::tip
-Many of the examples for Composition API throughout the guide will be using the `<script setup>` syntax, which requires build tools. If you intend to use Composition API without a build step, consult the usage of the [`setup()` option](/api/composition-api-setup).
+Kılavuz boyunca Composition API'ye dair örneklerin çoğu, derleme araçları gerektiren `<script setup>` sözdizimini kullanacaktır. Eğer Composition API'yi bir derleme adımı olmadan kullanmayı planlıyorsanız, [`setup()` seçeneğinin](/api/composition-api-setup) kullanımını inceleyin.
 :::
 
 </div>
 
-### Using the ES Module Build {#using-the-es-module-build}
+### ES Modülü Derlemesini Kullanmak {#using-the-es-module-build}
 
-Throughout the rest of the documentation, we will be primarily using [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) syntax. Most modern browsers now support ES modules natively, so we can use Vue from a CDN via native ES modules like this:
+Dokümantasyonun geri kalanı boyunca, öncelikle [ES modülleri](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) sözdizimini kullanacağız. Çoğu modern tarayıcı artık ES modüllerini yerel (native) olarak desteklemektedir, bu nedenle Vue'yu bir CDN'den yerel ES modülleri aracılığıyla şu şekilde kullanabiliriz:
 
 <div class="options-api">
 
@@ -221,7 +220,7 @@ Throughout the rest of the documentation, we will be primarily using [ES modules
   createApp({
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'Merhaba Vue!'
       }
     }
   }).mount('#app')
@@ -240,7 +239,7 @@ Throughout the rest of the documentation, we will be primarily using [ES modules
 
   createApp({
     setup() {
-      const message = ref('Hello Vue!')
+      const message = ref('Merhaba Vue!')
       return {
         message
       }
@@ -251,28 +250,28 @@ Throughout the rest of the documentation, we will be primarily using [ES modules
 
 </div>
 
-Notice that we are using `<script type="module">`, and the imported CDN URL is pointing to the **ES modules build** of Vue instead.
+`<script type="module">` kullandığımıza ve içe aktarılan CDN URL'sinin bunun yerine Vue'nun **ES modülleri derlemesini** işaret ettiğine dikkat edin.
 
 <div class="options-api">
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/VwVYVZO)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/VwVYVZO)
 
 </div>
 <div class="composition-api">
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/MWzazEv)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/MWzazEv)
 
 </div>
 
-### Enabling Import maps {#enabling-import-maps}
+### Import Maps'i Etkinleştirmek {#enabling-import-maps}
 
-In the above example, we are importing from the full CDN URL, but in the rest of the documentation you will see code like this:
+Yukarıdaki örnekte tam CDN URL'sinden import yapıyoruz, ancak dokümantasyonun geri kalanında şuna benzer kodlar göreceksiniz:
 
 ```js
 import { createApp } from 'vue'
 ```
 
-We can teach the browser where to locate the `vue` import by using [Import Maps](https://caniuse.com/import-maps):
+[Import Maps (İçe Aktarma Haritaları)](https://caniuse.com/import-maps) kullanarak tarayıcıya `vue` içe aktarımını nerede bulacağını öğretebiliriz:
 
 <div class="options-api">
 
@@ -293,14 +292,14 @@ We can teach the browser where to locate the `vue` import by using [Import Maps]
   createApp({
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'Merhaba Vue!'
       }
     }
   }).mount('#app')
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/wvQKQyM)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/wvQKQyM)
 
 </div>
 
@@ -322,7 +321,7 @@ We can teach the browser where to locate the `vue` import by using [Import Maps]
 
   createApp({
     setup() {
-      const message = ref('Hello Vue!')
+      const message = ref('Merhaba Vue!')
       return {
         message
       }
@@ -331,25 +330,25 @@ We can teach the browser where to locate the `vue` import by using [Import Maps]
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+[CodePen Demosu >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
 
 </div>
 
-You can also add entries for other dependencies to the import map - but make sure they point to the ES modules version of the library you intend to use.
+Ayrıca içe aktarma haritasına diğer bağımlılıklar için kayıtlar da ekleyebilirsiniz - ancak bunların, kullanmayı planladığınız kütüphanenin ES modülleri sürümünü işaret ettiğinden emin olun.
 
-:::tip Import Maps Browser Support
-Import Maps is a relatively new browser feature. Make sure to use a browser within its [support range](https://caniuse.com/import-maps). In particular, it is only supported in Safari 16.4+.
+:::tip Import Maps Tarayıcı Desteği
+Import Maps, nispeten yeni bir tarayıcı özelliğidir. [Destek aralığındaki (support range)](https://caniuse.com/import-maps) bir tarayıcıyı kullandığınızdan emin olun. Özellikle, yalnızca Safari 16.4+ sürümlerinde desteklenmektedir.
 :::
 
-:::warning Notes on Production Use
-The examples so far are using the development build of Vue - if you intend to use Vue from a CDN in production, make sure to check out the [Production Deployment Guide](/guide/best-practices/production-deployment#without-build-tools).
+:::warning Üretimde Kullanım İle İlgili Notlar
+Şu ana kadarki örneklerde Vue'nun geliştirme derlemesi (development build) kullanılmıştır - eğer Vue'yu üretimde bir CDN'den kullanmayı planlıyorsanız, [Üretim Dağıtım Kılavuzu](/guide/best-practices/production-deployment#without-build-tools)'na göz atmayı unutmayın.
 
-While it is possible to use Vue without a build system, an alternative approach to consider is using [`vuejs/petite-vue`](https://github.com/vuejs/petite-vue) that could better suit the context where [`jquery/jquery`](https://github.com/jquery/jquery) (in the past) or [`alpinejs/alpine`](https://github.com/alpinejs/alpine) (in the present) might be used instead.
+Vue'yu bir derleme sistemi olmadan kullanmak mümkün olsa da, göz önünde bulundurulabilecek alternatif bir yaklaşım, (geçmişte) [`jquery/jquery`](https://github.com/jquery/jquery) veya (günümüzde) [`alpinejs/alpine`](https://github.com/alpinejs/alpine) kütüphanelerinin kullanılabileceği bağlamlara daha uygun olabilecek [`vuejs/petite-vue`](https://github.com/vuejs/petite-vue) kullanmaktır.
 :::
 
-### Splitting Up the Modules {#splitting-up-the-modules}
+### Modülleri Bölmek {#splitting-up-the-modules}
 
-As we dive deeper into the guide, we may need to split our code into separate JavaScript files so that they are easier to manage. For example:
+Kılavuzda derinleştikçe, kodumuzu yönetilmesi daha kolay olacak şekilde ayrı JavaScript dosyalarına bölmemiz gerekebilir. Örneğin:
 
 ```html [index.html]
 <div id="app"></div>
@@ -369,7 +368,7 @@ export default {
   data() {
     return { count: 0 }
   },
-  template: `<div>Count is: {{ count }}</div>`
+  template: `<div>Sayı: {{ count }}</div>`
 }
 ```
 
@@ -383,35 +382,35 @@ export default {
     const count = ref(0)
     return { count }
   },
-  template: `<div>Count is: {{ count }}</div>`
+  template: `<div>Sayı: {{ count }}</div>`
 }
 ```
 
 </div>
 
-If you directly open the above `index.html` in your browser, you will find that it throws an error because ES modules cannot work over the `file://` protocol, which is the protocol the browser uses when you open a local file.
+Yukarıdaki `index.html` dosyasını doğrudan tarayıcınızda açarsanız, bir hata verdiğini göreceksiniz; çünkü ES modülleri `file://` protokolü üzerinden çalışamaz. Bu protokol, tarayıcının yerel bir dosyayı açtığında kullandığı protokoldür.
 
-Due to security reasons, ES modules can only work over the `http://` protocol, which is what the browsers use when opening pages on the web. In order for ES modules to work on our local machine, we need to serve the `index.html` over the `http://` protocol, with a local HTTP server.
+Güvenlik nedenleriyle, ES modülleri yalnızca `http://` protokolü üzerinden çalışabilir. Bu, tarayıcıların web'deki sayfaları açarken kullandığı protokoldür. ES modüllerinin yerel makinemizde çalışabilmesi için, `index.html` dosyasını `http://` protokolü üzerinden yerel bir HTTP sunucusu ile sunmamız (serve etmemiz) gerekir.
 
-To start a local HTTP server, first make sure you have [Node.js](https://nodejs.org/en/) installed, then run `npx serve` from the command line in the same directory where your HTML file is. You can also use any other HTTP server that can serve static files with the correct MIME types.
+Yerel bir HTTP sunucusu başlatmak için öncelikle [Node.js](https://nodejs.org/en/)'in yüklü olduğundan emin olun, ardından HTML dosyanızla aynı dizinde komut satırından `npx serve` komutunu çalıştırın. Doğru MIME türlerine sahip statik dosyaları sunabilen başka herhangi bir HTTP sunucusu da kullanabilirsiniz.
 
-You may have noticed that the imported component's template is inlined as a JavaScript string. If you are using VS Code, you can install the [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) extension and prefix the strings with a `/*html*/` comment to get syntax highlighting for them.
+İçe aktarılan bileşenin (component) şablonunun (template) satır içi (inlined) bir JavaScript dizesi (string) olarak bulunduğunu fark etmiş olabilirsiniz. Eğer VS Code kullanıyorsanız, [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) eklentisini yükleyebilir ve bu dizeler için sözdizimi vurgulaması (syntax highlighting) almak üzere onların başına bir `/*html*/` yorumu ekleyebilirsiniz.
 
-## Next Steps {#next-steps}
+## Sonraki Adımlar {#next-steps}
 
-If you skipped the [Introduction](/guide/introduction), we strongly recommend reading it before moving on to the rest of the documentation.
+Eğer [Giriş](/guide/introduction) bölümünü atladıysanız, dokümantasyonun geri kalanına geçmeden önce onu okumanızı şiddetle tavsiye ederiz.
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
-    <p class="next-steps-link">Continue with the Guide</p>
-    <p class="next-steps-caption">The guide walks you through every aspect of the framework in full detail.</p>
+    <p class="next-steps-link">Kılavuza Devam Edin</p>
+    <p class="next-steps-caption">Kılavuz, framework'ün her yönünü tüm ayrıntılarıyla anlatır.</p>
   </a>
   <a class="vt-box" href="/tutorial/">
-    <p class="next-steps-link">Try the Tutorial</p>
-    <p class="next-steps-caption">For those who prefer learning things hands-on.</p>
+    <p class="next-steps-link">Eğiticiyi Deneyin</p>
+    <p class="next-steps-caption">Kavramları uygulamalı bir şekilde öğrenmeyi tercih edenler için.</p>
   </a>
   <a class="vt-box" href="/examples/">
-    <p class="next-steps-link">Check out the Examples</p>
-    <p class="next-steps-caption">Explore examples of core features and common UI tasks.</p>
+    <p class="next-steps-link">Örneklere Göz Atın</p>
+    <p class="next-steps-caption">Temel özellikleri ve yaygın arayüz görevlerine dair örnekleri keşfedin.</p>
   </a>
 </div>
