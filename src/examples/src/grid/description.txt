@@ -1,1 +1,1 @@
-An example of creating a reusable grid component and using it with external data.
+Yeniden kullanılabilir (reusable) bir tablo (grid) bileşeninin nasıl oluşturulacağına ve dış veriyle (external data) nasıl kullanılacağına dair bir örnek.

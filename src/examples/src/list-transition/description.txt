@@ -1,2 +1,2 @@
-FLIP list transitions with the built-in <TransitionGroup>.
+Yerleşik (built-in) <TransitionGroup> bileşeni kullanılarak yapılan FLIP liste geçiş (transition) animasyonları.
 https://aerotwist.com/blog/flip-your-animations/

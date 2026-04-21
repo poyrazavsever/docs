@@ -1,44 +1,44 @@
-# Production Deployment {#production-deployment}
+# Üretim Ortamına Dağıtım {#production-deployment}
 
-## Development vs. Production {#development-vs-production}
+## Geliştirme ve Üretim Karşılaştırması {#development-vs-production}
 
-During development, Vue provides a number of features to improve the development experience:
+Geliştirme aşamasında Vue, geliştirme deneyimini iyileştirmek için çeşitli özellikler sunar:
 
-- Warning for common errors and pitfalls
-- Props / events validation
-- [Reactivity debugging hooks](/guide/extras/reactivity-in-depth#reactivity-debugging)
-- Devtools integration
+- Sık karşılaşılan hatalar ve tuzaklar için uyarılar
+- Props / olay (event) doğrulaması
+- [Tepkisellik hata ayıklama kancaları (hooks)](/guide/extras/reactivity-in-depth#reactivity-debugging)
+- Geliştirici araçları (Devtools) entegrasyonu
 
-However, these features become useless in production. Some of the warning checks can also incur a small amount of performance overhead. When deploying to production, we should drop all the unused, development-only code branches for smaller payload size and better performance.
+Ancak, bu özellikler üretim ortamında (production) gereksizleşir. Bazı uyarı kontrolleri az da olsa performans yükü oluşturabilir. Üretim ortamına dağıtım yaparken, daha küçük dosya boyutu ve daha iyi performans elde etmek için kullanılmayan, yalnızca geliştirmeye yönelik kod dallarını (code branches) kaldırmalıyız.
 
-## Without Build Tools {#without-build-tools}
+## Derleme Araçları Olmadan {#without-build-tools}
 
-If you are using Vue without a build tool by loading it from a CDN or self-hosted script, make sure to use the production build (dist files that end in `.prod.js`) when deploying to production. Production builds are pre-minified with all development-only code branches removed.
+Eğer Vue'yu bir CDN veya kendi barındırdığınız (self-hosted) bir betik dosyası üzerinden yükleyerek yapı aracı (build tool) olmadan kullanıyorsanız, üretime dağıtırken üretim derlemesini (`.prod.js` ile biten dist dosyaları) kullandığınızdan emin olun. Üretim derlemeleri (production builds), geliştirme odaklı tüm kod dalları kaldırılarak önceden küçültülmüş (minified) haldedir.
 
-- If using global build (accessing via the `Vue` global): use `vue.global.prod.js`.
-- If using ESM build (accessing via native ESM imports): use `vue.esm-browser.prod.js`.
+- Eğer global derleme kullanıyorsanız (`Vue` global değişkeni üzerinden erişim): `vue.global.prod.js` dosyasını kullanın.
+- Eğer ESM derlemesi kullanıyorsanız (yerel ESM içe aktarımları ile erişim): `vue.esm-browser.prod.js` dosyasını kullanın.
 
-Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details.
+Daha fazla detay için [dist dosyası kılavuzuna](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) göz atın.
 
-## With Build Tools {#with-build-tools}
+## Derleme Araçlarıyla {#with-build-tools}
 
-Projects scaffolded via `create-vue` (based on Vite) or Vue CLI (based on webpack) are pre-configured for production builds.
+`create-vue` (Vite tabanlı) veya Vue CLI (webpack tabanlı) aracılığıyla oluşturulan projeler, üretim derlemeleri için önceden yapılandırılmıştır.
 
-If using a custom setup, make sure that:
+Eğer özel bir kurulum (custom setup) kullanıyorsanız şunlardan emin olun:
 
-1. `vue` resolves to `vue.runtime.esm-bundler.js`.
-2. The [compile time feature flags](/api/compile-time-flags) are properly configured.
-3. <code>process.env<wbr>.NODE_ENV</code> is replaced with `"production"` during build.
+1. `vue` referansının `vue.runtime.esm-bundler.js` dosyasını işaret ettiğinden.
+2. [Derleme zamanı özellik bayraklarının](/api/compile-time-flags) uygun şekilde yapılandırıldığından.
+3. <code>process.env<wbr>.NODE_ENV</code> değerinin derleme işlemi sırasında `"production"` ile değiştirildiğinden.
 
-Additional references:
+Ek referanslar:
 
-- [Vite production build guide](https://vite.dev/guide/build.html)
-- [Vite deployment guide](https://vite.dev/guide/static-deploy.html)
-- [Vue CLI deployment guide](https://cli.vuejs.org/guide/deployment.html)
+- [Vite üretim derleme kılavuzu](https://vite.dev/guide/build.html)
+- [Vite dağıtım kılavuzu](https://vite.dev/guide/static-deploy.html)
+- [Vue CLI dağıtım kılavuzu](https://cli.vuejs.org/guide/deployment.html)
 
-## Tracking Runtime Errors {#tracking-runtime-errors}
+## Çalışma Zamanı Hatalarını İzleme {#tracking-runtime-errors}
 
-The [app-level error handler](/api/application#app-config-errorhandler) can be used to report errors to tracking services:
+[Uygulama düzeyindeki hata işleyici](/api/application#app-config-errorhandler), hataları izleme servislerine (tracking services) bildirmek için kullanılabilir:
 
 ```js
 import { createApp } from 'vue'
@@ -46,8 +46,8 @@ import { createApp } from 'vue'
 const app = createApp(...)
 
 app.config.errorHandler = (err, instance, info) => {
-  // report error to tracking services
+  // hataları izleme servislerine bildirin
 }
 ```
 
-Services such as [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) also provide official integrations for Vue.
+[Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) ve [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) gibi servisler aynı zamanda Vue için resmi entegrasyonlar sağlamaktadır.

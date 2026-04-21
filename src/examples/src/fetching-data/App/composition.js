@@ -9,8 +9,8 @@ export default {
     const commits = ref([])
 
     watchEffect(async () => {
-      // this effect will run immediately and then
-      // re-run whenever currentBranch.value changes
+      // bu efekt (watchEffect) anında ilk çalışmasını yapar ve sonrasında
+      // currentBranch.value verisi her değiştiğinde yeniden tetiklenir
       const url = `${API_URL}${currentBranch.value}`
       commits.value = await (await fetch(url)).json()
     })

@@ -1,1 +1,1 @@
-This example demonstrates handling user input with the v-on directive.
+Bu örnekte, kullanıcı etkileşimlerinin v-on yönergesi (directive) kullanılarak nasıl ele alındığını görebilirsiniz.

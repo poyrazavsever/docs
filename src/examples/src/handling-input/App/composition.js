@@ -5,8 +5,8 @@ export default {
     const message = ref('Hello World!')
 
     function reverseMessage() {
-      // Access/mutate the value of a ref via
-      // its .value property.
+      // Bir ref'in sahip olduğu değere onun .value
+      // özelliği üzerinden erişebilir ya da bunu değiştirebiliriz.
       message.value = message.value.split('').reverse().join('')
     }
 

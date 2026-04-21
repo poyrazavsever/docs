@@ -8,12 +8,12 @@ export default {
   }),
 
   created() {
-    // fetch on init
+    // bileşen oluşturulduğunda (init) veriyi çekiyoruz
     this.fetchData()
   },
 
   watch: {
-    // re-fetch whenever currentBranch changes
+    // currentBranch her değiştiğinde veriyi yeniden çekiyoruz
     currentBranch: 'fetchData'
   },
 

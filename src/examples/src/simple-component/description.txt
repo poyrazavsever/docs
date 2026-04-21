@@ -1,2 +1,2 @@
-Here we show the simplest possible component which accepts a prop and renders it.
-Learn more about components in the guide!
+Burada, dışarıdan bir prop alan ve onu ekrana basan olası en basit bileşen (component) örneğini görebilirsiniz.
+Bileşenler hakkında daha detaylı bilgiyi kılavuzdan öğrenebilirsiniz!

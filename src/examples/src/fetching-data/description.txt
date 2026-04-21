@@ -1,2 +1,2 @@
-This example fetches latest Vue Core commits data from GitHub’s API and displays them as a list.
-You can switch between the two primary branches.
+Bu örnekte son Vue Core commit kayıtlarının GitHub API'si üzerinden nasıl çekildiğini ve bir liste halinde nasıl ekrana basıldığını görebilirsiniz.
+İki temel dal (branch) arasında geçiş yapabilirsiniz.

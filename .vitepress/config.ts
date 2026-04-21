@@ -439,63 +439,63 @@ export const sidebar: ThemeConfig['sidebar'] = {
   ],
   '/examples/': [
     {
-      text: 'Basic',
+      text: 'Temel',
       items: [
         {
-          text: 'Hello World',
+          text: 'Merhaba Dünya',
           link: '/examples/#hello-world'
         },
         {
-          text: 'Handling User Input',
+          text: 'Kullanıcı Girdisini İşleme',
           link: '/examples/#handling-input'
         },
         {
-          text: 'Attribute Bindings',
+          text: 'Öznitelik Bağlamaları',
           link: '/examples/#attribute-bindings'
         },
         {
-          text: 'Conditionals and Loops',
+          text: 'Koşullar ve Döngüler',
           link: '/examples/#conditionals-and-loops'
         },
         {
-          text: 'Form Bindings',
+          text: 'Form Bağlamaları',
           link: '/examples/#form-bindings'
         },
         {
-          text: 'Simple Component',
+          text: 'Basit Bileşen',
           link: '/examples/#simple-component'
         }
       ]
     },
     {
-      text: 'Practical',
+      text: 'Pratik',
       items: [
         {
-          text: 'Markdown Editor',
+          text: 'Markdown Düzenleyici',
           link: '/examples/#markdown'
         },
         {
-          text: 'Fetching Data',
+          text: 'Veri Çekme',
           link: '/examples/#fetching-data'
         },
         {
-          text: 'Grid with Sort and Filter',
+          text: 'Sıralama ve Filtreleme ile Grid',
           link: '/examples/#grid'
         },
         {
-          text: 'Tree View',
+          text: 'Ağaç Görünümü',
           link: '/examples/#tree'
         },
         {
-          text: 'SVG Graph',
+          text: 'SVG Grafiği',
           link: '/examples/#svg'
         },
         {
-          text: 'Modal with Transitions',
+          text: 'Geçiş Animasyonlu Modal',
           link: '/examples/#modal'
         },
         {
-          text: 'List with Transitions',
+          text: 'Geçiş Animasyonlu Liste',
           link: '/examples/#list-transition'
         }
       ]
@@ -505,19 +505,19 @@ export const sidebar: ThemeConfig['sidebar'] = {
       text: '7 GUIs',
       items: [
         {
-          text: 'Counter',
+          text: 'Sayaç',
           link: '/examples/#counter'
         },
         {
-          text: 'Temperature Converter',
+          text: 'Sıcaklık Dönüştürücü',
           link: '/examples/#temperature-converter'
         },
         {
-          text: 'Flight Booker',
+          text: 'Uçuş Rezervasyonu',
           link: '/examples/#flight-booker'
         },
         {
-          text: 'Timer',
+          text: 'Zamanlayıcı',
           link: '/examples/#timer'
         },
         {
@@ -525,11 +525,11 @@ export const sidebar: ThemeConfig['sidebar'] = {
           link: '/examples/#crud'
         },
         {
-          text: 'Circle Drawer',
+          text: 'Daire Çizici',
           link: '/examples/#circle-drawer'
         },
         {
-          text: 'Cells',
+          text: 'Hücreler',
           link: '/examples/#cells'
         }
       ]

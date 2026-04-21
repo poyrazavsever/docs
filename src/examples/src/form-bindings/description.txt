@@ -1,1 +1,1 @@
-We can create two-way bindings between state and form inputs using the v-model directive.
+v-model yönergesini (directive) kullanarak durum (state) ve form girdileri arasında iki yönlü bağlamalar (two-way bindings) oluşturabiliriz.

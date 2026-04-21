@@ -5,14 +5,14 @@
 </p>
 
 <!--
-class bindings have special support for objects and arrays
-in addition to plain strings
+sınıf (class) bağlamasında düz dizelerin (strings) yanı sıra
+nesneler (objects) ve diziler (arrays) de özel olarak desteklenir
 -->
 <p :class="{ red: isRed }" @click="toggleRed">
   This should be red... but click me to toggle it.
 </p>
 
-<!-- style bindings also support object and arrays -->
+<!-- style bağlamaları da benzer şekilde nesneleri ve dizileri destekler -->
 <p :style="{ color }" @click="toggleColor">
   This should be green, and should toggle between green and blue on click.
 </p>

@@ -1,1 +1,1 @@
-We can render content conditionally or in a loop with the v-if and v-for directives.
+v-if ve v-for yönergelerini (directives) kullanarak, içerikleri belirli koşullara bağlı olarak ya da bir döngü içerisinde ekrana basabiliriz.
