@@ -2,20 +2,20 @@
   <div v-if="show" class="modal-mask">
     <div class="modal-container">
       <div class="modal-header">
-        <slot name="header">varsayılan başlık</slot>
+        <slot name="header">default header</slot>
       </div>
 
       <div class="modal-body">
-        <slot name="body">varsayılan gövde</slot>
+        <slot name="body">default body</slot>
       </div>
 
       <div class="modal-footer">
         <slot name="footer">
-          varsayılan altbilgi
+          default footer
           <button
             class="modal-default-button"
             @click="$emit('close')"
-          >Tamam</button>
+          >OK</button>
         </slot>
       </div>
     </div>

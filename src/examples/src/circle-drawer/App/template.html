@@ -1,8 +1,8 @@
 <svg @click="onClick">
   <foreignObject x="0" y="40%" width="100%" height="200">
     <p class="tip">
-      Bir çember çizmek için tuval (canvas) üzerine tıklayın. Çemberi seçmek için üzerine tıklayın.
-      Seçili çemberin yarıçapını ayarlamak için çemberin üzerine sağ tıklayın.
+      Click on the canvas to draw a circle. Click on a circle to select it.
+      Right-click on the canvas to adjust the radius of the selected circle.
     </p>
   </foreignObject>
   <circle
@@ -17,11 +17,11 @@
 </svg>
 
 <div class="controls">
-  <button @click="undo" :disabled="index <= 0">Geri Al</button>
-  <button @click="redo" :disabled="index >= history.length - 1">Yinele</button>
+  <button @click="undo" :disabled="index <= 0">Undo</button>
+  <button @click="redo" :disabled="index >= history.length - 1">Redo</button>
 </div>
 
 <div class="dialog" v-if="adjusting" @click.stop>
-  <p>({{ selected.cx }}, {{ selected.cy }}) konumundaki çemberin yarıçapını ayarla</p>
+  <p>Adjust radius of circle at ({{ selected.cx }}, {{ selected.cy }})</p>
   <input type="range" v-model="selected.r" min="1" max="300">
 </div>

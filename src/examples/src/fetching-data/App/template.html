@@ -1,4 +1,4 @@
-<h1>En Son Vue Core Commit'leri</h1>
+<h1>Latest Vue Core Commits</h1>
 <template v-for="branch in branches">
   <input type="radio"
     :id="branch"
@@ -12,9 +12,9 @@
   <li v-for="{ html_url, sha, author, commit } in commits" :key="sha">
     <a :href="html_url" target="_blank" class="commit">{{ sha.slice(0, 7) }}</a>
     - <span class="message">{{ truncate(commit.message) }}</span><br>
-    <span class="author">
+    by <span class="author">
       <a :href="author.html_url" target="_blank">{{ commit.author.name }}</a>
-    </span> tarafından
-    <span class="date">{{ formatDate(commit.author.date) }}</span> tarihinde
+    </span>
+    at <span class="date">{{ formatDate(commit.author.date) }}</span>
   </li>
 </ul>

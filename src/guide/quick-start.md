@@ -26,7 +26,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 - `^20.19.0 || >=22.12.0` sürümünde [Node.js](https://nodejs.org/) yükleyin
   :::
 
-Bu bölümde, yerel makinenizde bir Vue [Tek Sayfalı Uygulama (Single Page Application)](/guide/extras/ways-of-using-vue#single-page-application-spa) taslağını nasıl oluşturacağınızı tanıtacağız. Oluşturulan proje, [Vite](https://vite.dev/) tabanlı bir derleme kurulumunu kullanacak ve Vue [Tek Dosyalı Bileşenler](/guide/scaling-up/sfc) (SFC'ler) (Single-File Components) kullanmamıza olanak tanıyacaktır.
+Bu bölümde, yerel makinenizde bir Vue [Tek Sayfalı Uygulama (Single Page Application)](/guide/extras/ways-of-using-vue#single-page-application-spa) taslağını nasıl oluşturacağınızı tanıtacağız. Oluşturulan proje, [Vite](https://vite.dev/) tabanlı bir derleme kurulumunu kullanacak ve Vue [Tek Dosyalı Bileşenler](/guide/scaling-up/sfc) (Single-File Components) kullanmamıza olanak tanıyacaktır.
 
 Güncel bir [Node.js](https://nodejs.org/) sürümünün yüklü olduğundan ve mevcut çalışma dizininizin projeyi oluşturmak istediğiniz dizin olduğundan emin olun. Komut satırınızda aşağıdaki komutu (baştaki `$` işareti olmadan) çalıştırın:
 
@@ -165,7 +165,7 @@ Yukarıdaki bağlantı, tüm üst düzey API'lerin global `Vue` nesnesi üzerind
   createApp({
     data() {
       return {
-        message: 'Merhaba Vue!'
+        message: 'Hello Vue!'
       }
     }
   }).mount('#app')
@@ -188,7 +188,7 @@ Yukarıdaki bağlantı, tüm üst düzey API'lerin global `Vue` nesnesi üzerind
 
   createApp({
     setup() {
-      const message = ref('Merhaba Vue!')
+      const message = ref('Hello Vue!')
       return {
         message
       }
@@ -220,7 +220,7 @@ Dokümantasyonun geri kalanı boyunca, öncelikle [ES modülleri](https://develo
   createApp({
     data() {
       return {
-        message: 'Merhaba Vue!'
+        message: 'Hello Vue!'
       }
     }
   }).mount('#app')
@@ -239,7 +239,7 @@ Dokümantasyonun geri kalanı boyunca, öncelikle [ES modülleri](https://develo
 
   createApp({
     setup() {
-      const message = ref('Merhaba Vue!')
+      const message = ref('Hello Vue!')
       return {
         message
       }
@@ -292,7 +292,7 @@ import { createApp } from 'vue'
   createApp({
     data() {
       return {
-        message: 'Merhaba Vue!'
+        message: 'Hello Vue!'
       }
     }
   }).mount('#app')
@@ -321,7 +321,7 @@ import { createApp } from 'vue'
 
   createApp({
     setup() {
-      const message = ref('Merhaba Vue!')
+      const message = ref('Hello Vue!')
       return {
         message
       }
@@ -368,7 +368,7 @@ export default {
   data() {
     return { count: 0 }
   },
-  template: `<div>Sayı: {{ count }}</div>`
+  template: `<div>Count is: {{ count }}</div>`
 }
 ```
 
@@ -382,7 +382,7 @@ export default {
     const count = ref(0)
     return { count }
   },
-  template: `<div>Sayı: {{ count }}</div>`
+  template: `<div>Count is: {{ count }}</div>`
 }
 ```
 

@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      names: ['Yılmaz, Ali', 'Kaya, Ayşe', 'Demir, Mehmet'],
+      names: ['Emil, Hans', 'Mustermann, Max', 'Tisch, Roman'],
       selected: '',
       prefix: '',
       first: '',

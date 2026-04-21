@@ -7,7 +7,7 @@ export default {
     sarmalamamıza gerek yoktur, ancak değeri ileride değiştirmeyi niyet
     edersek bunun neden gerekli olduğunu bir sonraki örnekte göreceğiz. */
 
-    const message = ref('Merhaba Dünya!')
+    const message = ref('Hello World!')
 
     return {
       message

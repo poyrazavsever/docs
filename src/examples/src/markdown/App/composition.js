@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 
 export default {
   setup() {
-    const input = ref('# merhaba')
+    const input = ref('# hello')
 
     const output = computed(() => marked(input.value))
 

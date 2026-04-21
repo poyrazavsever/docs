@@ -2,10 +2,10 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    const text = ref('Beni düzenle')
+    const text = ref('Edit me')
     const checked = ref(true)
     const checkedNames = ref(['Jack'])
-    const picked = ref('Bir')
+    const picked = ref('One')
     const selected = ref('A')
     const multiSelected = ref(['A'])
 

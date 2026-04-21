@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      message: 'Merhaba Dünya!'
+      message: 'Hello World!'
     }
   },
   methods: {
@@ -9,7 +9,7 @@ export default {
       this.message = this.message.split('').reverse().join('')
     },
     notify() {
-      alert('Yönlendirme engellendi.')
+      alert('navigation was prevented.')
     }
   }
 }

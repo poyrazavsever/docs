@@ -6,7 +6,7 @@ footer: false
 
 :::info Vue 3 dokümantasyonunu okuyorsunuz!
 
-- Vue 2 desteği **31 Aralık 2023** itibarıyla sona ermiştir.. [Vue 2 EOL](https://v2.vuejs.org/eol/) hakkında daha fazla bilgi edinin.
+- Vue 2 desteği **31 Aralık 2023** itibarıyla sona ermiştir. [Vue 2 EOL](https://v2.vuejs.org/eol/) hakkında daha fazla bilgi edinin.
 - Vue 2’den yükseltme mi yapıyorsunuz? [Geçiş Kılavuzu](https://v3-migration.vuejs.org/)'na göz atın.
   :::
 
@@ -63,7 +63,7 @@ createApp({
 ```vue-html
 <div id="app">
   <button @click="count++">
-    Sayı: {{ count }}
+    Count is: {{ count }}
   </button>
 </div>
 ```
@@ -77,7 +77,7 @@ const count = ref(0)
 
 <div class="demo">
   <button @click="count++">
-    Sayı: {{ count }}
+    Count is: {{ count }}
   </button>
 </div>
 
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">Sayı: {{ count }}</button>
+  <button @click="count++">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -148,7 +148,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <button @click="count++">Sayı: {{ count }}</button>
+  <button @click="count++">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -199,7 +199,7 @@ export default {
 </script>
 
 <template>
-  <button @click="increment">Sayı: {{ count }}</button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
@@ -230,7 +230,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button @click="increment">Sayı: {{ count }}</button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
@@ -251,7 +251,7 @@ Eğer Vue'da henüz yeniyseniz genel tavsiyemiz şudur:
 - Öğrenmeye yönelik amaçlar için, size kavraması daha kolay gelen stili kullanarak ilerleyin. Aklınızda bulunsun; temel kavramların çoğu bu iki stil için de ortaktır. Her zaman sonradan geçişi sağlayarak diğer stili kullanmayı öğrenebilirsiniz.
 
 - Üretim (production) kullanımında ise:
-  - Herhangi bir derleme (build) aracı kullanmıyorsanız yada Vue'yu düşük çaplı aşamalı geliştirmeler (progressive enhancement) yapacağınız başlangıç durumuna daha yakın basitleştirilmiş senaryolarda değerlendirmeyi planlıyorsanız Options API yolunu seçin.
+  - Herhangi bir derleme (build) aracı kullanmıyorsanız ya da Vue'yu düşük çaplı aşamalı geliştirmeler (progressive enhancement) yapacağınız başlangıç durumuna daha yakın basitleştirilmiş senaryolarda değerlendirmeyi planlıyorsanız Options API yolunu seçin.
 
   - Eğer Vue kullanarak tam kapsamlı uygulamalar derleme planınız var ise Single-File Components ve Composition API yolunu seçmelisiniz.
 

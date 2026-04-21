@@ -8,15 +8,16 @@
   Bir metoda/fonksiyona bağlama işlemi.
   Buradaki @click yazımı aslında v-on:click için kullandığımız bir kısaltmadır.
 -->
-<button @click="reverseMessage">Mesajı Tersine Çevir</button>
+<button @click="reverseMessage">Reverse Message</button>
 
-<!-- Aynı zamanda satır içi (inline) bir ifade de çalıştırabiliriz -->
-<button @click="message += '!'">Sonuna "!" Ekle</button>
+
+<!-- Can also be an inline expression statement -->
+<button @click="message += '!'">Append "!"</button>
 
 <!--
   Vue ayrıca, e.preventDefault() ve e.stopPropagation()
   gibi sıkça ihtiyaç duyulan işlemler için bize belirleyiciler (modifiers) de sunar.
 -->
 <a href="https://vuejs.org" @click.prevent="notify">
-  Tıklanınca e.preventDefault() çalıştıran bir link
+  A link with e.preventDefault()
 </a>

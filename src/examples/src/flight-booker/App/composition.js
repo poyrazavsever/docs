@@ -2,11 +2,11 @@ import { ref, computed } from 'vue'
 
 export default {
   setup() {
-    const flightType = ref('tek yön uçuş')
+    const flightType = ref('one-way flight')
     const departureDate = ref(dateToString(new Date()))
     const returnDate = ref(departureDate.value)
 
-    const isReturn = computed(() => flightType.value === 'gidiş-dönüş uçuş')
+    const isReturn = computed(() => flightType.value === 'return flight')
 
     const canBook = computed(
       () =>
@@ -17,8 +17,8 @@ export default {
     function book() {
       alert(
         isReturn.value
-          ? `${departureDate.value} gidiş ve ${returnDate.value} dönüş tarihli uçuşunuz rezerve edildi.`
-          : `${departureDate.value} tarihli tek yön uçuşunuz rezerve edildi.`
+          ? `You have booked a return flight leaving on ${departureDate.value} and returning on ${returnDate.value}.`
+          : `You have booked a one-way flight leaving on ${departureDate.value}.`
       )
     }
 

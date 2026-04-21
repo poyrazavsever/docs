@@ -35,7 +35,7 @@
 
 /*
  * Aşağıdaki stiller, Vue.js tarafından görünürlükleri değiştirildiğinde
- * transition="modal" niteliğine (attribute) sahip elementlere 
+ * transition="modal" niteliğine (attribute) sahip elementlere
  * otomatik olarak uygulanır.
  *
  * Bu stilleri düzenleyerek modal geçiş (transition) animasyonları üzerinde

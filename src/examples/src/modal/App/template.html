@@ -1,10 +1,10 @@
-<button id="show-modal" @click="showModal = true">Modalı Göster</button>
+<button id="show-modal" @click="showModal = true">Show Modal</button>
 
 <Teleport to="body">
-  <!-- modal bileşenini kullanıyoruz, prop olarak verimizi iletiyoruz -->
+  <!-- use the modal component, pass in the prop -->
   <modal :show="showModal" @close="showModal = false">
     <template #header>
-      <h3>Özel Başlık</h3>
+      <h3>Custom Header</h3>
     </template>
   </modal>
 </Teleport>

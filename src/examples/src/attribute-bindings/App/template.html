@@ -1,6 +1,6 @@
 <p>
   <span :title="message">
-    Dinamik olarak bağlanmış başlığımı (title) görmek için farenizi birkaç saniye üzerimde bekletin!
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
   </span>
 </p>
 
@@ -9,10 +9,10 @@ sınıf (class) bağlamasında düz dizelerin (strings) yanı sıra
 nesneler (objects) ve diziler (arrays) de özel olarak desteklenir
 -->
 <p :class="{ red: isRed }" @click="toggleRed">
-  Bunun rengi kırmızı olmalı... Değiştirmek için üzerime tıklayın.
+  This should be red... but click me to toggle it.
 </p>
 
 <!-- style bağlamaları da benzer şekilde nesneleri ve dizileri destekler -->
 <p :style="{ color }" @click="toggleColor">
-  Bunun rengi yeşil olmalı, tıklandıkça da yeşil ve mavi arasında gidip gelmelidir.
+  This should be green, and should toggle between green and blue on click.
 </p>

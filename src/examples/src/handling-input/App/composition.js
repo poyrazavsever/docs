@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    const message = ref('Merhaba Dünya!')
+    const message = ref('Hello World!')
 
     function reverseMessage() {
       // Bir ref'in sahip olduğu değere onun .value
@@ -11,7 +11,7 @@ export default {
     }
 
     function notify() {
-      alert('Yönlendirme engellendi.')
+      alert('navigation was prevented.')
     }
 
     return {

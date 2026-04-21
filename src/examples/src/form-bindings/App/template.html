@@ -4,7 +4,7 @@
 
 <h2>Checkbox</h2>
 <input type="checkbox" id="checkbox" v-model="checked" />
-<label for="checkbox">İşaretli: {{ checked }}</label>
+<label for="checkbox">Checked: {{ checked }}</label>
 
 <!--
   birden fazla onay kutusu (checkbox) v-model aracılığıyla aynı
@@ -17,24 +17,24 @@
 <label for="john">John</label>
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
 <label for="mike">Mike</label>
-<p>İşaretlenen isimler: {{ checkedNames }}</p>
+<p>Checked names: {{ checkedNames }}</p>
 
-<h2>Radio Button</h2>
-<input type="radio" id="one" value="Bir" v-model="picked" />
-<label for="one">Bir</label>
+<h2>Radio</h2>
+<input type="radio" id="one" value="One" v-model="picked" />
+<label for="one">One</label>
 <br />
-<input type="radio" id="two" value="İki" v-model="picked" />
-<label for="two">İki</label>
-<p>Seçilen: {{ picked }}</p>
+<input type="radio" id="two" value="Two" v-model="picked" />
+<label for="two">Two</label>
+<p>Picked: {{ picked }}</p>
 
 <h2>Select</h2>
 <select v-model="selected">
-  <option disabled value="">Lütfen birini seçin</option>
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<p>Seçilen: {{ selected }}</p>
+<p>Selected: {{ selected }}</p>
 
 <h2>Multi Select</h2>
 <select v-model="multiSelected" multiple style="width: 100px">
@@ -42,4 +42,4 @@
   <option>B</option>
   <option>C</option>
 </select>
-<p>Seçilenler: {{ multiSelected }}</p>
+<p>Selected: {{ multiSelected }}</p>
