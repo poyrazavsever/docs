@@ -13,16 +13,16 @@ import { onMounted } from 'vue'
 onMounted(load)
 </script>
 
-# Become a Vue.js Sponsor {#become-a-vue-js-sponsor}
+# Vue.js Sponsoru Olun {#become-a-vue-js-sponsor}
 
-Vue.js is an MIT licensed open source project and completely free to use.
-The tremendous amount of effort needed to maintain such a large ecosystem and develop new features for the project is only made sustainable thanks to the generous financial backing of our sponsors.
+Vue.js, MIT lisanslı açık kaynaklı bir projedir ve kullanımı tamamen ücretsizdir.
+Böylesine büyük bir ekosistemi ayakta tutmak ve proje için yeni özellikler geliştirmek adına harcanan muazzam çaba, ancak sponsorlarımızın cömert finansal destekleri sayesinde sürdürülebilir hale gelmektedir.
 
-## How to Sponsor {#how-to-sponsor}
+## Nasıl Sponsor Olunur {#how-to-sponsor}
 
-Sponsorships can be done via [GitHub Sponsors](https://github.com/sponsors/yyx990803) or [OpenCollective](https://opencollective.com/vuejs). Invoices can be obtained via GitHub's payment system. Both monthly-recurring sponsorships and one-time donations are accepted. Recurring sponsorships are entitled to logo placements as specified in [Sponsorship Tiers](#tier-benefits).
+Sponsorluk işlemleri [GitHub Sponsors](https://github.com/sponsors/yyx990803) veya [OpenCollective](https://opencollective.com/vuejs) üzerinden yapılabilir. Faturalar, GitHub'ın ödeme sistemi üzerinden temin edilebilir. Hem aylık yinelenen sponsorluklar hem de tek seferlik bağışlar kabul edilmektedir. Düzenli sponsorluklar, [Sponsorluk Seviyeleri](#tier-benefits) bölümünde belirtildiği üzere logo yerleştirme hakkına sahiptir.
 
-If you have questions regarding tiers, payment logistics, or sponsor exposure data, please reach out to [sponsor@vuejs.org](mailto:sponsor@vuejs.org?subject=Vue.js%20sponsorship%20inquiry).
+Seviyeler, ödeme lojistiği veya sponsor görünürlük verileri ile ilgili sorularınız varsa, lütfen [sponsor@vuejs.org](mailto:sponsor@vuejs.org?subject=Vue.js%20sponsorship%20inquiry) adresinden bizimle iletişime geçin.
 
 ## Sponsoring Vue as a Business {#sponsoring-vue-as-a-business}
 
