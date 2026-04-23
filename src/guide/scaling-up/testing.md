@@ -286,7 +286,7 @@ Uçtan uca (E2E) testler sürekli entegrasyon / dağıtım hatlarında çalışt
   <a href="https://lambdatest.com" target="_blank">
     <img src="/images/lambdatest.svg">
     <div>
-      <div class="testing-partner">Testing Sponsor</div>
+      <div class="testing-partner">Test Sponsoru</div>
       <div>Lambdatest, tüm büyük tarayıcılarda ve gerçek cihazlarda E2E, erişilebilirlik ve görsel regresyon testleri çalıştırmak için bir bulut platformudur; üstelik AI destekli test üretimiyle!</div>
     </div>
   </a>
