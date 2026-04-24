@@ -25,41 +25,41 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 }
 </style>
 
-# Testing {#testing}
+# Test {#testing}
 
-## Why Test? {#why-test}
+## Neden Test Yazmalı? {#why-test}
 
-Automated tests help you and your team build complex Vue applications quickly and confidently by preventing regressions and encouraging you to break apart your application into testable functions, modules, classes, and components. As with any application, your new Vue app can break in many ways, and it's important that you can catch these issues and fix them before releasing.
+Otomatik testler; regresyonları önleyerek ve uygulamanızı test edilebilir fonksiyonlara, modüllere, sınıflara ve bileşenlere bölmenizi teşvik ederek, siz ve ekibinizin karmaşık Vue uygulamalarını hızlı ve güvenle geliştirmenize yardımcı olur. Her uygulamada olduğu gibi yeni Vue uygulamanız da birçok farklı şekilde bozulabilir; bu sorunları yayına almadan önce yakalayıp düzeltebilmek önemlidir.
 
-In this guide, we'll cover basic terminology and provide our recommendations on which tools to choose for your Vue 3 application.
+Bu rehberde temel terminolojiyi ele alacak ve Vue 3 uygulamanız için hangi araçları seçmenize ilişkin önerilerimizi sunacağız.
 
-There is one Vue-specific section covering composables. See [Testing Composables](#testing-composables) below for more details.
+Composable'ları kapsayan Vue'ya özgü bir bölüm vardır. Ayrıntılar için aşağıdaki [Composable Testleri](#testing-composables) bölümüne bakın.
 
-## When to Test {#when-to-test}
+## Ne Zaman Test Yazmalı? {#when-to-test}
 
-Start testing early! We recommend you begin writing tests as soon as you can. The longer you wait to add tests to your application, the more dependencies your application will have, and the harder it will be to start.
+Test yazmaya erken başlayın! Mümkün olan en kısa sürede test yazmaya başlamanızı öneririz. Uygulamanıza test eklemeyi ne kadar geciktirirseniz, uygulamanın bağımlılıkları o kadar artar ve başlamak o kadar zorlaşır.
 
-## Testing Types {#testing-types}
+## Test Türleri {#testing-types}
 
-When designing your Vue application's testing strategy, you should leverage the following testing types:
+Vue uygulamanızın test stratejisini tasarlarken aşağıdaki test türlerinden yararlanmalısınız:
 
-- **Unit**: Checks that inputs to a given function, class, or composable are producing the expected output or side effects.
-- **Component**: Checks that your component mounts, renders, can be interacted with, and behaves as expected. These tests import more code than unit tests, are more complex, and require more time to execute.
-- **End-to-end**: Checks features that span multiple pages and makes real network requests against your production-built Vue application. These tests often involve standing up a database or other backend.
+- **Birim (Unit)**: Bir fonksiyona, sınıfa veya composable'a verilen girdilerin beklenen çıktıyı ya da yan etkileri üretip üretmediğini kontrol eder.
+- **Bileşen (Component)**: Bileşeninizin mount olduğunu, render edildiğini, etkileşime açık olduğunu ve beklendiği gibi davrandığını kontrol eder. Bu testler birim testlerden daha fazla kod içerir, daha karmaşıktır ve çalışması daha uzun sürer.
+- **Uçtan Uca (End-to-end)**: Birden fazla sayfayı kapsayan özellikleri kontrol eder ve üretim derlemeli (production-built) Vue uygulamanıza gerçek ağ istekleri gönderir. Bu testler genellikle bir veritabanı veya başka bir arka ucun ayağa kaldırılmasını gerektirir.
 
-Each testing type plays a role in your application's testing strategy, and each will protect you against different types of issues.
+Her test türü, uygulamanızın test stratejisinde bir rol üstlenir ve her biri sizi farklı türdeki sorunlardan korur.
 
-## Overview {#overview}
+## Genel Bakış {#overview}
 
-We will briefly discuss what each of these are, how they can be implemented for Vue applications, and provide some general recommendations.
+Bu türlerin her birinin ne olduğunu, Vue uygulamaları için nasıl uygulanabileceğini kısaca ele alacak ve genel önerilerde bulunacağız.
 
-## Unit Testing {#unit-testing}
+## Birim Test {#unit-testing}
 
-Unit tests are written to verify that small, isolated units of code are working as expected. A unit test usually covers a single function, class, composable, or module. Unit tests focus on logical correctness and only concern themselves with a small portion of the application's overall functionality. They may mock large parts of your application's environment (e.g. initial state, complex classes, 3rd party modules, and network requests).
+Birim testler, küçük ve izole kod birimlerinin beklendiği gibi çalışıp çalışmadığını doğrulamak için yazılır. Bir birim test genellikle tek bir fonksiyonu, sınıfı, composable'ı veya modülü kapsar. Birim testler mantıksal doğruluğa odaklanır ve yalnızca uygulamanın genel işlevinin küçük bir kısmıyla ilgilenir. Uygulamanızın ortamının büyük bir bölümünü mock'layabilir (örn. başlangıç durumu, karmaşık sınıflar, üçüncü taraf modüller ve ağ istekleri).
 
-In general, unit tests will catch issues with a function's business logic and logical correctness.
+Genel olarak birim testler, bir fonksiyonun iş mantığı ve mantıksal doğruluğuyla ilgili sorunları yakalar.
 
-Take for example this `increment` function:
+Örnek olarak şu `increment` fonksiyonunu ele alalım:
 
 ```js [helpers.js]
 export function increment(current, max = 10) {
@@ -70,9 +70,9 @@ export function increment(current, max = 10) {
 }
 ```
 
-Because it's very self-contained, it'll be easy to invoke the increment function and assert that it returns what it's supposed to, so we'll write a Unit Test.
+Kendi kendine yeterli (self-contained) bir yapıda olduğu için, increment fonksiyonunu çağırıp beklendiği değeri döndürdüğünü doğrulamak kolaydır; bu yüzden bir Birim Test yazacağız.
 
-If any of these assertions fail, it's clear that the issue is contained within the `increment` function.
+Bu doğrulamalardan herhangi biri başarısız olursa, sorunun `increment` fonksiyonunun içinde olduğu açıkça görülür.
 
 ```js{3-15} [helpers.spec.js]
 import { increment } from './helpers'
@@ -92,60 +92,60 @@ describe('increment', () => {
 })
 ```
 
-As mentioned previously, unit testing is typically applied to self-contained business logic, components, classes, modules, or functions that do not involve UI rendering, network requests, or other environmental concerns.
+Daha önce belirtildiği gibi, birim test genellikle UI render'ı, ağ istekleri veya diğer ortamsal unsurları içermeyen; kendi başına yeterli iş mantığı, bileşenler, sınıflar, modüller ya da fonksiyonlar için uygulanır.
 
-These are typically plain JavaScript / TypeScript modules unrelated to Vue. In general, writing unit tests for business logic in Vue applications does not differ significantly from applications using other frameworks.
+Bunlar çoğunlukla Vue ile ilgisi olmayan düz JavaScript / TypeScript modülleridir. Genel olarak Vue uygulamalarındaki iş mantığı için birim test yazmak, başka framework'ler kullanan uygulamalardan önemli ölçüde farklı değildir.
 
-There are two instances where you DO unit test Vue-specific features:
+Vue'ya özgü özelliklere birim test yazdığınız iki durum vardır:
 
-1. Composables
-2. Components
+1. Composable'lar
+2. Bileşenler
 
-### Composables {#composables}
+### Composable'lar {#composables}
 
-One category of functions specific to Vue applications is [Composables](/guide/reusability/composables), which may require special handling during tests.
-See [Testing Composables](#testing-composables) below for more details.
+Vue uygulamalarına özgü fonksiyon kategorilerinden biri, testler sırasında özel işlem gerektirebilen [Composable'lar](/guide/reusability/composables)dır.
+Ayrıntılar için aşağıdaki [Composable Testleri](#testing-composables) bölümüne bakın.
 
-### Unit Testing Components {#unit-testing-components}
+### Bileşenlere Birim Test Yazmak {#unit-testing-components}
 
-A component can be tested in two ways:
+Bir bileşen iki şekilde test edilebilir:
 
-1. Whitebox: Unit Testing
+1. Beyaz Kutu (Whitebox): Birim Test
 
-   Tests that are "Whitebox tests" are aware of the implementation details and dependencies of a component. They are focused on **isolating** the component under test. These tests will usually involve mocking some, if not all of your component's children, as well as setting up plugin state and dependencies (e.g. Pinia).
+   "Beyaz Kutu" testler, bir bileşenin uygulama detaylarına ve bağımlılıklarına vakıftır. Test edilen bileşeni **izole etmeye** odaklanırlar. Bu testler genellikle bileşenin bazı (hatta tüm) alt bileşenlerini mock'lamayı ve eklenti durumu ile bağımlılıklarını (örn. Pinia) ayarlamayı içerir.
 
-2. Blackbox: Component Testing
+2. Kara Kutu (Blackbox): Bileşen Testi
 
-   Tests that are "Blackbox tests" are unaware of the implementation details of a component. These tests mock as little as possible to test the integration of your component and the entire system. They usually render all child components and are considered more of an "integration test". See the [Component Testing recommendations](#component-testing) below.
+   "Kara Kutu" testler, bir bileşenin uygulama detaylarından habersizdir. Bileşeninizin ve tüm sistemin entegrasyonunu test edebilmek için mümkün olduğunca az mock'larlar. Genellikle tüm alt bileşenleri render ederler ve daha çok "entegrasyon testi" olarak kabul edilirler. Aşağıdaki [Bileşen Test önerilerine](#component-testing) bakın.
 
-### Recommendation {#recommendation}
+### Öneri {#recommendation}
 
 - [Vitest](https://vitest.dev/)
 
-  Since the official setup created by `create-vue` is based on [Vite](https://vite.dev/), we recommend using a unit testing framework that can leverage the same configuration and transform pipeline directly from Vite. [Vitest](https://vitest.dev/) is a unit testing framework designed specifically for this purpose, created and maintained by Vue / Vite team members. It integrates with Vite-based projects with minimal effort, and is blazing fast.
+  `create-vue` tarafından oluşturulan resmi kurulum [Vite](https://vite.dev/) tabanlı olduğundan, aynı yapılandırma ve dönüşüm hattını doğrudan Vite'tan kullanabilen bir birim test framework'ünü önermekteyiz. [Vitest](https://vitest.dev/), tam olarak bu amaçla tasarlanmış, Vue / Vite ekibi üyeleri tarafından geliştirilip sürdürülen bir birim test framework'üdür. Vite tabanlı projelere minimum çabayla entegre olur ve son derece hızlıdır.
 
-### Other Options {#other-options}
+### Diğer Seçenekler {#other-options}
 
-- [Jest](https://jestjs.io/) is a popular unit testing framework. However, we only recommend Jest if you have an existing Jest test suite that needs to be migrated over to a Vite-based project, as Vitest offers a more seamless integration and better performance.
+- [Jest](https://jestjs.io/) yaygın bir birim test framework'üdür. Ancak Jest'i yalnızca Vite tabanlı bir projeye taşınması gereken mevcut bir Jest test takımınız varsa öneririz; çünkü Vitest daha sorunsuz bir entegrasyon ve daha iyi performans sunar.
 
-## Component Testing {#component-testing}
+## Bileşen Testi {#component-testing}
 
-In Vue applications, components are the main building blocks of the UI. Components are therefore the natural unit of isolation when it comes to validating your application's behavior. From a granularity perspective, component testing sits somewhere above unit testing and can be considered a form of integration testing. Much of your Vue Application should be covered by a component test and we recommend that each Vue component has its own spec file.
+Vue uygulamalarında bileşenler, kullanıcı arayüzünün ana yapı taşlarıdır. Bu nedenle uygulamanızın davranışını doğrulamak söz konusu olduğunda bileşenler doğal bir izolasyon birimidir. Granülerlik açısından bileşen testi, birim testin biraz üstünde yer alır ve bir tür entegrasyon testi olarak kabul edilebilir. Vue uygulamanızın büyük bir kısmı bileşen testiyle kapsanmalıdır; her Vue bileşeninin kendi spec dosyasının olmasını öneririz.
 
-Component tests should catch issues relating to your component's props, events, slots that it provides, styles, classes, lifecycle hooks, and more.
+Bileşen testleri, bileşeninizin props'larıyla, olaylarıyla (events), sunduğu slot'larla, stilleriyle, sınıflarıyla, yaşam döngüsü kancalarıyla ve daha fazlasıyla ilgili sorunları yakalamalıdır.
 
-Component tests should not mock child components, but instead test the interactions between your component and its children by interacting with the components as a user would. For example, a component test should click on an element like a user would instead of programmatically interacting with the component.
+Bileşen testleri alt bileşenleri mock'lamak yerine, bileşeninizle alt bileşenleri arasındaki etkileşimleri bir kullanıcı gibi davranarak test etmelidir. Örneğin bir bileşen testi, bileşenle programatik olarak etkileşime girmek yerine kullanıcının yapacağı gibi bir elemana tıklamalıdır.
 
-Component tests should focus on the component's public interfaces rather than internal implementation details. For most components, the public interface is limited to: events emitted, props, and slots. When testing, remember to **test what a component does, not how it does it**.
+Bileşen testleri, iç uygulama detayları yerine bileşenin dış (public) arayüzüne odaklanmalıdır. Çoğu bileşen için dış arayüz; emit edilen olaylar, props ve slot'larla sınırlıdır. Test yazarken şunu unutmayın: **bileşenin ne yaptığını test edin, bunu nasıl yaptığını değil**.
 
-**DO**
+**Yapılması Gerekenler**
 
-- For **Visual** logic: assert correct render output based on inputted props and slots.
-- For **Behavioral** logic: assert correct render updates or emitted events in response to user input events.
+- **Görsel** mantık için: verilen props ve slot'lara göre render çıktısının doğruluğunu doğrulayın.
+- **Davranışsal** mantık için: kullanıcı girdi olaylarına yanıt olarak render güncellemelerinin ya da emit edilen olayların doğruluğunu doğrulayın.
 
-  In the below example, we demonstrate a Stepper component that has a DOM element labeled "increment" and can be clicked. We pass a prop called `max` that prevents the Stepper from being incremented past `2`, so if we click the button 3 times, the UI should still say `2`.
+  Aşağıdaki örnekte, "increment" etiketli bir DOM elemanına sahip ve tıklanabilen bir Stepper bileşeni gösterilmektedir. `max` adlı bir prop geçiriyoruz; bu prop Stepper'ın `2`'nin üzerine çıkmasını engelliyor, bu nedenle düğmeye 3 kere tıklasak bile UI hâlâ `2` göstermelidir.
 
-  We know nothing about the implementation of Stepper, only that the "input" is the `max` prop and the "output" is the state of the DOM as the user will see it.
+  Stepper'ın iç uygulamasını bilmiyoruz; yalnızca "girdi"nin `max` prop'u, "çıktı"nın ise kullanıcının göreceği DOM durumu olduğunu biliyoruz.
 
 ::: code-group
 
@@ -192,11 +192,11 @@ const { getByText } = render(Stepper, {
   }
 })
 
-getByText('0') // Implicit assertion that "0" is within the component
+getByText('0') // "0"ın bileşen içinde olduğuna dair örtük doğrulama
 
 const button = getByRole('button', { name: /increment/i })
 
-// Dispatch a click event to our increment button.
+// increment düğmemize bir tıklama olayı gönder.
 await fireEvent.click(button)
 
 getByText('1')
@@ -206,109 +206,109 @@ await fireEvent.click(button)
 
 :::
 
-**DON'T**
+**Yapılmaması Gerekenler**
 
-- Don't assert the private state of a component instance or test the private methods of a component. Testing implementation details makes the tests brittle, as they are more likely to break and require updates when the implementation changes.
+- Bir bileşen örneğinin gizli (private) durumunu doğrulamayın veya bileşenin gizli metotlarını test etmeyin. Uygulama detaylarını test etmek testleri kırılgan hale getirir; çünkü uygulama değiştiğinde bu testlerin bozulma ve güncellenme ihtimali artar.
 
-  The component's ultimate job is rendering the correct DOM output, so tests focusing on the DOM output provide the same level of correctness assurance (if not more) while being more robust and resilient to change.
+  Bileşenin nihai görevi doğru DOM çıktısını render etmektir; dolayısıyla DOM çıktısına odaklanan testler aynı düzeyde (belki de daha yüksek düzeyde) doğruluk güvencesi verir ve değişikliğe karşı daha dayanıklı, daha sağlam olur.
 
-  Don't rely exclusively on snapshot tests. Asserting HTML strings does not describe correctness. Write tests with intentionality.
+  Yalnızca snapshot testlerine güvenmeyin. HTML dizelerini doğrulamak doğruluğu garanti etmez. Testlerinizi bir amaçla yazın.
 
-  If a method needs to be tested thoroughly, consider extracting it into a standalone utility function and write a dedicated unit test for it. If it cannot be extracted cleanly, it may be tested as a part of a component, integration, or end-to-end test that covers it.
+  Bir metot baştan sona test edilmeliyse, onu bağımsız bir yardımcı fonksiyona çıkarmayı ve ona özel bir birim test yazmayı değerlendirin. Temiz şekilde çıkarılamıyorsa, onu kapsayan bir bileşen, entegrasyon ya da uçtan uca testin parçası olarak test edilebilir.
 
-### Recommendation {#recommendation-1}
+### Öneri {#recommendation-1}
 
-- [Vitest](https://vitest.dev/) for components or composables that render headlessly (e.g. the [`useFavicon`](https://vueuse.org/core/useFavicon/#usefavicon) function in VueUse). Components and DOM can be tested using [`@vue/test-utils`](https://github.com/vuejs/test-utils).
+- Görsel arayüz olmadan çalışan (headless) bileşenler ya da composable'lar (örn. VueUse içindeki [`useFavicon`](https://vueuse.org/core/useFavicon/#usefavicon) fonksiyonu) için [Vitest](https://vitest.dev/). Bileşenler ve DOM, [`@vue/test-utils`](https://github.com/vuejs/test-utils) kullanılarak test edilebilir.
 
-- [Cypress Component Testing](https://on.cypress.io/component) for components whose expected behavior depends on properly rendering styles or triggering native DOM events. It can be used with Testing Library via [@testing-library/cypress](https://testing-library.com/docs/cypress-testing-library/intro).
+- Beklenen davranışı stillerin doğru render edilmesine ya da yerel DOM olaylarının tetiklenmesine bağlı bileşenler için [Cypress Component Testing](https://on.cypress.io/component). [@testing-library/cypress](https://testing-library.com/docs/cypress-testing-library/intro) aracılığıyla Testing Library ile birlikte de kullanılabilir.
 
-The main differences between Vitest and browser-based runners are speed and execution context. In short, browser-based runners, like Cypress, can catch issues that node-based runners, like Vitest, cannot (e.g. style issues, real native DOM events, cookies, local storage, and network failures), but browser-based runners are _orders of magnitude slower than Vitest_ because they do open a browser, compile your stylesheets, and more. Cypress is a browser-based runner that supports component testing. Please read [Vitest's comparison page](https://vitest.dev/guide/comparisons.html#cypress) for the latest information comparing Vitest and Cypress.
+Vitest ile tarayıcı tabanlı yürütücüler arasındaki temel farklar hız ve yürütme bağlamıdır. Kısacası Cypress gibi tarayıcı tabanlı yürütücüler, Vitest gibi Node.js tabanlı yürütücülerin yakalayamayacağı sorunları (örn. stil sorunları, gerçek yerel DOM olayları, çerezler, local storage ve ağ hataları) yakalayabilir; ancak tarayıcı tabanlı yürütücüler gerçek bir tarayıcı açtıkları, stil dosyalarınızı derledikleri vb. için _Vitest'ten kat kat yavaştır_. Cypress, bileşen testini destekleyen tarayıcı tabanlı bir yürütücüdür. Vitest ve Cypress'in karşılaştırıldığı güncel bilgi için lütfen [Vitest karşılaştırma sayfasına](https://vitest.dev/guide/comparisons.html#cypress) bakın.
 
-### Mounting Libraries {#mounting-libraries}
+### Mount Kütüphaneleri {#mounting-libraries}
 
-Component testing often involves mounting the component being tested in isolation, triggering simulated user input events, and asserting on the rendered DOM output. There are dedicated utility libraries that make these tasks simpler.
+Bileşen testi genellikle test edilen bileşeni izole şekilde mount etmeyi, simüle edilen kullanıcı girdi olaylarını tetiklemeyi ve render edilen DOM çıktısını doğrulamayı içerir. Bu görevleri kolaylaştıran özel yardımcı kütüphaneler vardır.
 
-- [`@vue/test-utils`](https://github.com/vuejs/test-utils) is the official low-level component testing library that was written to provide users access to Vue specific APIs. It's also the lower-level library `@testing-library/vue` is built on top of.
+- [`@vue/test-utils`](https://github.com/vuejs/test-utils), kullanıcıların Vue'ya özgü API'lere erişebilmesi için yazılmış resmi, alt seviye bileşen test kütüphanesidir. `@testing-library/vue`'nun üzerine inşa edildiği alt seviye kütüphane de budur.
 
-- [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library) is a Vue testing library focused on testing components without relying on implementation details. Its guiding principle is that the more tests resemble the way software is used, the more confidence they can provide.
+- [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library), bileşenleri uygulama detaylarına dayanmadan test etmeye odaklanan bir Vue test kütüphanesidir. Yol gösterici ilkesi şudur: testler yazılımın kullanılış biçimine ne kadar benzerse, o kadar çok güven verir.
 
-We recommend using `@vue/test-utils` for testing components in applications. `@testing-library/vue` has issues with testing asynchronous component with Suspense, so it should be used with caution.
+Uygulamalarda bileşenleri test etmek için `@vue/test-utils` kullanmanızı öneririz. `@testing-library/vue`, Suspense ile asenkron bileşen testinde sorunlar yaşıyor; bu nedenle dikkatli kullanılmalıdır.
 
-### Other Options {#other-options-1}
+### Diğer Seçenekler {#other-options-1}
 
-- [Nightwatch](https://nightwatchjs.org/) is an E2E test runner with Vue Component Testing support. ([Example Project](https://github.com/nightwatchjs-community/todo-vue))
+- [Nightwatch](https://nightwatchjs.org/), Vue Bileşen Testi desteğine sahip bir uçtan uca (E2E) Test Yürütücüsüdür. ([Örnek Proje](https://github.com/nightwatchjs-community/todo-vue))
 
-- [WebdriverIO](https://webdriver.io/docs/component-testing/vue) for cross-browser component testing that relies on native user interaction based on standardized automation. It can also be used with Testing Library.
+- [WebdriverIO](https://webdriver.io/docs/component-testing/vue), standart otomasyon temelli yerel kullanıcı etkileşimine dayanan, tarayıcılar arası bileşen testi içindir. Testing Library ile birlikte de kullanılabilir.
 
-## E2E Testing {#e2e-testing}
+## Uçtan Uca (E2E) Test {#e2e-testing}
 
-While unit tests provide developers with some degree of confidence, unit and component tests are limited in their abilities to provide holistic coverage of an application when deployed to production. As a result, end-to-end (E2E) tests provide coverage on what is arguably the most important aspect of an application: what happens when users actually use your applications.
+Birim testler geliştiricilere belirli bir güven düzeyi sağlasa da, birim ve bileşen testlerinin üretime dağıtılmış bir uygulamaya bütünsel bir kapsam sunma kabiliyeti sınırlıdır. Sonuç olarak uçtan uca (E2E) testler, uygulamanın en önemli yönü diyebileceğimiz şeyin kapsamını sağlar: kullanıcılar uygulamanızı gerçekten kullandığında ne olduğunun kapsamını.
 
-End-to-end tests focus on multi-page application behavior that makes network requests against your production-built Vue application. They often involve standing up a database or other backend and may even be run against a live staging environment.
+Uçtan uca testler, üretim derlemeli Vue uygulamanıza ağ istekleri gönderen, birden fazla sayfayı kapsayan uygulama davranışlarına odaklanır. Genellikle bir veritabanı veya başka bir arka ucun ayağa kaldırılmasını gerektirir ve hatta canlı bir staging ortamına karşı bile çalıştırılabilir.
 
-End-to-end tests will often catch issues with your router, state management library, top-level components (e.g. an App or Layout), public assets, or any request handling. As stated above, they catch critical issues that may be impossible to catch with unit tests or component tests.
+Uçtan uca testler sıklıkla router'ınız, durum yönetimi kütüphaneniz, üst seviye bileşenleriniz (örn. App veya Layout), public varlıklarınız ya da herhangi bir istek işlemesi ile ilgili sorunları yakalar. Yukarıda belirtildiği gibi, birim ya da bileşen testleriyle yakalanması imkânsız olabilecek kritik sorunları yakalarlar.
 
-End-to-end tests do not import any of your Vue application's code but instead rely completely on testing your application by navigating through entire pages in a real browser.
+Uçtan uca testler Vue uygulamanızın kodundan hiçbirini içe aktarmaz; bunun yerine gerçek bir tarayıcıda tüm sayfalarda gezinerek uygulamanızı test etmeye tamamen güvenirler.
 
-End-to-end tests validate many of the layers in your application. They can either target your locally built application or even a live Staging environment. Testing against your Staging environment not only includes your frontend code and static server but all associated backend services and infrastructure.
+Uçtan uca testler uygulamanızdaki birçok katmanı doğrular. Yerelde derlenmiş uygulamanızı veya canlı bir Staging ortamını hedefleyebilirler. Staging ortamına karşı test etmek yalnızca ön yüz kodunuzu ve statik sunucunuzu değil; ilişkili tüm arka uç servislerini ve altyapıyı da kapsar.
 
-> The more your tests resemble how your software is used, the more confidence they can give you. - [Kent C. Dodds](https://x.com/kentcdodds/status/977018512689455106) - Author of the Testing Library
+> Testleriniz yazılımın kullanılış biçimine ne kadar benzerse, size o kadar çok güven verirler. - [Kent C. Dodds](https://x.com/kentcdodds/status/977018512689455106) - Testing Library'nin yazarı
 
-By testing how user actions impact your application, E2E tests are often the key to higher confidence in whether an application is functioning properly or not.
+Kullanıcı eylemlerinin uygulamanızı nasıl etkilediğini test ederek, E2E testler genellikle bir uygulamanın düzgün çalışıp çalışmadığına dair yüksek güvenin anahtarı olur.
 
-### Choosing an E2E Testing Solution {#choosing-an-e2e-testing-solution}
+### E2E Test Çözümü Seçmek {#choosing-an-e2e-testing-solution}
 
-While end-to-end (E2E) testing on the web has gained a negative reputation for unreliable (flaky) tests and slowing down development processes, modern E2E tools have made strides forward to create more reliable, interactive, and useful tests. When choosing an E2E testing framework, the following sections provide some guidance on things to keep in mind when choosing a testing framework for your application.
+Web'de uçtan uca (E2E) test; güvenilmez (flaky) testler ve geliştirme süreçlerini yavaşlatma gibi olumsuz bir şöhret kazanmış olsa da, modern E2E araçları daha güvenilir, etkileşimli ve faydalı testler üretmek için büyük adımlar attı. Bir E2E test framework'ü seçerken, aşağıdaki bölümler uygulamanız için bir test framework'ü seçerken göz önünde bulundurulması gerekenler hakkında rehberlik sunar.
 
-#### Cross-browser testing {#cross-browser-testing}
+#### Tarayıcılar Arası Test (Cross-browser) {#cross-browser-testing}
 
-One of the primary benefits that end-to-end (E2E) testing is known for is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, it is important to note that cross browser testing has diminishing returns on a team's resources due to the additional time and machine power required to run them consistently. As a result, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
+Uçtan uca (E2E) testin bilinen başlıca faydalarından biri, uygulamanızı birden fazla tarayıcıda test edebilme yeteneğidir. %100 tarayıcılar arası kapsam sağlamak cazip görünse de, tarayıcılar arası testlerin tutarlı biçimde çalıştırılması için ek zaman ve makine gücü gerektirmesi nedeniyle ekibin kaynakları üzerinde azalan getirileri olduğunu belirtmek önemlidir. Bu nedenle uygulamanızın ne kadar tarayıcılar arası teste ihtiyacı olduğunu seçerken bu dengeyi göz önünde bulundurmak önemlidir.
 
-#### Faster feedback loops {#faster-feedback-loops}
+#### Daha Hızlı Geri Bildirim Döngüleri {#faster-feedback-loops}
 
-One of the primary problems with end-to-end (E2E) tests and development is that running the entire suite takes a long time. Typically, this is only done in continuous integration and deployment (CI/CD) pipelines. Modern E2E testing frameworks have helped to solve this by adding features like parallelization, which allows for CI/CD pipelines to often run magnitudes faster than before. In addition, when developing locally, the ability to selectively run a single test for the page you are working on while also providing hot reloading of tests can help boost a developer's workflow and productivity.
+Uçtan uca (E2E) testlerin ve geliştirmenin başlıca sorunlarından biri, tüm test takımının çalıştırılmasının uzun sürmesidir. Bu genellikle yalnızca sürekli entegrasyon ve dağıtım (CI/CD) hatlarında yapılır. Modern E2E test framework'leri bunu çözmeye; CI/CD hatlarının öncesine kıyasla çok daha hızlı çalışmasına olanak tanıyan paralelleştirme gibi özellikler ekleyerek yardımcı oldu. Ayrıca yerel geliştirme sırasında, üzerinde çalıştığınız sayfa için seçici biçimde tek bir testi çalıştırabilme ve testlerin anlık yeniden yüklenmesi (hot reloading), geliştiricinin iş akışını ve verimliliğini artırmaya yardımcı olabilir.
 
-#### First-class debugging experience {#first-class-debugging-experience}
+#### Birinci Sınıf Hata Ayıklama Deneyimi {#first-class-debugging-experience}
 
-While developers have traditionally relied on scanning logs in a terminal window to help determine what went wrong in a test, modern end-to-end (E2E) test frameworks allow developers to leverage tools they are already familiar with, e.g. browser developer tools.
+Geliştiriciler geleneksel olarak bir testte neyin yanlış gittiğini anlamak için terminal penceresindeki logları tararken, modern uçtan uca (E2E) test framework'leri geliştiricilerin halihazırda aşina olduğu araçlardan (örn. tarayıcı geliştirici araçları) yararlanmalarına olanak tanır.
 
-#### Visibility in headless mode {#visibility-in-headless-mode}
+#### Başsız (Headless) Modda Görünürlük {#visibility-in-headless-mode}
 
-When end-to-end (E2E) tests are run in continuous integration/deployment pipelines, they are often run in headless browsers (i.e., no visible browser is opened for the user to watch). A critical feature of modern E2E testing frameworks is the ability to see snapshots and/or videos of the application during testing, providing some insight into why errors are happening. Historically, it was tedious to maintain these integrations.
+Uçtan uca (E2E) testler sürekli entegrasyon / dağıtım hatlarında çalıştırıldığında, genellikle görsel arayüzü olmayan (headless) tarayıcıda çalışır. Modern E2E test framework'lerinin kritik bir özelliği, test sırasında uygulamanın snapshot'larını ve/veya videolarını görebilmektir; bu, hataların neden oluştuğuna dair içgörü sunar. Bu entegrasyonları sürdürmek tarihsel olarak zahmetliydi.
 
-### Recommendation {#recommendation-2}
+### Öneri {#recommendation-2}
 
-- [Playwright](https://playwright.dev/) is a great E2E testing solution that supports Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari. It has an informative UI, excellent debuggability, built-in assertions, parallelization, traces and is designed to eliminate flaky tests. Support for [Component Testing](https://playwright.dev/docs/test-components) is available, but marked experimental. Playwright is open source and maintained by Microsoft.
+- [Playwright](https://playwright.dev/); Chromium, WebKit ve Firefox'u destekleyen harika bir E2E test çözümüdür. Windows, Linux ve macOS üzerinde; yerelde ya da CI'da; başsız (headless) veya başlı (headed) olarak; Android için Google Chrome ve Mobile Safari'nin yerel mobil emülasyonuyla test yapmanızı sağlar. Bilgilendirici bir kullanıcı arayüzü, mükemmel hata ayıklanabilirlik, yerleşik doğrulamalar, paralelleştirme, trace'ler sunar ve kararsız (flaky) testleri azaltmak için tasarlanmıştır. [Bileşen Testi](https://playwright.dev/docs/test-components) desteği mevcut ancak deneysel olarak işaretlenmiştir. Playwright açık kaynaktır ve Microsoft tarafından sürdürülmektedir.
 
-- [Cypress](https://www.cypress.io/) has an informative graphical interface, excellent debuggability, built-in assertions, stubs, flake-resistance, and snapshots. As mentioned above, it provides stable support for [Component Testing](https://docs.cypress.io/guides/component-testing/introduction). Cypress supports Chromium-based browsers, Firefox, and Electron. WebKit support is available, but marked experimental. Cypress is MIT-licensed, but some features like parallelization require a subscription to Cypress Cloud.
+- [Cypress](https://www.cypress.io/); bilgilendirici bir grafik arayüze, mükemmel hata ayıklanabilirliğe, yerleşik doğrulamalara, stub'lara, flaky'e karşı dirence ve snapshot'lara sahiptir. Yukarıda belirtildiği gibi, [Bileşen Testi](https://docs.cypress.io/guides/component-testing/introduction) için sağlam bir destek sunar. Cypress; Chromium tabanlı tarayıcıları, Firefox'u ve Electron'u destekler. WebKit desteği mevcut ancak deneysel olarak işaretlenmiştir. Cypress MIT lisanslıdır, ancak paralelleştirme gibi bazı özellikler Cypress Cloud aboneliği gerektirir.
 
 <div class="lambdatest">
   <a href="https://lambdatest.com" target="_blank">
     <img src="/images/lambdatest.svg">
     <div>
-      <div class="testing-partner">Testing Sponsor</div>
-      <div>Lambdatest is a cloud platform for running E2E, accessibility, and visual regression tests across all major browsers and real devices, with AI assisted test generation!</div>
+      <div class="testing-partner">Test Sponsoru</div>
+      <div>Lambdatest, tüm büyük tarayıcılarda ve gerçek cihazlarda E2E, erişilebilirlik ve görsel regresyon testleri çalıştırmak için bir bulut platformudur; üstelik AI destekli test üretimiyle!</div>
     </div>
   </a>
 </div>
 
-### Other Options {#other-options-2}
+### Diğer Seçenekler {#other-options-2}
 
-- [Nightwatch](https://nightwatchjs.org/) is an E2E testing solution based on [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver). This gives it the widest browser support range, including native mobile testing. Selenium-based solutions will be slower than Playwright or Cypress.
+- [Nightwatch](https://nightwatchjs.org/); [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver) tabanlı bir E2E test çözümüdür. Bu ona yerel mobil testler dahil en geniş tarayıcı desteği aralığını verir. Selenium tabanlı çözümler Playwright veya Cypress'ten daha yavaş olacaktır.
 
-- [WebdriverIO](https://webdriver.io/) is a test automation framework for web and mobile testing based on the WebDriver protocol.
+- [WebdriverIO](https://webdriver.io/); WebDriver protokolü temelinde web ve mobil test için bir test otomasyon framework'üdür.
 
-## Recipes {#recipes}
+## Reçeteler {#recipes}
 
-### Adding Vitest to a Project {#adding-vitest-to-a-project}
+### Bir Projeye Vitest Eklemek {#adding-vitest-to-a-project}
 
-In a Vite-based Vue project, run:
+Vite tabanlı bir Vue projesinde şunu çalıştırın:
 
 ```sh
 > npm install -D vitest happy-dom @testing-library/vue
 ```
 
-Next, update the Vite configuration to add the `test` option block:
+Ardından `test` seçenek bloğunu eklemek için Vite yapılandırmasını güncelleyin:
 
 ```js{5-11} [vite.config.js]
 import { defineConfig } from 'vite'
@@ -316,17 +316,17 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   // ...
   test: {
-    // enable jest-like global test APIs
+    // jest benzeri global test API'lerini etkinleştir
     globals: true,
-    // simulate DOM with happy-dom
-    // (requires installing happy-dom as a peer dependency)
+    // DOM'u happy-dom ile simüle et
+    // (happy-dom'u peer bağımlılık olarak yüklemek gerekir)
     environment: 'happy-dom'
   }
 })
 ```
 
 :::tip
-If you use TypeScript, add `vitest/globals` to the `types` field in your `tsconfig.json`.
+TypeScript kullanıyorsanız, `tsconfig.json` dosyanızdaki `types` alanına `vitest/globals` ekleyin.
 
 ```json [tsconfig.json]
 {
@@ -338,7 +338,7 @@ If you use TypeScript, add `vitest/globals` to the `types` field in your `tsconf
 
 :::
 
-Then, create a file ending in `*.test.js` in your project. You can place all test files in a test directory in the project root or in test directories next to your source files. Vitest will automatically search for them using the naming convention.
+Ardından projenizde `*.test.js` ile biten bir dosya oluşturun. Tüm test dosyalarını projenin kök dizinindeki bir test klasörüne ya da kaynak dosyalarınızın yanındaki test klasörlerine yerleştirebilirsiniz. Vitest, adlandırma kuralını kullanarak bunları otomatik olarak arar.
 
 ```js [MyComponent.test.js]
 import { render } from '@testing-library/vue'
@@ -351,12 +351,12 @@ test('it should work', () => {
     }
   })
 
-  // assert output
+  // çıktıyı doğrula
   getByText('...')
 })
 ```
 
-Finally, update `package.json` to add the test script and run it:
+Son olarak `package.json` dosyasını test script'i ekleyecek şekilde güncelleyin ve çalıştırın:
 
 ```json{4} [package.json]
 {
@@ -371,18 +371,18 @@ Finally, update `package.json` to add the test script and run it:
 > npm test
 ```
 
-### Testing Composables {#testing-composables}
+### Composable Testleri {#testing-composables}
 
-> This section assumes you have read the [Composables](/guide/reusability/composables) section.
+> Bu bölüm, [Composable'lar](/guide/reusability/composables) bölümünü okuduğunuzu varsayar.
 
-When it comes to testing composables, we can divide them into two categories: composables that do not rely on a host component instance, and composables that do.
+Composable test etmek söz konusu olduğunda, onları iki kategoriye ayırabiliriz: bir host bileşen örneğine bağımlı olmayan composable'lar ve bağımlı olanlar.
 
-A composable depends on a host component instance when it uses the following APIs:
+Bir composable aşağıdaki API'leri kullandığında bir host bileşen örneğine bağımlıdır:
 
-- Lifecycle hooks
+- Yaşam döngüsü kancaları
 - Provide / Inject
 
-If a composable only uses Reactivity APIs, then it can be tested by directly invoking it and asserting its returned state/methods:
+Bir composable yalnızca Tepkisellik API'lerini kullanıyorsa, doğrudan çağrılıp döndürdüğü durum/metotlar doğrulanarak test edilebilir:
 
 ```js [counter.js]
 import { ref } from 'vue'
@@ -410,7 +410,7 @@ test('useCounter', () => {
 })
 ```
 
-A composable that relies on lifecycle hooks or Provide / Inject needs to be wrapped in a host component to be tested. We can create a helper like the following:
+Yaşam döngüsü kancalarına ya da Provide / Inject'e bağımlı bir composable'ın test edilebilmesi için bir host bileşen içine sarmalanması gerekir. Aşağıdakine benzer bir yardımcı oluşturabiliriz:
 
 ```js [test-utils.js]
 import { createApp } from 'vue'
@@ -420,13 +420,13 @@ export function withSetup(composable) {
   const app = createApp({
     setup() {
       result = composable()
-      // suppress missing template warning
+      // eksik şablon uyarısını bastır
       return () => {}
     }
   })
   app.mount(document.createElement('div'))
-  // return the result and the app instance
-  // for testing provide/unmount
+  // provide/unmount testi için
+  // sonuç ile uygulama örneğini döndür
   return [result, app]
 }
 ```
@@ -437,16 +437,16 @@ import { useFoo } from './foo'
 
 test('useFoo', () => {
   const [result, app] = withSetup(() => useFoo(123))
-  // mock provide for testing injections
+  // enjeksiyonları test etmek için provide'ı mock'la
   app.provide(...)
-  // run assertions
+  // doğrulamaları çalıştır
   expect(result.foo.value).toBe(1)
-  // trigger onUnmounted hook if needed
+  // gerekirse onUnmounted kancasını tetikle
   app.unmount()
 })
 ```
 
-For more complex composables, it could also be easier to test it by writing tests against the wrapper component using [Component Testing](#component-testing) techniques.
+Daha karmaşık composable'lar için, [Bileşen Testi](#component-testing) tekniklerini kullanarak sarmalayıcı bileşene karşı test yazmak da daha kolay olabilir.
 
 <!--
 TODO more testing recipes can be added in the future e.g.

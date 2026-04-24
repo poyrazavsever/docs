@@ -2,28 +2,28 @@
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 
-# Tooling {#tooling}
+# Araçlar {#tooling}
 
-## Try It Online {#try-it-online}
+## Çevrimiçi Deneyin {#try-it-online}
 
-You don't need to install anything on your machine to try out Vue SFCs - there are online playgrounds that allow you to do so right in the browser:
+Vue Tek Dosyalı Bileşenleri (SFC) denemek için bilgisayarınıza bir şey kurmanız gerekmez — doğrudan tarayıcı üzerinde çalışan çevrimiçi oyun alanları (playground) mevcuttur:
 
 - [Vue SFC Playground](https://play.vuejs.org)
-  - Always deployed from latest commit
-  - Designed for inspecting component compilation results
-- [Vue + Vite on StackBlitz](https://vite.new/vue)
-  - IDE-like environment running actual Vite dev server in the browser
-  - Closest to local setup
+  - Her zaman en güncel commit'ten dağıtılır
+  - Bileşen derleme sonuçlarını incelemek için tasarlanmıştır
+- [StackBlitz üzerinde Vue + Vite](https://vite.new/vue)
+  - Tarayıcıda gerçek bir Vite geliştirme sunucusu çalıştıran, IDE benzeri bir ortam
+  - Yerel kuruluma en yakın seçenek
 
-It is also recommended to use these online playgrounds to provide reproductions when reporting bugs.
+Hata raporlarken yeniden üretilebilir örnekler sağlamak için de bu çevrimiçi oyun alanlarını kullanmanız tavsiye edilir.
 
-## Project Scaffolding {#project-scaffolding}
+## Proje İskeleti Oluşturma {#project-scaffolding}
 
 ### Vite {#vite}
 
-[Vite](https://vite.dev/) is a lightweight and fast build tool with first-class Vue SFC support. It is created by Evan You, who is also the author of Vue!
+[Vite](https://vite.dev/), birinci sınıf Vue SFC desteği sunan hafif ve hızlı bir derleme aracıdır (build tool). Vue'nun da yazarı olan Evan You tarafından oluşturulmuştur!
 
-To get started with Vite + Vue, simply run:
+Vite + Vue ile başlamak için şu komutu çalıştırmanız yeterli:
 
 ::: code-group
 
@@ -36,10 +36,10 @@ $ pnpm create vue@latest
 ```
   
 ```sh [yarn]
-# For Yarn Modern (v2+)
+# Yarn Modern (v2+) için
 $ yarn create vue@latest
   
-# For Yarn ^v4.11
+# Yarn ^v4.11 için
 $ yarn dlx create-vue@latest
 ```
   
@@ -49,141 +49,141 @@ $ bun create vue@latest
 
 :::
 
-This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool.
+Bu komut, Vue'nun resmi proje iskeleti aracı olan [create-vue](https://github.com/vuejs/create-vue)'yu yükleyip çalıştırır.
 
-- To learn more about Vite, check out the [Vite docs](https://vite.dev/).
-- To configure Vue-specific behavior in a Vite project, for example passing options to the Vue compiler, check out the docs for [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#readme).
+- Vite hakkında daha fazla bilgi için [Vite belgelerine](https://vite.dev/) göz atın.
+- Bir Vite projesinde Vue'ya özgü davranışları yapılandırmak (örneğin Vue derleyicisine seçenek geçirmek) için [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#readme) belgelerine bakın.
 
-Both online playgrounds mentioned above also support downloading files as a Vite project.
+Yukarıda bahsi geçen iki çevrimiçi oyun alanı da dosyaları Vite projesi olarak indirmeyi destekler.
 
 ### Vue CLI {#vue-cli}
 
-[Vue CLI](https://cli.vuejs.org/) is the official webpack-based toolchain for Vue. It is now in maintenance mode and we recommend starting new projects with Vite unless you rely on specific webpack-only features. Vite will provide superior developer experience in most cases.
+[Vue CLI](https://cli.vuejs.org/), Vue için resmi webpack tabanlı araç zinciridir. Artık bakım modundadır; yalnızca webpack'e özgü özelliklere bağlı değilseniz yeni projelere Vite ile başlamanızı öneririz. Vite çoğu durumda çok daha iyi bir geliştirici deneyimi sağlayacaktır.
 
-For information on migrating from Vue CLI to Vite:
+Vue CLI'dan Vite'a geçişe ilişkin bilgiler:
 
-- [Vue CLI -> Vite Migration Guide from VueSchool.io](https://vueschool.io/articles/vuejs-tutorials/how-to-migrate-from-vue-cli-to-vite/)
-- [Tools / Plugins that help with auto migration](https://github.com/vitejs/awesome-vite#vue-cli)
+- [VueSchool.io'dan Vue CLI -> Vite Geçiş Rehberi](https://vueschool.io/articles/vuejs-tutorials/how-to-migrate-from-vue-cli-to-vite/)
+- [Otomatik geçişe yardımcı araçlar / eklentiler](https://github.com/vitejs/awesome-vite#vue-cli)
 
-### Note on In-Browser Template Compilation {#note-on-in-browser-template-compilation}
+### Tarayıcı İçi Şablon Derlemesi Hakkında Not {#note-on-in-browser-template-compilation}
 
-When using Vue without a build step, component templates are written either directly in the page's HTML or as inlined JavaScript strings. In such cases, Vue needs to ship the template compiler to the browser in order to perform on-the-fly template compilation. On the other hand, the compiler would be unnecessary if we pre-compile the templates with a build step. To reduce client bundle size, Vue provides [different "builds"](https://unpkg.com/browse/vue@3/dist/) optimized for different use cases.
+Vue'yu bir derleme adımı (build step) olmadan kullandığınızda, bileşen şablonları ya doğrudan sayfanın HTML'sine ya da satır içi (inlined) JavaScript dizeleri olarak yazılır. Bu tür durumlarda Vue'nun, şablonları anlık olarak derleyebilmek için şablon derleyicisini tarayıcıya göndermesi gerekir. Öte yandan şablonları bir derleme adımıyla önceden derlerseniz derleyiciye ihtiyaç kalmaz. İstemci paket boyutunu küçük tutmak için Vue, farklı kullanım senaryolarına göre optimize edilmiş [farklı "derlemeler"](https://unpkg.com/browse/vue@3/dist/) sağlar.
 
-- Build files that start with `vue.runtime.*` are **runtime-only builds**: they do not include the compiler. When using these builds, all templates must be pre-compiled via a build step.
+- Adı `vue.runtime.*` ile başlayan dosyalar **yalnızca çalışma zamanı derlemeleridir (runtime-only builds)**: derleyiciyi içermezler. Bu derlemeleri kullanırken tüm şablonların bir derleme adımı aracılığıyla önceden derlenmiş olması gerekir.
 
-- Build files that do not include `.runtime` are **full builds**: they include the compiler and support compiling templates directly in the browser. However, they will increase the payload by ~14kb.
+- Adında `.runtime` geçmeyen dosyalar **tam derlemelerdir (full builds)**: derleyiciyi içerirler ve şablonları doğrudan tarayıcıda derlemeyi destekler. Ancak bu, paket boyutunu ~14kb artırır.
 
-Our default tooling setups use the runtime-only build since all templates in SFCs are pre-compiled. If, for some reason, you need in-browser template compilation even with a build step, you can do so by configuring the build tool to alias `vue` to `vue/dist/vue.esm-bundler.js` instead.
+Varsayılan araç kurulumlarımız, tüm SFC şablonları önceden derlendiği için yalnızca çalışma zamanı derlemesini kullanır. Herhangi bir nedenle, bir derleme adımı olsa bile tarayıcı içi şablon derlemesine ihtiyaç duyarsanız, derleme aracını `vue` modülünü `vue/dist/vue.esm-bundler.js` ile eşleyecek şekilde (alias) yapılandırarak bunu sağlayabilirsiniz.
 
-If you are looking for a lighter-weight alternative for no-build-step usage, check out [petite-vue](https://github.com/vuejs/petite-vue).
+Derleme adımı olmadan kullanım için daha hafif bir alternatif arıyorsanız [petite-vue](https://github.com/vuejs/petite-vue)'ya göz atın.
 
-## IDE Support {#ide-support}
+## IDE Desteği {#ide-support}
 
-- The recommended IDE setup is [VS Code](https://code.visualstudio.com/) + the [Vue - Official extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar). The extension provides syntax highlighting, TypeScript support, and intellisense for template expressions and component props.
+- Önerilen IDE kurulumu, [VS Code](https://code.visualstudio.com/) ile birlikte [Vue - Official eklentisidir](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (önceki adıyla Volar). Eklenti; söz dizimi vurgulama, TypeScript desteği ve şablon ifadeleri ile bileşen props'ları için akıllı tamamlama (intellisense) sağlar.
 
   :::tip
-  Vue - Official replaces [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), our previous official VS Code extension for Vue 2. If you have Vetur currently installed, make sure to disable it in Vue 3 projects.
+  Vue - Official, Vue 2 için önceki resmi VS Code eklentimiz olan [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)'un yerini alır. Eğer Vetur halen kuruluysa Vue 3 projelerinde devre dışı bıraktığınızdan emin olun.
   :::
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) also provides great built-in support for Vue SFCs.
+- [WebStorm](https://www.jetbrains.com/webstorm/) da Vue SFC'ler için güçlü yerleşik destek sunar.
 
-- Other IDEs that support the [Language Service Protocol](https://microsoft.github.io/language-server-protocol/) (LSP) can also leverage Volar's core functionalities via LSP:
+- [Language Service Protocol](https://microsoft.github.io/language-server-protocol/) (LSP) destekleyen diğer IDE'ler de Volar'ın çekirdek işlevlerinden LSP üzerinden yararlanabilir:
 
-  - Sublime Text support via [LSP-Volar](https://github.com/sublimelsp/LSP-volar).
+  - Sublime Text desteği [LSP-Volar](https://github.com/sublimelsp/LSP-volar) üzerinden.
 
-  - vim / Neovim support via [coc-volar](https://github.com/yaegassy/coc-volar).
+  - vim / Neovim desteği [coc-volar](https://github.com/yaegassy/coc-volar) üzerinden.
 
-  - emacs support via [lsp-mode](https://emacs-lsp.github.io/lsp-mode/page/lsp-volar/)
+  - emacs desteği [lsp-mode](https://emacs-lsp.github.io/lsp-mode/page/lsp-volar/) üzerinden.
 
-## Browser Devtools {#browser-devtools}
+## Tarayıcı Geliştirici Araçları {#browser-devtools}
 
-The Vue browser devtools extension allows you to explore a Vue app's component tree, inspect the state of individual components, track state management events, and profile performance.
+Vue tarayıcı geliştirici araçları (devtools) eklentisi; bir Vue uygulamasının bileşen ağacını keşfetmenizi, tek tek bileşenlerin durumunu incelemenizi, durum yönetimi olaylarını izlemenizi ve performansı profillemenizi sağlar.
 
-![devtools screenshot](./images/devtools.png)
+![devtools ekran görüntüsü](./images/devtools.png)
 
-- [Documentation](https://devtools.vuejs.org/)
-- [Chrome Extension](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-- [Vite Plugin](https://devtools.vuejs.org/guide/vite-plugin)
-- [Standalone Electron app](https://devtools.vuejs.org/guide/standalone)
+- [Belgeler](https://devtools.vuejs.org/)
+- [Chrome Eklentisi](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Vite Eklentisi](https://devtools.vuejs.org/guide/vite-plugin)
+- [Bağımsız Electron uygulaması](https://devtools.vuejs.org/guide/standalone)
 
 ## TypeScript {#typescript}
 
-Main article: [Using Vue with TypeScript](/guide/typescript/overview).
+Ana konu: [Vue'yu TypeScript ile Kullanma](/guide/typescript/overview).
 
-- [Vue - Official extension](https://github.com/vuejs/language-tools) provides type checking for SFCs using `<script lang="ts">` blocks, including template expressions and cross-component props validation.
+- [Vue - Official eklentisi](https://github.com/vuejs/language-tools); `<script lang="ts">` blokları içeren SFC'ler için şablon ifadeleri ve bileşenler arası props doğrulaması dahil tür denetimi sağlar.
 
-- Use [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating `d.ts` files for SFCs.
+- Aynı tür denetimini komut satırından gerçekleştirmek ya da SFC'ler için `d.ts` dosyaları üretmek için [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) kullanın.
 
-## Testing {#testing}
+## Testler {#testing}
 
-Main article: [Testing Guide](/guide/scaling-up/testing).
+Ana konu: [Test Rehberi](/guide/scaling-up/testing).
 
-- [Cypress](https://www.cypress.io/) is recommended for E2E tests. It can also be used for component testing for Vue SFCs via the [Cypress Component Test Runner](https://docs.cypress.io/guides/component-testing/introduction).
+- [Cypress](https://www.cypress.io/) uçtan uca (E2E) testler için önerilir. Ayrıca [Cypress Component Test Runner](https://docs.cypress.io/guides/component-testing/introduction) aracılığıyla Vue SFC'leri için bileşen testlerinde de kullanılabilir.
 
-- [Vitest](https://vitest.dev/) is a test runner created by Vue / Vite team members that focuses on speed. It is specifically designed for Vite-based applications to provide the same instant feedback loop for unit / component testing.
+- [Vitest](https://vitest.dev/), Vue / Vite ekibi üyeleri tarafından oluşturulmuş, hıza odaklanan bir test sürücüsüdür (test runner). Özellikle Vite tabanlı uygulamalarda birim / bileşen testleri için aynı anlık geri bildirim döngüsünü sağlayacak şekilde tasarlanmıştır.
 
-- [Jest](https://jestjs.io/) can be made to work with Vite via [vite-jest](https://github.com/sodatea/vite-jest). However, this is only recommended if you have existing Jest-based test suites that you need to migrate over to a Vite-based setup, as Vitest provides similar functionalities with a much more efficient integration.
+- [Jest](https://jestjs.io/), [vite-jest](https://github.com/sodatea/vite-jest) üzerinden Vite ile çalışacak şekilde uyarlanabilir. Ancak bu yalnızca Vite tabanlı bir kuruluma taşımanız gereken mevcut Jest tabanlı test süitleriniz varsa önerilir; aksi halde Vitest, çok daha verimli bir entegrasyonla benzer işlevler sağlar.
 
 ## Linting {#linting}
 
-The Vue team maintains [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue), an [ESLint](https://eslint.org/) plugin that supports SFC-specific linting rules.
+Vue ekibi, SFC'ye özgü linting kurallarını destekleyen bir [ESLint](https://eslint.org/) eklentisi olan [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)'u sürdürmektedir.
 
-Users previously using Vue CLI may be used to having linters configured via webpack loaders. However when using a Vite-based build setup, our general recommendation is:
+Daha önce Vue CLI kullananlar linter'ları webpack loader'ları üzerinden yapılandırmaya alışkın olabilir. Ancak Vite tabanlı bir derleme kurulumunda genel önerimiz şudur:
 
-1. `npm install -D eslint eslint-plugin-vue`, then follow `eslint-plugin-vue`'s [configuration guide](https://eslint.vuejs.org/user-guide/#usage).
+1. `npm install -D eslint eslint-plugin-vue` komutunu çalıştırın ve ardından `eslint-plugin-vue`'nun [yapılandırma rehberini](https://eslint.vuejs.org/user-guide/#usage) izleyin.
 
-2. Setup ESLint IDE extensions, for example [ESLint for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), so you get linter feedback right in your editor during development. This also avoids unnecessary linting cost when starting the dev server.
+2. [VS Code için ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) gibi ESLint IDE eklentilerini kurun; böylece geliştirme sırasında doğrudan editörünüzde linter geri bildirimi alırsınız. Bu aynı zamanda geliştirme sunucusu başlatılırken gereksiz linting maliyetini de önler.
 
-3. Run ESLint as part of the production build command, so you get full linter feedback before shipping to production.
+3. ESLint'i üretim derleme komutunuzun bir parçası olarak çalıştırın; böylece ürünü üretime göndermeden önce tam linter geri bildirimi almış olursunuz.
 
-4. (Optional) Setup tools like [lint-staged](https://github.com/okonet/lint-staged) to automatically lint modified files on git commit.
+4. (İsteğe bağlı) git commit anında değişen dosyaları otomatik olarak lint'ten geçirmek için [lint-staged](https://github.com/okonet/lint-staged) gibi araçları kurun.
 
-## Formatting {#formatting}
+## Biçimlendirme {#formatting}
 
-- The [Vue - Official](https://github.com/vuejs/language-tools) VS Code extension provides formatting for Vue SFCs out of the box.
+- [Vue - Official](https://github.com/vuejs/language-tools) VS Code eklentisi, Vue SFC'leri için kutudan çıkar çıkmaz biçimlendirme (formatting) sağlar.
 
-- Alternatively, [Prettier](https://prettier.io/) provides built-in Vue SFC formatting support.
+- Alternatif olarak [Prettier](https://prettier.io/) da yerleşik Vue SFC biçimlendirme desteği sunar.
 
-## SFC Custom Block Integrations {#sfc-custom-block-integrations}
+## SFC Özel Blok Entegrasyonları {#sfc-custom-block-integrations}
 
-Custom blocks are compiled into imports to the same Vue file with different request queries. It is up to the underlying build tool to handle these import requests.
+Özel bloklar (custom blocks), farklı sorgu parametreleriyle aynı Vue dosyasına yapılan import’lara derlenir. Bu import’ların nasıl ele alınacağı, kullanılan derleme aracına bağlıdır.
 
-- If using Vite, a custom Vite plugin should be used to transform matched custom blocks into executable JavaScript. [Example](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)
+- Vite kullanıyorsanız, eşleşen özel blokları çalıştırılabilir JavaScript'e dönüştürmek için özel bir Vite eklentisi kullanılmalıdır. [Örnek](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)
 
-- If using Vue CLI or plain webpack, a webpack loader should be configured to transform the matched blocks. [Example](https://vue-loader.vuejs.org/guide/custom-blocks.html)
+- Vue CLI veya düz webpack kullanıyorsanız, eşleşen blokları dönüştürmek için bir webpack loader yapılandırılmalıdır. [Örnek](https://vue-loader.vuejs.org/guide/custom-blocks.html)
 
-## Lower-Level Packages {#lower-level-packages}
+## Alt Seviye Paketler {#lower-level-packages}
 
 ### `@vue/compiler-sfc` {#vue-compiler-sfc}
 
-- [Docs](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
+- [Belgeler](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
 
-This package is part of the Vue core monorepo and is always published with the same version as the main `vue` package. It is included as a dependency of the main `vue` package and proxied under `vue/compiler-sfc` so you don't need to install it individually.
+Bu paket, Vue çekirdek monorepo'sunun bir parçasıdır ve her zaman ana `vue` paketiyle aynı sürümde yayımlanır. Ana `vue` paketine bağımlılık olarak dahil edilir ve `vue/compiler-sfc` altında proxy olarak sunulur; bu nedenle ayrıca yüklemenize gerek yoktur.
 
-The package itself provides lower-level utilities for processing Vue SFCs and is only meant for tooling authors that need to support Vue SFCs in custom tools.
+Paketin kendisi, Vue SFC’leri işlemek için alt seviye yardımcı araçlar sağlar ve yalnızca kendi araçlarında Vue SFC desteği sunması gereken geliştiricilere yöneliktir.
 
 :::tip
-Always prefer using this package via the `vue/compiler-sfc` deep import since this ensures its version is in sync with the Vue runtime.
+Bu paketi, sürümünün Vue çalışma zamanıyla eşzamanlı olmasını garanti altına almak için her zaman `vue/compiler-sfc` derin içe aktarımı (deep import) üzerinden kullanmayı tercih edin.
 :::
 
 ### `@vitejs/plugin-vue` {#vitejs-plugin-vue}
 
-- [Docs](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
+- [Belgeler](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 
-Official plugin that provides Vue SFC support in Vite.
+Vite içinde Vue SFC desteği sağlayan resmi eklenti.
 
 ### `vue-loader` {#vue-loader}
 
-- [Docs](https://vue-loader.vuejs.org/)
+- [Belgeler](https://vue-loader.vuejs.org/)
 
-The official loader that provides Vue SFC support in webpack. If you are using Vue CLI, also see [docs on modifying `vue-loader` options in Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+webpack içinde Vue SFC desteği sağlayan resmi loader. Vue CLI kullanıyorsanız ayrıca [Vue CLI'da `vue-loader` seçeneklerini değiştirmeye ilişkin belgelere](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader) göz atın.
 
-## Other Online Playgrounds {#other-online-playgrounds}
+## Diğer Çevrimiçi Oyun Alanları {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
-- [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
-- [Vue on CodeSandbox](https://codesandbox.io/p/devbox/github/codesandbox/sandbox-templates/tree/main/vue-vite)
-- [Vue on Codepen](https://codepen.io/pen/editor/vue)
-- [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
+- [Repl.it üzerinde Vue + Vite](https://replit.com/@templates/VueJS-with-Vite)
+- [CodeSandbox üzerinde Vue](https://codesandbox.io/p/devbox/github/codesandbox/sandbox-templates/tree/main/vue-vite)
+- [Codepen üzerinde Vue](https://codepen.io/pen/editor/vue)
+- [WebComponents.dev üzerinde Vue](https://webcomponents.dev/create/cevue)
 
 <!-- TODO ## Backend Framework Integrations -->
