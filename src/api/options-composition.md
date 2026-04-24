@@ -16,7 +16,7 @@ Alt bileşenler tarafından enjekte edilebilecek değerler sağlayın.
 
   `provide` ve [`inject`](#inject) birlikte kullanıldığında, bir üst bileşenin, bileşen hiyerarşisinin ne kadar derin olduğuna bakılmaksızın, aynı üst zincirde oldukları sürece tüm alt bileşenleri için bağımlılık enjektörü görevi görmesini sağlar.
 
-  `provide` seçeneği ya bir nesne ya da bir nesne döndüren bir fonksiyon olmalıdır. Bu nesne, alt sınıflarına enjekte edilebilecek özellikleri içerir. Bu nesnede semboller anahtar olarak kullanılabilir.
+  `provide` seçeneği ya bir nesne ya da bir nesne döndüren bir fonksiyon olmalıdır. Bu nesne, alt bileşenlerine enjekte edilebilecek özellikleri içerir. Bu nesnede semboller anahtar olarak kullanılabilir.
 
 - **Örnek**
 
@@ -50,13 +50,13 @@ Alt bileşenler tarafından enjekte edilebilecek değerler sağlayın.
   }
   ```
 
-  Yukarıdaki örnekte, sağlanan `msg`'nin reaktif OLMADIĞINI unutmayın. Daha fazla bilgi için [Reaktivite ile Çalışma](/guide/components/provide-inject#working-with-reactivity) bölümüne bakın.
+  Yukarıdaki örnekte, sağlanan `msg`'nin tepkisel OLMADIĞINI unutmayın. Daha fazla bilgi için [Tepkisellikle Çalışmak](/guide/components/provide-inject#working-with-reactivity) bölümüne bakın.
 
-- **Ayrıca bakınız:** [Provide / Inject](/guide/components/provide-inject)
+- **Ayrıca bakın:** [Provide / Inject](/guide/components/provide-inject)
 
 ## inject {#inject}
 
-Üst sağlayıcılardan bularak mevcut bileşene enjekte edilecek özellikleri tanımlayın.
+Ata sağlayıcılardan alınarak mevcut bileşene enjekte edilecek özellikleri tanımlayın.
 
 - **Tür**
 
@@ -77,22 +77,21 @@ Alt bileşenler tarafından enjekte edilebilecek değerler sağlayın.
 
 - **Detaylar**
 
- `inject` seçeneği şunlardan biri olmalıdır:
+  `inject` seçeneği şunlardan biri olmalıdır:
 
-- Bir string dizisi, ya da
-- Anahtarların yerel bağlama adı, değerlerin ise şunlardan biri olduğu bir nesne:
-  - Mevcut enjeksiyonlarda aranacak anahtar (string veya Symbol), ya da
-  - Şunları içeren bir nesne:
-    - `from` özelliği: mevcut enjeksiyonlarda aranacak anahtar (string veya Symbol),
-    - `default` özelliği: yedek değer olarak kullanılır. Prop varsayılan değerlerine benzer şekilde, birden fazla bileşen örneği arasında değer paylaşımını önlemek amacıyla nesne türleri için bir fabrika fonksiyonu gereklidir.
+  - String'lerden oluşan bir dizi (array), veya
+  - Anahtarların yerel bağlama (local binding) adı olduğu ve değerin şunlardan biri olduğu bir nesne:
+    - Mevcut enjeksiyonlarda aranacak anahtar (string veya Symbol), veya
+    - Aşağıdakileri içeren bir nesne:
+      - `from` özelliği, mevcut enjeksiyonlarda aranacak anahtar (string veya Symbol), ve
+      - `default` özelliği, geri dönüş (fallback) değeri olarak kullanılır. Props varsayılan değerlerine benzer şekilde, birden fazla Bileşen Örneği (Component Instance) arasında değer paylaşımını önlemek için nesne türlerinde bir üretici fonksiyon (factory function) kullanılması gerekir.
 
- Eğer eşleşen bir özellik veya varsayılan bir değer sağlanmadıysa, enjekte edilen özellik `undefined` olacaktır.
+  Eğer ne eşleşen bir özellik ne de varsayılan bir değer sağlanmamışsa, enjekte edilen özellik `undefined` olacaktır.
 
-Enjekte edilen bağlamaların reaktif OLMADIĞINI unutmayın. Bu kasıtlıdır. Ancak, enjekte edilen değer reaktif bir nesne ise, o nesnedeki özellikler reaktif kalır. Daha fazla bilgi için [Reaktivite ile Çalışma](/guide/components/provide-inject#working-with-reactivity) bölümüne bakın.
-
+  Enjekte edilen bağlamaların (bindings) tepkisel (reactive) OLMADIĞINA dikkat edin. Bu bilinçli bir tasarımdır. Ancak, enjekte edilen değer tepkisel bir nesne ise, o nesne üzerindeki özellikler tepkisel kalmaya devam eder. Daha fazla detay için [Tepkisellikle Çalışmak](/guide/components/provide-inject#working-with-reactivity) bölümüne bakınız.
 - **Örnek**
 
-  Temel Kullanım:
+  Temel kullanım:
 
   ```js
   export default {
@@ -103,7 +102,7 @@ Enjekte edilen bağlamaların reaktif OLMADIĞINI unutmayın. Bu kasıtlıdır. 
   }
   ```
 
- Enjekte edilen bir değeri bir prop için varsayılan değer olarak kullanma:
+  Enjekte edilen bir değeri bir prop için varsayılan değer olarak kullanma:
 
   ```js
   const Child = {
@@ -140,7 +139,7 @@ Enjekte edilen bağlamaların reaktif OLMADIĞINI unutmayın. Bu kasıtlıdır. 
     }
   }
   ```
-Eğer farklı bir ada sahip bir özellikten enjekte edilmesi gerekiyorsa, kaynak özelliği belirtmek için `from` ifadesini kullanın:
+  Eğer farklı bir ada sahip bir özellikten enjekte edilmesi gerekiyorsa, kaynak özelliği belirtmek için `from` ifadesini kullanın:
 
   ```js
   const Child = {
@@ -166,7 +165,7 @@ Eğer farklı bir ada sahip bir özellikten enjekte edilmesi gerekiyorsa, kaynak
   }
   ```
 
-**Ayrıca bakın:** [Sağlamak / Enjekte Etmek](/guide/components/provide-inject)
+- **Ayrıca bakın:** [Provide / Inject](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
@@ -186,9 +185,9 @@ Mevcut bileşene eklenecek seçenek nesnelerinin bir dizisi.
 
 Mixin kancaları, sağlandıkları sırayla ve bileşenin kendi kancalarından önce çağrılır.
 
-:::uyarı Artık Tavsiye Edilmiyor
+:::warning Artık Önerilmiyor
 Vue 2'de mixin'ler, bileşen mantığının yeniden kullanılabilir parçalarını oluşturmanın birincil mekanizmasıydı. Mixin'ler Vue 3'te desteklenmeye devam etse de, bileşenler arasında kod yeniden kullanımı için tercih edilen yaklaşım artık [Composition API kullanan Composable fonksiyonlar](/guide/reusability/composables)'dır.
-  :::
+:::
 
   
 
@@ -214,9 +213,9 @@ Vue 2'de mixin'ler, bileşen mantığının yeniden kullanılabilir parçaların
 
 ## extends {#extends}
 
-Genişletilecek bir "temel sınıf" bileşeni.
+Genişletilecek bir "temel sınıf" (base class) bileşeni.
 
-- **Tip**
+- **Tür**
 
   ```ts
   interface ComponentOptions {
@@ -225,13 +224,14 @@ Genişletilecek bir "temel sınıf" bileşeni.
   ```
 
 - **Detaylar**
-Bir bileşenin, diğer bir bileşenin seçeneklerini miras alarak onu genişletmesine olanak tanır.
 
-Uygulama açısından, `extends` neredeyse `mixins` ile aynıdır. `extends` ile belirtilen bileşen, ilk mixinmiş gibi ele alınacaktır.
+  Bir bileşenin, diğer bir bileşenin seçeneklerini miras alarak onu genişletmesine olanak tanır.
 
-Ancak, `extends` ve `mixins` farklı amaçları ifade eder. `mixins` seçeneği öncelikle işlevsellik parçalarını bir araya getirmek için kullanılırken, `extends` öncelikle miras alma ile ilgilidir.
+  Uygulama açısından, `extends` neredeyse `mixins` ile aynıdır. `extends` ile belirtilen bileşen, ilk mixinmiş gibi ele alınacaktır.
 
-`mixins`'te olduğu gibi, `setup()` hariç tüm seçenekler ilgili birleştirme stratejisi kullanılarak birleştirilecektir.
+  Ancak, `extends` ve `mixins` farklı amaçları ifade eder. `mixins` seçeneği öncelikle işlevsellik parçalarını bir araya getirmek için kullanılırken, `extends` öncelikle miras alma ile ilgilidir.
+
+  `mixins`'te olduğu gibi, `setup()` hariç tüm seçenekler ilgili birleştirme stratejisi kullanılarak birleştirilecektir.
 
 - **Örnek**
 
@@ -244,13 +244,12 @@ Ancak, `extends` ve `mixins` farklı amaçları ifade eder. `mixins` seçeneği 
   }
   ```
 
- :::uyarı: Kompozisyon API'si için önerilmez
+  :::warning Composition API İçin Önerilmiyor
+  `extends`, Options API için tasarlanmıştır ve `setup()` kancasının birleştirilmesini işlemez.
 
-`extends`, Seçenekler API'si için tasarlanmıştır ve `setup()` kancasının birleştirilmesini ele almaz.
+  Composition API'de mantığın yeniden kullanımı için tercih edilen zihinsel model, "kalıtım" (inheritance) yerine "kompozisyon"dur (compose). Bir bileşenden gelen ve başka bir bileşende yeniden kullanılması gereken mantığınız varsa, ilgili mantığı bir [Composable](/guide/reusability/composables#composables) içine çıkarmayı düşünün.
 
-Kompozisyon API'sinde, mantık yeniden kullanımı için tercih edilen zihinsel model "kalıtım" yerine "birleştirme"dir. Bir bileşenden gelen ve başka bir bileşende yeniden kullanılması gereken mantığınız varsa, ilgili mantığı bir [Kompozisyonlanabilir](/guide/reusability/composables#composables) içine çıkarmayı düşünün.
-
-Yine de Kompozisyon API'sini kullanarak bir bileşeni "genişletmeyi" düşünüyorsanız, genişleten bileşenin `setup()` yönteminde temel bileşenin `setup()` yöntemini çağırabilirsiniz:
+  Yine de Composition API kullanarak bir bileşeni "genişletmeyi" (extend) düşünüyorsanız, genişleten bileşenin `setup()` işlevinde temel bileşenin `setup()` işlevini çağırabilirsiniz:
 
   ```js
   import Base from './Base.js'
@@ -259,7 +258,7 @@ Yine de Kompozisyon API'sini kullanarak bir bileşeni "genişletmeyi" düşünü
     setup(props, ctx) {
       return {
         ...Base.setup(props, ctx),
-        // local bindings
+        // yerel bağlamalar
       }
     }
   }
