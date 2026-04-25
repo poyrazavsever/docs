@@ -1,8 +1,8 @@
-# Single-File Components {#single-file-components}
+# Tek Dosyalı Bileşenler {#single-file-components}
 
-## Introduction {#introduction}
+## Giriş {#introduction}
 
-Vue Single-File Components (a.k.a. `*.vue` files, abbreviated as **SFC**) is a special file format that allows us to encapsulate the template, logic, **and** styling of a Vue component in a single file. Here's an example SFC:
+Vue Tek Dosyalı Bileşenleri (yani `*.vue` dosyaları, kısaltması **SFC**), bir Vue bileşeninin şablonunu, mantığını **ve** stillerini tek bir dosyada toplamamızı sağlayan özel bir dosya biçimidir. İşte bir SFC örneği:
 
 <div class="options-api">
 
@@ -53,32 +53,32 @@ const greeting = ref('Hello World!')
 
 </div>
 
-As we can see, Vue SFC is a natural extension of the classic trio of HTML, CSS and JavaScript. The `<template>`, `<script>`, and `<style>` blocks encapsulate and colocate the view, logic and styling of a component in the same file. The full syntax is defined in the [SFC Syntax Specification](/api/sfc-spec).
+Görüldüğü gibi Vue SFC, klasik HTML, CSS ve JavaScript üçlüsünün doğal bir uzantısıdır. `<template>`, `<script>` ve `<style>` blokları; bir bileşenin görünümünü, mantığını ve stilini aynı dosyada bir arada tutar. Tüm söz dizimi, [SFC Söz Dizimi Şartnamesi](/api/sfc-spec) içinde tanımlanmıştır.
 
-## Why SFC {#why-sfc}
+## Neden SFC? {#why-sfc}
 
-While SFCs require a build step, there are numerous benefits in return:
+SFC'ler bir derleme adımı (build step) gerektirse de karşılığında pek çok avantaj sunar:
 
-- Author modularized components using familiar HTML, CSS and JavaScript syntax
-- [Colocation of inherently coupled concerns](#what-about-separation-of-concerns)
-- Pre-compiled templates without runtime compilation cost
-- [Component-scoped CSS](/api/sfc-css-features)
-- [More ergonomic syntax when working with Composition API](/api/sfc-script-setup)
-- More compile-time optimizations by cross-analyzing template and script
-- [IDE support](/guide/scaling-up/tooling#ide-support) with auto-completion and type-checking for template expressions
-- Out-of-the-box Hot-Module Replacement (HMR) support
+- Bildiğiniz HTML, CSS ve JavaScript söz dizimiyle modüler bileşenler yazma
+- [Doğası gereği bağlantılı ilgi alanlarının aynı yerde tutulması](#what-about-separation-of-concerns)
+- Çalışma zamanı derleme maliyeti olmadan önceden derlenmiş şablonlar
+- [Bileşen kapsamına alınmış CSS](/api/sfc-css-features)
+- [Composition API ile çalışırken daha ergonomik söz dizimi](/api/sfc-script-setup)
+- Şablon ile script'in çapraz analiziyle daha fazla derleme zamanı optimizasyonu
+- Şablon ifadeleri için otomatik tamamlama ve tür denetimi içeren [IDE desteği](/guide/scaling-up/tooling#ide-support)
+- Yerleşik Hot Module Replacement (HMR) desteği
 
-SFC is a defining feature of Vue as a framework, and is the recommended approach for using Vue in the following scenarios:
+SFC, Vue'yu bir framework olarak tanımlayan temel özelliklerden biridir ve aşağıdaki senaryolarda Vue'yu kullanmanın önerilen yoludur:
 
-- Single-Page Applications (SPA)
-- Static Site Generation (SSG)
-- Any non-trivial frontend where a build step can be justified for better development experience (DX).
+- Tek Sayfalık Uygulamalar (SPA)
+- Statik Site Üretimi (SSG)
+- Daha iyi bir geliştirici deneyimi (DX) için derleme adımının gerekçelendirilebildiği, basit olmayan her ön yüz uygulaması
 
-That said, we do realize there are scenarios where SFCs can feel like overkill. This is why Vue can still be used via plain JavaScript without a build step. If you are just looking for enhancing largely static HTML with light interactions, you can also check out [petite-vue](https://github.com/vuejs/petite-vue), a 6 kB subset of Vue optimized for progressive enhancement.
+Yine de SFC'lerin bazı durumlarda gereğinden fazla gelebileceğinin farkındayız. Bu yüzden Vue, bir derleme adımı olmadan düz JavaScript ile de kullanılabilir. Büyük ölçüde statik HTML sayfalarını hafif etkileşimlerle geliştirmek istiyorsanız, aşamalı geliştirme (progressive enhancement) için optimize edilmiş 6 kB'lık Vue alt kümesi [petite-vue](https://github.com/vuejs/petite-vue)'ya da göz atabilirsiniz.
 
-## How It Works {#how-it-works}
+## Nasıl Çalışır {#how-it-works}
 
-Vue SFC is a framework-specific file format and must be pre-compiled by [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) into standard JavaScript and CSS. A compiled SFC is a standard JavaScript (ES) module - which means with proper build setup you can import an SFC like a module:
+Vue SFC, Vue'ya özgü bir dosya biçimidir ve [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) tarafından standart JavaScript ve CSS'e önceden derlenmelidir. Derlenmiş bir SFC, standart bir JavaScript (ES) modülüdür; yani uygun bir derleme kurulumuyla bir SFC'yi modül gibi içe aktarabilirsiniz:
 
 ```js
 import MyComponent from './MyComponent.vue'
@@ -90,18 +90,18 @@ export default {
 }
 ```
 
-`<style>` tags inside SFCs are typically injected as native `<style>` tags during development to support hot updates. For production they can be extracted and merged into a single CSS file.
+SFC'lerin içindeki `<style>` etiketleri, geliştirme sırasında anlık güncellemeleri (hot updates) desteklemek için genellikle yerel `<style>` etiketleri olarak enjekte edilir. Üretimde ise çıkarılıp tek bir CSS dosyasında birleştirilebilir.
 
-You can play with SFCs and explore how they are compiled in the [Vue SFC Playground](https://play.vuejs.org/).
+SFC'lerle denemeler yapmak ve nasıl derlendiklerini görmek için [Vue SFC Playground](https://play.vuejs.org/) kullanabilirsiniz.
 
-In actual projects, we typically integrate the SFC compiler with a build tool such as [Vite](https://vite.dev/) or [Vue CLI](http://cli.vuejs.org/) (which is based on [webpack](https://webpack.js.org/)), and Vue provides official scaffolding tools to get you started with SFCs as fast as possible. Check out more details in the [SFC Tooling](/guide/scaling-up/tooling) section.
+Gerçek projelerde SFC derleyicisini genellikle [Vite](https://vite.dev/) veya [Vue CLI](http://cli.vuejs.org/) ([webpack](https://webpack.js.org/) tabanlı) gibi bir derleme aracıyla entegre ederiz. Vue, SFC'lerle mümkün olan en hızlı şekilde başlamanız için resmi proje iskeleti oluşturma araçları sağlar. Daha fazla ayrıntı için [SFC Araçları](/guide/scaling-up/tooling) bölümüne bakın.
 
-## What About Separation of Concerns? {#what-about-separation-of-concerns}
+## Sorumlulukların Ayrılması? {#what-about-separation-of-concerns}
 
-Some users coming from a traditional web development background may have the concern that SFCs are mixing different concerns in the same place - which HTML/CSS/JS were supposed to separate!
+Geleneksel web geliştirme geçmişine sahip bazı kullanıcılar, SFC’lerin HTML, CSS ve JavaScript’in ayrı tutulması gereken sorumluluklarını aynı yerde birleştirdiği konusunda endişe duyabilir.
 
-To answer this question, it is important for us to agree that **separation of concerns is not equal to the separation of file types**. The ultimate goal of engineering principles is to improve the maintainability of codebases. Separation of concerns, when applied dogmatically as separation of file types, does not help us reach that goal in the context of increasingly complex frontend applications.
+Bu soruyu yanıtlamak için önce şu konuda uzlaşmamız önemli: **İlgi ayrımı, dosya türü ayrımıyla aynı şey değildir.** Mühendislik ilkelerinin nihai amacı kod tabanının sürdürülebilirliğini artırmaktır. İlgi ayrımı, dosya türü ayrımı olarak dogmatik biçimde uygulandığında, giderek karmaşıklaşan ön yüz uygulamaları bağlamında bu amaca ulaşmamıza yardımcı olmaz.
 
-In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweave with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic, and styles are inherently coupled, and colocating them actually makes the component more cohesive and maintainable.
+Modern kullanıcı arayüzü geliştirmede, kod tabanını birbirine sıkı sıkıya bağlı üç büyük katmana bölmek yerine, gevşek bağlı bileşenlere ayırıp bunları bir araya getirmenin çok daha mantıklı olduğunu gördük. Bir bileşenin içinde şablon, mantık ve stiller doğası gereği birbirine bağlıdır; bunları aynı yerde tutmak bileşeni aslında daha uyumlu ve sürdürülebilir kılar.
 
-Note even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files using [Src Imports](/api/sfc-spec#src-imports).
+Tek Dosyalı Bileşenler fikri hoşunuza gitmese bile, JavaScript ve CSS'inizi [Src Imports](/api/sfc-spec#src-imports) ile ayrı dosyalara ayırarak hâlâ anlık yeniden yükleme (hot-reload) ve önceden derleme özelliklerinden yararlanabilirsiniz.

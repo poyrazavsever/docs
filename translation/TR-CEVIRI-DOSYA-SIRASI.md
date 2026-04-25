@@ -92,7 +92,7 @@ Bu dokuman, ceviriyi dosya bazinda sirasiyla ilerletmek icin hazirlanmistir.
 - [ ] src/guide/reusability/composables.md
 - [ ] src/guide/reusability/custom-directives.md
 - [ ] src/guide/reusability/plugins.md
-- [ ] src/guide/scaling-up/sfc.md
+- [x] src/guide/scaling-up/sfc.md
 - [x] src/guide/scaling-up/tooling.md
 - [ ] src/guide/scaling-up/routing.md
 - [ ] src/guide/scaling-up/state-management.md
