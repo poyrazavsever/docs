@@ -1,60 +1,61 @@
-# Composition API: <br>Dependency Injection {#composition-api-dependency-injection}
+# Kompozisyon API’si: <br> Bağımlılık Enjeksiyonu {#composition-api-dependency-injection}
 
 ## provide() {#provide}
 
-Provides a value that can be injected by descendant components.
+Alt bileşenler tarafından enjekte edilebilecek bir değer sağlar.
 
-- **Type**
+- **Tür**
 
   ```ts
   function provide<T>(key: InjectionKey<T> | string, value: T): void
   ```
 
-- **Details**
+- **Detaylar**
 
-  `provide()` takes two arguments: the key, which can be a string or a symbol, and the value to be injected.
+  `provide()` iki argüman alır: string veya symbol olabilen bir anahtar ve enjekte edilecek değer.
 
-  When using TypeScript, the key can be a symbol casted as `InjectionKey` - a Vue provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript kullanırken, anahtar, `InjectionKey` olarak dönüştürülmüş bir sembol olabilir; bu, `Symbol` türünü genişleten ve `provide()` ile `inject()` arasında değer türünü senkronize etmek için kullanılabilen, Vue tarafından sağlanan bir yardımcı türdür.
 
-  Similar to lifecycle hook registration APIs, `provide()` must be called synchronously during a component's `setup()` phase.
 
-- **Example**
+  Yaşam döngüsü kancası kayıt API'lerine benzer şekilde, `provide()` işlevi bir bileşenin `setup()` aşamasında senkron olarak çağrılmalıdır.
+
+- **Örnek**
 
   ```vue
   <script setup>
   import { ref, provide } from 'vue'
   import { countSymbol } from './injectionSymbols'
 
-  // provide static value
+  // statik değer sağlama
   provide('path', '/project/')
 
-  // provide reactive value
+  // tepkisel değer sağlama
   const count = ref(0)
   provide('count', count)
 
-  // provide with Symbol keys
+  // Symbol anahtarlarıyla sağlama
   provide(countSymbol, count)
   </script>
   ```
 
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **Ayrıca bakınız**
+  - [Kılavuz - Sağlamak / Enjekte Etmek](/guide/components/provide-inject)
+  - [Kılavuz - Sağlamak / Enjekte Etmek İçin Tür Tanımlamaları](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## inject() {#inject}
 
-Injects a value provided by an ancestor component or the application (via `app.provide()`).
+Bir üst bileşen veya uygulama (`app.provide()` aracılığıyla) tarafından sağlanan bir değeri enjekte eder.
 
-- **Type**
+- **Tür**
 
   ```ts
-  // without default value
+  // varsayılan değer olmadan
   function inject<T>(key: InjectionKey<T> | string): T | undefined
 
-  // with default value
+  // varsayılan değer ile
   function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
 
-  // with factory
+  // fabrika fonksiyonu ile
   function inject<T>(
     key: InjectionKey<T> | string,
     defaultValue: () => T,
@@ -62,58 +63,59 @@ Injects a value provided by an ancestor component or the application (via `app.p
   ): T
   ```
 
-- **Details**
+- **Detaylar**
 
-  The first argument is the injection key. Vue will walk up the parent chain to locate a provided value with a matching key. If multiple components in the parent chain provide the same key, the one closest to the injecting component will "shadow" those higher up the chain and its value will be used. If no value with matching key was found, `inject()` returns `undefined` unless a default value is provided.
+  İlk argüman enjeksiyon anahtarıdır. Vue, eşleşen bir anahtarla sağlanan değeri bulmak için ebeveyn zincirinde yukarı doğru çıkar. Ebeveyn zincirindeki birden fazla bileşen aynı anahtarı sağlıyorsa, enjekte eden bileşene en yakın olanı, zincirde daha yukarıda olanları "gölgeler" ve onun değeri kullanılır. Eşleşen anahtara sahip hiçbir değer bulunamazsa ve varsayılan bir değer sağlanmamışsa, `inject()` işlevi `undefined` döndürür.
 
-  The second argument is optional and is the default value to be used when no matching value was found.
+  İkinci argüman isteğe bağlıdır ve eşleşen bir değer bulunamadığında kullanılacak varsayılan değerdir.
 
-  The second argument can also be a factory function that returns values that are expensive to create. In this case, `true` must be passed as the third argument to indicate that the function should be used as a factory instead of the value itself.
+  İkinci argüman ayrıca, oluşturulması maliyetli olan değerleri döndüren bir fabrika fonksiyon da olabilir. Bu durumda, fonksiyonun değerin kendisi yerine bir fabrika fonksiyonu olarak kullanılması gerektiğini belirtmek için üçüncü argüman olarak `true` geçilmelidir.
 
-  Similar to lifecycle hook registration APIs, `inject()` must be called synchronously during a component's `setup()` phase.
+  Yaşam döngüsü kancası kayıt API'lerine benzer şekilde, `inject()` bir bileşenin `setup()` aşamasında senkron olarak çağrılmalıdır.
 
-  When using TypeScript, the key can be of type of `InjectionKey` - a Vue-provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript kullanırken anahtar, `InjectionKey` türünde olabilir. Bu, `provide()` ve `inject()` arasındaki değer türünü senkronize etmek için kullanılabilen, `Symbol` türünü genişleten ve Vue tarafından sağlanan bir yardımcı program türüdür.
 
-- **Example**
 
-  Assuming a parent component has provided values as shown in the previous `provide()` example:
+- **Örnek**
+
+  Bir ebeveyn bileşenin önceki `provide()` örneğinde gösterildiği gibi değerler sağladığını varsayarsak:
 
   ```vue
   <script setup>
   import { inject } from 'vue'
   import { countSymbol } from './injectionSymbols'
 
-  // inject static value without default
+  // varsayılan olmadan statik değeri enjekte et
   const path = inject('path')
 
-  // inject reactive value
+  // tepkisel değeri enjekte et
   const count = inject('count')
 
-  // inject with Symbol keys
+  // Symbol anahtarlarıyla enjekte et
   const count2 = inject(countSymbol)
 
-  // inject with default value
+  // varsayılan değerle enjekte et
   const bar = inject('path', '/default-path')
 
-  // inject with function default value
+  // fonksiyon olan varsayılan değerle enjekte et
   const fn = inject('function', () => {})
 
-  // inject with default value factory
+  // fabrika fonksiyonu varsayılan değeriyle enjekte et
   const baz = inject('factory', () => new ExpensiveObject(), true)
   </script>
   ```
   
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **Ayrıca bakınız**
+  - [Kılavuz - Sağlamak / Enjekte Etmek](/guide/components/provide-inject)
+  - [Kılavuz - Sağlamak / Enjekte Etmek İçin Tür Tanımlamaları](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## hasInjectionContext() {#has-injection-context}
 
-- Only supported in 3.3+
+- 3.3+ sürümlerinde desteklenir
 
-Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+[inject()](#inject) işlevi yanlış bir yerde (örneğin `setup()` dışında) çağrıldığına dair bir uyarı vermeden kullanılabiliyorsa `true` döndürür. Bu metot, son kullanıcıya bir uyarı tetiklemeden dahili olarak `inject()` kullanmak isteyen kütüphaneler tarafından kullanılmak üzere tasarlanmıştır.
 
-- **Type**
+- **Tür**
 
   ```ts
   function hasInjectionContext(): boolean
