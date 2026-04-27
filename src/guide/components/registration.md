@@ -1,14 +1,14 @@
-# Component Registration {#component-registration}
+# Bileşen Kaydı {#component-registration}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> Bu sayfa, [Bileşenlerin Temelleri](/guide/essentials/component-basics)'ni okuduğunuzu varsayar. Bileşenlere yeniyseniz, önce bunu okuyun.
 
-<VueSchoolLink href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components" title="Free Vue.js Component Registration Lesson"/>
+<VueSchoolLink href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components" title="Ücretsiz Vue.js Bileşen Kaydı Dersi"/>
 
-A Vue component needs to be "registered" so that Vue knows where to locate its implementation when it is encountered in a template. There are two ways to register components: global and local.
+Bir Vue bileşeninin, bir şablonda kullanıldığında Vue’nün bileşeni nereden bulacağını bilmesi için "kaydedilmesi" gerekir. Bileşenleri kaydetmenin iki yolu vardır: küresel ve yerel.
 
-## Global Registration {#global-registration}
+## Küresel Kayıt {#global-registration}
 
-We can make components available globally in the current [Vue application](/guide/essentials/application) using the `.component()` method:
+`.component()` fonksiyonuyla bileşenleri mevcut [Vue uygulamasında](/guide/essentials/application) küresel olarak kullanılabilir hale getirebiliriz:
 
 ```js
 import { createApp } from 'vue'
@@ -16,16 +16,16 @@ import { createApp } from 'vue'
 const app = createApp({})
 
 app.component(
-  // the registered name
+  // kayıtlı ad
   'MyComponent',
-  // the implementation
+  // bileşen tanımı
   {
     /* ... */
   }
 )
 ```
 
-If using SFCs, you will be registering the imported `.vue` files:
+SFC’ler (Tek Dosyalı Bileşenler) kullanılıyorsa, içe aktarılan `.vue` dosyalarını kaydetmiş olursunuz:
 
 ```js
 import MyComponent from './App.vue'
@@ -33,7 +33,7 @@ import MyComponent from './App.vue'
 app.component('MyComponent', MyComponent)
 ```
 
-The `.component()` method can be chained:
+`.component()` fonksiyonu art arda zincirlenebilir:
 
 ```js
 app
@@ -42,30 +42,30 @@ app
   .component('ComponentC', ComponentC)
 ```
 
-Globally registered components can be used in the template of any component within this application:
+Küresel olarak kaydedilen bileşenler, bu uygulamadaki herhangi bir bileşenin şablonunda kullanılabilir:
 
 ```vue-html
-<!-- this will work in any component inside the app -->
+<!-- bu, uygulama içindeki herhangi bir bileşende çalışır -->
 <ComponentA/>
 <ComponentB/>
 <ComponentC/>
 ```
 
-This even applies to all subcomponents, meaning all three of these components will also be available _inside each other_.
+Bu durum tüm alt bileşenler için de geçerlidir; yani bu üç bileşenin tamamı _birbirlerinin içinde_ de kullanılabilir olacaktır.
 
-## Local Registration {#local-registration}
+## Yerel Kayıt {#local-registration}
 
-While convenient, global registration has a few drawbacks:
+Kullanışlı olmasına rağmen küresel kayıtlamanın birkaç dezavantajı vardır:
 
-1. Global registration prevents build systems from removing unused components (a.k.a "tree-shaking"). If you globally register a component but end up not using it anywhere in your app, it will still be included in the final bundle.
+1. Küresel kayıt, build sistemlerinin kullanılmayan bileşenleri kaldırmasını (diğer adıyla “tree-shaking”) engeller. Bir bileşeni küresel olarak kaydedip uygulamanızın hiçbir yerinde kullanmasanız bile, bu bileşen final bundle'a (derleme çıktısına) dahil edilir.
 
-2. Global registration makes dependency relationships less explicit in large applications. It makes it difficult to locate a child component's implementation from a parent component using it. This can affect long-term maintainability similar to using too many global variables.
+2. Küresel kayıt, büyük uygulamalarda bağımlılık ilişkilerini daha az açık hale getirir. Bir üst bileşenin kullandığı alt bileşenin tanımını bulmayı zorlaştırır. Bu durum, çok fazla küresel değişken kullanmaya benzer şekilde uzun vadeli sürdürülebilirliği olumsuz etkileyebilir.
 
-Local registration scopes the availability of the registered components to the current component only. It makes the dependency relationship more explicit, and is more tree-shaking friendly.
+Yerel kayıt, kaydedilen bileşenlerin erişimini yalnızca mevcut bileşen ile sınırlar. Bu, bağımlılık ilişkisini daha açık hale getirir ve "tree-shaking" açısından daha uygundur.
 
 <div class="composition-api">
 
-When using SFC with `<script setup>`, imported components can be locally used without registration:
+`<script setup>` ile SFC (Tek Dosyalı Bileşen) kullanıldığında, içe aktarılan bileşenler ayrıca kayıt yapılmadan yerel olarak kullanılabilir:
 
 ```vue
 <script setup>
@@ -77,7 +77,7 @@ import ComponentA from './ComponentA.vue'
 </template>
 ```
 
-In non-`<script setup>`, you will need to use the `components` option:
+`<script setup>` kullanılmadığında, `components` seçeneğini kullanmanız gerekir:
 
 ```js
 import ComponentA from './ComponentA.js'
@@ -95,7 +95,7 @@ export default {
 </div>
 <div class="options-api">
 
-Local registration is done using the `components` option:
+Yerel kayıt, `components` seçeneği kullanılarak yapılır:
 
 ```vue
 <script>
@@ -115,7 +115,7 @@ export default {
 
 </div>
 
-For each property in the `components` object, the key will be the registered name of the component, while the value will contain the implementation of the component. The above example is using the ES2015 property shorthand and is equivalent to:
+`components` nesnesindeki her bir özellik için anahtar, bileşenin kayıtlı adı olurken; değer bileşen tanımını içerir. Yukarıdaki örnek ES2015 özellik kısaltmasını kullanmaktadır ve şununla eşdeğerdir:
 
 ```js
 export default {
@@ -126,16 +126,16 @@ export default {
 }
 ```
 
-Note that **locally registered components are _not_ also available in descendant components**. In this case, `ComponentA` will be made available to the current component only, not any of its child or descendant components.
+Şunu unutmayın: **yerel olarak kaydedilen bileşenler, alt bileşenlerde _kullanılamaz_**. Bu durumda `ComponentA`, yalnızca mevcut bileşen içinde kullanılabilir; onun alt bileşenlerinde kullanılamaz.
 
-## Component Name Casing {#component-name-casing}
+## Bileşen İsimlendirme Stili {#component-name-casing}
 
-Throughout the guide, we are using PascalCase names when registering components. This is because:
+Rehber boyunca bileşenleri kaydederken PascalCase isimler kullanıyoruz. Bunun nedeni:
 
-1. PascalCase names are valid JavaScript identifiers. This makes it easier to import and register components in JavaScript. It also helps IDEs with auto-completion.
+1. PascalCase isimler geçerli JavaScript identifier’larıdır. Bu, bileşenleri JavaScript içinde import etmeyi ve kaydetmeyi kolaylaştırır. Ayrıca IDE’lerde auto-completion (otomatik tamamlama) desteğini geliştirir.
 
-2. `<PascalCase />` makes it more obvious that this is a Vue component instead of a native HTML element in templates. It also differentiates Vue components from custom elements (web components).
+2. `<PascalCase />` kullanımı, bunun yerel bir HTML elementi değil bir Vue bileşeni olduğunu şablonlarda daha net hale getirir. Ayrıca Vue bileşenlerini custom element’lerden (web components) ayırt etmeyi sağlar.
 
-This is the recommended style when working with SFC or string templates. However, as discussed in [in-DOM Template Parsing Caveats](/guide/essentials/component-basics#in-dom-template-parsing-caveats), PascalCase tags are not usable in in-DOM templates.
+Bu stil, SFC (Tek Dosyalı Bileşen) veya string şablonlar ile çalışırken önerilen yaklaşımdır. Ancak [DOM içi Şablon Ayrıştırma Kısıtlamaları](/guide/essentials/component-basics#in-dom-template-parsing-caveats) bölümünde açıklandığı gibi, PascalCase etiketler DOM içi şablonlarda kullanılamaz.
 
-Luckily, Vue supports resolving kebab-case tags to components registered using PascalCase. This means a component registered as `MyComponent` can be referenced inside a Vue template (or inside an HTML element rendered by Vue) via both `<MyComponent>` and `<my-component>`. This allows us to use the same JavaScript component registration code regardless of template source.
+Neyse ki Vue, PascalCase kullanılarak kaydedilen bileşenleri kebab-case etiketlere çözümlemeyi destekler. Bu, `MyComponent` olarak kaydedilen bir bileşenin Vue şablonunda (veya Vue tarafından render edilen bir HTML elementinin içinde) hem `<MyComponent>` hem de `<my-component>` olarak kullanılabileceği anlamına gelir. Bu sayede şablon kaynağı ne olursa olsun aynı JavaScript bileşen kayıt kodunu kullanabiliriz.

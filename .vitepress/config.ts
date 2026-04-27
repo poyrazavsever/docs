@@ -196,10 +196,10 @@ export const sidebar: ThemeConfig['sidebar'] = {
       ]
     },
     {
-      text: 'Components In-Depth',
+      text: 'Derinlemesine Bileşenler',
       items: [
         {
-          text: 'Registration',
+          text: 'Kayıt',
           link: '/guide/components/registration'
         },
         { text: 'Props', link: '/guide/components/props' },
