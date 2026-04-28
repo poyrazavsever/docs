@@ -1,63 +1,63 @@
-# Reactivity API: Utilities {#reactivity-api-utilities}
+# Tepkisellik API'si: Yardımcı Araçlar {#reactivity-api-utilities}
 
 ## isRef() {#isref}
 
-Checks if a value is a ref object.
+Bir değerin ref nesnesi olup olmadığını kontrol eder.
 
-- **Type**
+- **Tür**
 
   ```ts
   function isRef<T>(r: Ref<T> | unknown): r is Ref<T>
   ```
 
-  Note the return type is a [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates), which means `isRef` can be used as a type guard:
+  Dönüş tipinin bir [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) olduğuna dikkat edin. Bu, `isRef`'in bir type guard olarak kullanılabileceği anlamına gelir:
 
   ```ts
   let foo: unknown
   if (isRef(foo)) {
-    // foo's type is narrowed to Ref<unknown>
+    // foo'nun tipi Ref<unknown> olacak şekilde daraltılır
     foo.value
   }
   ```
 
 ## unref() {#unref}
 
-Returns the inner value if the argument is a ref, otherwise return the argument itself. This is a sugar function for `val = isRef(val) ? val.value : val`.
+Argüman bir ref ise iç değerini, değilse argümanın kendisini döndürür. Bu, `val = isRef(val) ? val.value : val` için kısayol sağlayan bir yardımcı fonksiyondur.
 
-- **Type**
+- **Tür**
 
   ```ts
   function unref<T>(ref: T | Ref<T>): T
   ```
 
-- **Example**
+- **Örnek**
 
   ```ts
   function useFoo(x: number | Ref<number>) {
     const unwrapped = unref(x)
-    // unwrapped is guaranteed to be number now
+    // unwrapped artık kesin olarak number'dır
   }
   ```
 
 ## toRef() {#toref}
 
-Can be used to normalize values / refs / getters into refs (3.3+).
+Değerleri / ref'leri / getter'ları ref'lere normalleştirmek için kullanılabilir (3.3+).
 
-Can also be used to create a ref for a property on a source reactive object. The created ref is synced with its source property: mutating the source property will update the ref, and vice-versa.
+Ayrıca kaynak tepkisel nesnedeki bir özellik için ref oluşturmak amacıyla da kullanılabilir. Oluşturulan ref, kaynak özelliği ile senkronize olur: kaynak özelliği değiştirilirse ref güncellenir ve bunun tersi de geçerlidir.
 
-- **Type**
+- **Tür**
 
   ```ts
-  // normalization signature (3.3+)
+  // normalleştirme imzası (3.3+)
   function toRef<T>(
     value: T
   ): T extends () => infer R
     ? Readonly<Ref<R>>
     : T extends Ref
-    ? T
-    : Ref<UnwrapRef<T>>
+      ? T
+      : Ref<UnwrapRef<T>>
 
-  // object property signature
+  // nesne özelliği imzası
   function toRef<T extends object, K extends keyof T>(
     object: T,
     key: K,
@@ -67,23 +67,23 @@ Can also be used to create a ref for a property on a source reactive object. The
   type ToRef<T> = T extends Ref ? T : Ref<T>
   ```
 
-- **Example**
+- **Örnek**
 
-  Normalization signature (3.3+):
+  Normalleştirme imzası (3.3+):
 
   ```js
-  // returns existing refs as-is
+  // mevcut ref'leri olduğu gibi döndürür
   toRef(existingRef)
 
-  // creates a readonly ref that calls the getter on .value access
+  // .value erişiminde getter'ı çağıran salt okunur bir ref oluşturur
   toRef(() => props.foo)
 
-  // creates normal refs from non-function values
-  // equivalent to ref(1)
+  // fonksiyon olmayan değerlerden normal ref'ler oluşturur
+  // ref(1) ile eşdeğerdir
   toRef(1)
   ```
 
-  Object property signature:
+  Nesne özelliği imzası:
 
   ```js
   const state = reactive({
@@ -91,27 +91,27 @@ Can also be used to create a ref for a property on a source reactive object. The
     bar: 2
   })
 
-  // a two-way ref that syncs with the original property
+  // orijinal özellik ile senkronize olan çift yönlü bir ref
   const fooRef = toRef(state, 'foo')
 
-  // mutating the ref updates the original
+  // ref'i değiştirmek orijinali günceller
   fooRef.value++
   console.log(state.foo) // 2
 
-  // mutating the original also updates the ref
+  // orijinali değiştirmek de ref'i günceller
   state.foo++
   console.log(fooRef.value) // 3
   ```
 
-  Note this is different from:
+  Bunun şu örnekten farklı olduğuna dikkat edin:
 
   ```js
   const fooRef = ref(state.foo)
   ```
 
-  The above ref is **not** synced with `state.foo`, because the `ref()` receives a plain number value.
+  Yukarıdaki ref, `state.foo` ile **senkronize değildir**; çünkü `ref()` düz bir sayı değeri alır.
 
-  `toRef()` is useful when you want to pass the ref of a prop to a composable function:
+  `toRef()`, bir prop'un ref'ini bir Composable fonksiyona geçirmek istediğinizde kullanışlıdır:
 
   ```vue
   <script setup>
@@ -119,34 +119,34 @@ Can also be used to create a ref for a property on a source reactive object. The
 
   const props = defineProps(/* ... */)
 
-  // convert `props.foo` into a ref, then pass into
-  // a composable
+  // `props.foo` değerini bir ref'e dönüştür, ardından
+  // bir Composable'a geçir
   useSomeFeature(toRef(props, 'foo'))
 
-  // getter syntax - recommended in 3.3+
+  // getter sözdizimi - 3.3+ için önerilir
   useSomeFeature(toRef(() => props.foo))
   </script>
   ```
 
-  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/v-model) for more information.
+  `toRef`, bileşen props'larıyla kullanıldığında props'ları değiştirmeye yönelik olağan kısıtlamalar geçerliliğini korur. Ref'e yeni bir değer atamaya çalışmak, prop'u doğrudan değiştirmeye çalışmakla eşdeğerdir ve buna izin verilmez. Böyle bir durumda bunun yerine `get` ve `set` ile [`computed`](./reactivity-core#computed) kullanmayı düşünebilirsiniz. Ayrıntılar için [bileşenlerle `v-model` kullanma](/guide/components/v-model) rehberine bakın.
 
-  When using the object property signature, `toRef()` will return a usable ref even if the source property doesn't currently exist. This makes it possible to work with optional properties, which wouldn't be picked up by [`toRefs`](#torefs).
+  Nesne özelliği imzası kullanıldığında `toRef()`, kaynak özellik o anda mevcut olmasa bile kullanılabilir bir ref döndürür. Bu, [`toRefs`](#torefs) tarafından yakalanmayacak isteğe bağlı özelliklerle çalışmayı mümkün kılar.
 
 ## toValue() {#tovalue}
 
-- Only supported in 3.3+
+- Yalnızca 3.3+ sürümünde desteklenir
 
-Normalizes values / refs / getters to values. This is similar to [unref()](#unref), except that it also normalizes getters. If the argument is a getter, it will be invoked and its return value will be returned.
+Değerleri / ref'leri / getter'ları değerlere normalleştirir. Bu, [unref()](#unref) ile benzerdir; ancak getter'ları da normalleştirir. Argüman bir getter ise çağrılır ve dönüş değeri döndürülür.
 
-This can be used in [Composables](/guide/reusability/composables.html) to normalize an argument that can be either a value, a ref, or a getter.
+Bu, [Composable'larda](/guide/reusability/composables.html) değer, ref veya getter olabilen bir argümanı normalleştirmek için kullanılabilir.
 
-- **Type**
+- **Tür**
 
   ```ts
   function toValue<T>(source: T | Ref<T> | (() => T)): T
   ```
 
-- **Example**
+- **Örnek**
 
   ```js
   toValue(1) //       --> 1
@@ -154,18 +154,21 @@ This can be used in [Composables](/guide/reusability/composables.html) to normal
   toValue(() => 1) // --> 1
   ```
 
-  Normalizing arguments in composables:
+  Composable'lardaki argümanları normalleştirme:
 
   ```ts
   import type { MaybeRefOrGetter } from 'vue'
 
   function useFeature(id: MaybeRefOrGetter<number>) {
-    watch(() => toValue(id), id => {
-      // react to id changes
-    })
+    watch(
+      () => toValue(id),
+      (id) => {
+        // id değişikliklerine tepki ver
+      }
+    )
   }
 
-  // this composable supports any of the following:
+  // bu Composable aşağıdakilerin hepsini destekler:
   useFeature(1)
   useFeature(ref(1))
   useFeature(() => 1)
@@ -173,9 +176,9 @@ This can be used in [Composables](/guide/reusability/composables.html) to normal
 
 ## toRefs() {#torefs}
 
-Converts a reactive object to a plain object where each property of the resulting object is a ref pointing to the corresponding property of the original object. Each individual ref is created using [`toRef()`](#toref).
+Tepkisel bir nesneyi, ortaya çıkan nesnedeki her özelliğin orijinal nesnedeki karşılık gelen özelliğe işaret eden bir ref olduğu düz bir nesneye dönüştürür. Her bir ref, [`toRef()`](#toref) kullanılarak oluşturulur.
 
-- **Type**
+- **Tür**
 
   ```ts
   function toRefs<T extends object>(
@@ -187,7 +190,7 @@ Converts a reactive object to a plain object where each property of the resultin
   type ToRef = T extends Ref ? T : Ref<T>
   ```
 
-- **Example**
+- **Örnek**
 
   ```js
   const state = reactive({
@@ -197,13 +200,13 @@ Converts a reactive object to a plain object where each property of the resultin
 
   const stateAsRefs = toRefs(state)
   /*
-  Type of stateAsRefs: {
+  stateAsRefs'in tipi: {
     foo: Ref<number>,
     bar: Ref<number>
   }
   */
 
-  // The ref and the original property is "linked"
+  // Ref ile orijinal özellik birbirine "bağlıdır"
   state.foo++
   console.log(stateAsRefs.foo.value) // 2
 
@@ -211,7 +214,7 @@ Converts a reactive object to a plain object where each property of the resultin
   console.log(state.foo) // 3
   ```
 
-  `toRefs` is useful when returning a reactive object from a composable function so that the consuming component can destructure/spread the returned object without losing reactivity:
+  `toRefs`, tepkisel bir nesneyi bir Composable fonksiyondan döndürürken kullanışlıdır; böylece bunu kullanan bileşen, dönen nesneyi destructure/spread ettiğinde tepkiselliği kaybetmez:
 
   ```js
   function useFeatureX() {
@@ -220,23 +223,23 @@ Converts a reactive object to a plain object where each property of the resultin
       bar: 2
     })
 
-    // ...logic operating on state
+    // ...state üzerinde çalışan mantık
 
-    // convert to refs when returning
+    // döndürürken ref'lere dönüştür
     return toRefs(state)
   }
 
-  // can destructure without losing reactivity
+  // tepkiselliği kaybetmeden destructure edilebilir
   const { foo, bar } = useFeatureX()
   ```
 
-  `toRefs` will only generate refs for properties that are enumerable on the source object at call time. To create a ref for a property that may not exist yet, use [`toRef`](#toref) instead.
+  `toRefs`, yalnızca çağrı anında kaynak nesne üzerinde enumerable olan özellikler için ref üretir. Henüz mevcut olmayabilecek bir özellik için ref oluşturmak istiyorsanız bunun yerine [`toRef`](#toref) kullanın.
 
 ## isProxy() {#isproxy}
 
-Checks if an object is a proxy created by [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](./reactivity-advanced#shallowreactive) or [`shallowReadonly()`](./reactivity-advanced#shallowreadonly).
+Bir nesnenin [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](./reactivity-advanced#shallowreactive) veya [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) tarafından oluşturulmuş bir proxy olup olmadığını kontrol eder.
 
-- **Type**
+- **Tür**
 
   ```ts
   function isProxy(value: any): boolean
@@ -244,9 +247,9 @@ Checks if an object is a proxy created by [`reactive()`](./reactivity-core#react
 
 ## isReactive() {#isreactive}
 
-Checks if an object is a proxy created by [`reactive()`](./reactivity-core#reactive) or [`shallowReactive()`](./reactivity-advanced#shallowreactive).
+Bir nesnenin [`reactive()`](./reactivity-core#reactive) veya [`shallowReactive()`](./reactivity-advanced#shallowreactive) tarafından oluşturulmuş bir proxy olup olmadığını kontrol eder.
 
-- **Type**
+- **Tür**
 
   ```ts
   function isReactive(value: unknown): boolean
@@ -254,11 +257,11 @@ Checks if an object is a proxy created by [`reactive()`](./reactivity-core#react
 
 ## isReadonly() {#isreadonly}
 
-Checks whether the passed value is a readonly object. The properties of a readonly object can change, but they can't be assigned directly via the passed object.
+Verilen değerin salt okunur bir nesne olup olmadığını kontrol eder. Salt okunur bir nesnenin özellikleri değişebilir, ancak bu nesne üzerinden doğrudan atanamazlar.
 
-The proxies created by [`readonly()`](./reactivity-core#readonly) and [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) are both considered readonly, as is a [`computed()`](./reactivity-core#computed) ref without a `set` function.
+[`readonly()`](./reactivity-core#readonly) ve [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) tarafından oluşturulan proxy'lerin her ikisi de salt okunur kabul edilir. Aynı şekilde `set` fonksiyonu olmayan bir [`computed()`](./reactivity-core#computed) ref'i de salt okunur kabul edilir.
 
-- **Type**
+- **Tür**
 
   ```ts
   function isReadonly(value: unknown): boolean
