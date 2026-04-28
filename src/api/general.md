@@ -1,12 +1,12 @@
-# Global API: General {#global-api-general}
+# Global API: Genel {#global-api-general}
 
 ## version {#version}
 
-Exposes the current version of Vue.
+Vue'nun mevcut sürümünü sunar.
 
-- **Type:** `string`
+- **Tür:** `string`
 
-- **Example**
+- **Örnek**
 
   ```js
   import { version } from 'vue'
@@ -16,21 +16,21 @@ Exposes the current version of Vue.
 
 ## nextTick() {#nexttick}
 
-A utility for waiting for the next DOM update flush.
+Bir sonraki DOM güncelleme akışının tamamlanmasını beklemek için kullanılan bir yardımcı işlevdir.
 
-- **Type**
+- **Tür**
 
   ```ts
   function nextTick(callback?: () => void): Promise<void>
   ```
 
-- **Details**
+- **Detaylar**
 
-  When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" to ensure that each component updates only once no matter how many state changes you have made.
+  Vue'da tepkisel durumu değiştirdiğinizde, ortaya çıkan DOM güncellemeleri eşzamanlı olarak uygulanmaz. Bunun yerine Vue, yaptığınız durum değişikliği sayısı ne olursa olsun her bileşenin yalnızca bir kez güncellenmesini sağlamak için bunları "next tick"e kadar arabelleğe alır.
 
-  `nextTick()` can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.
+  `nextTick()`, bir durum değişikliğinden hemen sonra DOM güncellemelerinin tamamlanmasını beklemek için kullanılabilir. Callback'i bir argüman olarak geçebilir veya döndürülen Promise'i `await` edebilirsiniz.
 
-- **Example**
+- **Örnek**
 
   <div class="composition-api">
 
@@ -43,11 +43,11 @@ A utility for waiting for the next DOM update flush.
   async function increment() {
     count.value++
 
-    // DOM not yet updated
+    // DOM henüz güncellenmedi
     console.log(document.getElementById('counter').textContent) // 0
 
     await nextTick()
-    // DOM is now updated
+    // DOM artık güncellendi
     console.log(document.getElementById('counter').textContent) // 1
   }
   </script>
@@ -74,11 +74,11 @@ A utility for waiting for the next DOM update flush.
       async increment() {
         this.count++
 
-        // DOM not yet updated
+        // DOM henüz güncellenmedi
         console.log(document.getElementById('counter').textContent) // 0
 
         await nextTick()
-        // DOM is now updated
+        // DOM artık güncellendi
         console.log(document.getElementById('counter').textContent) // 1
       }
     }
@@ -92,36 +92,36 @@ A utility for waiting for the next DOM update flush.
 
   </div>
 
-- **See also** [`this.$nextTick()`](/api/component-instance#nexttick)
+- **Ayrıca bkz.** [`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
-A type helper for defining a Vue component with type inference.
+Tür çıkarımıyla bir Vue bileşeni tanımlamak için kullanılan bir yardımcı türdür.
 
-- **Type**
+- **Tür**
 
   ```ts
-  // options syntax
+  // seçenek sözdizimi
   function defineComponent(
     component: ComponentOptions
   ): ComponentConstructor
 
-  // function syntax (requires 3.3+)
+  // fonksiyon sözdizimi (3.3+ gerektirir)
   function defineComponent(
     setup: ComponentOptions['setup'],
     extraOptions?: ComponentOptions
   ): () => any
   ```
 
-  > Type is simplified for readability.
+  > Tür, okunabilirlik için basitleştirilmiştir.
 
-- **Details**
+- **Detaylar**
 
-  The first argument expects a component options object. The return value will be the same options object, since the function is essentially a runtime no-op for type inference purposes only.
+  İlk argüman bir bileşen seçenek nesnesi bekler. Fonksiyon, yalnızca tür çıkarımı amacıyla kullanılan ve çalışma zamanında esasen etkisiz (no-op) olduğundan, dönüş değeri aynı seçenek nesnesi olur.
 
-  Note that the return type is a bit special: it will be a constructor type whose instance type is the inferred component instance type based on the options. This is used for type inference when the returned type is used as a tag in TSX.
+  Dönüş türünün biraz özel olduğunu unutmayın: Bu tür, örnek türü seçeneklere göre çıkarılan bileşen örnek türü olan bir yapıcı türü olacaktır. Bu, döndürülen tür TSX içinde etiket olarak kullanıldığında tür çıkarımı için kullanılır.
 
-  You can extract the instance type of a component (equivalent to the type of `this` in its options) from the return type of `defineComponent()` like this:
+  Bir bileşenin örnek türünü (`this`'in seçenekler içindeki türüne eşdeğer) `defineComponent()` dönüş türünden şu şekilde çıkarabilirsiniz:
 
   ```ts
   const Foo = defineComponent(/* ... */)
@@ -129,28 +129,27 @@ A type helper for defining a Vue component with type inference.
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  ### Function Signature {#function-signature}
+  ### Fonksiyon İmzası {#function-signature}
+  - Yalnızca 3.3+ sürümünde desteklenir
 
-  - Only supported in 3.3+
+  `defineComponent()`, Composition API ve [render fonksiyonları veya JSX](/guide/extras/render-function.html) ile kullanılmak üzere tasarlanmış alternatif bir imzaya da sahiptir.
 
-  `defineComponent()` also has an alternative signature that is meant to be used with the Composition API and [render functions or JSX](/guide/extras/render-function.html).
-
-  Instead of passing in an options object, a function is expected instead. This function works the same as the Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) function: it receives the props and the setup context. The return value should be a render function - both `h()` and JSX are supported:
+  Bir seçenek nesnesi geçirmek yerine bir fonksiyon beklenir. Bu fonksiyon, Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) fonksiyonuyla aynı şekilde çalışır: Props'u ve setup bağlamını alır. Dönüş değeri bir render fonksiyonu olmalıdır; hem `h()` hem de JSX desteklenir:
 
   ```js
   import { ref, h } from 'vue'
 
   const Comp = defineComponent(
     (props) => {
-      // use Composition API here like in <script setup>
+      // Composition API'yi burada <script setup>'taki gibi kullanın
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // render fonksiyonu veya JSX
         return h('div', count.value)
       }
     },
-    // extra options, e.g. declare props and emits
+    // ek seçenekler, ör. props ve emits'i bildirme
     {
       props: {
         /* ... */
@@ -159,47 +158,47 @@ A type helper for defining a Vue component with type inference.
   )
   ```
 
-  The main use case for this signature is with TypeScript (and in particular with TSX), as it supports generics:
+  Bu imzanın başlıca kullanım senaryosu, generics desteklediği için TypeScript (özellikle de TSX) ile kullanımdır:
 
   ```tsx
   const Comp = defineComponent(
     <T extends string | number>(props: { msg: T; list: T[] }) => {
-      // use Composition API here like in <script setup>
+      // Composition API'yi burada <script setup>'taki gibi kullanın
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // render fonksiyonu veya JSX
         return <div>{count.value}</div>
       }
     },
-    // manual runtime props declaration is currently still needed.
+    // çalışma zamanında manuel props bildirimi şu anda hâlâ gereklidir.
     {
       props: ['msg', 'list']
     }
   )
   ```
 
-  In the future, we plan to provide a Babel plugin that automatically infers and injects the runtime props (like for `defineProps` in SFCs) so that the runtime props declaration can be omitted.
+  İleride, çalışma zamanı props'larını otomatik olarak çıkarıp ekleyen bir Babel eklentisi sunmayı planlıyoruz (`SFC`'lerdeki `defineProps` benzeri); böylece çalışma zamanı props bildirimi atlanabilecektir.
 
-  ### Note on webpack Treeshaking {#note-on-webpack-treeshaking}
+  ### webpack Treeshaking Hakkında {#note-on-webpack-treeshaking}
 
-  Because `defineComponent()` is a function call, it could look like it would produce side-effects to some build tools, e.g. webpack. This will prevent the component from being tree-shaken even when the component is never used.
+  `defineComponent()` bir fonksiyon çağrısı olduğu için, webpack gibi bazı build araçlarına yan etki üretiyormuş gibi görünebilir. Bu da, bileşen hiç kullanılmasa bile tree-shake edilmesini engeller.
 
-  To tell webpack that this function call is safe to be tree-shaken, you can add a `/*#__PURE__*/` comment notation before the function call:
+  Bu fonksiyon çağrısının tree-shake edilmesinin güvenli olduğunu webpack'e belirtmek için, fonksiyon çağrısından önce `/*#__PURE__*/` yorum notasyonunu ekleyebilirsiniz:
 
   ```js
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  Note this is not necessary if you are using Vite, because Rollup (the underlying production bundler used by Vite) is smart enough to determine that `defineComponent()` is in fact side-effect-free without the need for manual annotations.
+  Vite kullanıyorsanız buna gerek yoktur; çünkü Vite'ın kullandığı temel production paketleyicisi olan Rollup, `defineComponent()` çağrısının manuel anotasyonlara gerek kalmadan gerçekte yan etkisiz olduğunu anlayacak kadar akıllıdır.
 
-- **See also** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
+- **Ayrıca bkz.** [Kılavuz - Vue'yu TypeScript ile Kullanma](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
-Define an async component which is lazy loaded only when it is rendered. The argument can either be a loader function, or an options object for more advanced control of the loading behavior.
+Yalnızca render edildiğinde lazy load edilen bir asenkron bileşen tanımlar. Argüman, bir yükleyici fonksiyonu veya yükleme davranışını daha gelişmiş şekilde kontrol etmek için bir seçenek nesnesi olabilir.
 
-- **Type**
+- **Tür**
 
   ```ts
   function defineAsyncComponent(
@@ -224,4 +223,4 @@ Define an async component which is lazy loaded only when it is rendered. The arg
   }
   ```
 
-- **See also** [Guide - Async Components](/guide/components/async)
+- **Ayrıca bkz.** [Kılavuz - Asenkron Bileşenler](/guide/components/async)
