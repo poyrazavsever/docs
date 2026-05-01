@@ -203,7 +203,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
           link: '/guide/components/registration'
         },
         { text: 'Props', link: '/guide/components/props' },
-        { text: 'Events', link: '/guide/components/events' },
+        { text: 'Olaylar', link: '/guide/components/events' },
         { text: 'Component v-model', link: '/guide/components/v-model' },
         {
           text: 'Fallthrough Attributes',

@@ -18,17 +18,17 @@ if (typeof window !== 'undefined') {
 }
 </script>
 
-# Component Events {#component-events}
+# Bileşen Olayları {#component-events}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> Bu sayfa, [Bileşenlerin Temelleri](/guide/essentials/component-basics)'ni okuduğunuzu varsayar. Bileşenlere yeniyseniz, önce bunu okuyun.
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="Free Vue.js Lesson on Defining Custom Events"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="Ücretsiz Vue.js Özel Olay Tanımlama Dersi"/>
 </div>
 
-## Emitting and Listening to Events {#emitting-and-listening-to-events}
+## Olayları Tetikleme ve Dinleme {#emitting-and-listening-to-events}
 
-A component can emit custom events directly in template expressions (e.g. in a `v-on` handler) using the built-in `$emit` method:
+Bir bileşen, yerleşik `$emit` fonksiyonunu kullanarak özel olayları doğrudan template (şablon) ifadeleri içinde (örneğin bir `v-on` işleyicisinde) tetikleyebilir:
 
 ```vue-html
 <!-- MyComponent -->
@@ -37,7 +37,7 @@ A component can emit custom events directly in template expressions (e.g. in a `
 
 <div class="options-api">
 
-The `$emit()` method is also available on the component instance as `this.$emit()`:
+`$emit()` fonksiyonu, bileşen örneğinde `this.$emit()` olarak da kullanılabilir:
 
 ```js
 export default {
@@ -51,27 +51,27 @@ export default {
 
 </div>
 
-The parent can then listen to it using `v-on`:
+Üst bileşen daha sonra bunu `v-on` kullanarak dinleyebilir:
 
 ```vue-html
 <MyComponent @some-event="callback" />
 ```
 
-The `.once` modifier is also supported on component event listeners:
+`.once` değiştiricisi, bileşen olay dinleyicilerinde de desteklenir:
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
 ```
 
-Like components and props, event names provide an automatic case transformation. Notice we emitted a camelCase event, but can listen for it using a kebab-cased listener in the parent. As with [props casing](/guide/components/props#prop-name-casing), we recommend using kebab-cased event listeners in templates.
+Bileşenlerde ve props’larda olduğu gibi, olay adları da otomatik bir büyük/küçük harf dönüşümü sağlar. Dikkat ederseniz, camelCase ile yazılmış bir olay tetikledik; ancak üst bileşende bunu kebab-case ile yazılmış bir dinleyici ile dinleyebiliyoruz. [Props İsimlendirme Stili](/guide/components/props#prop-name-casing)'nde olduğu gibi, template’lerde (şablonlarda) kebab-case olay dinleyicileri kullanmanızı öneririz.
 
-:::tip
-Unlike native DOM events, component emitted events do **not** bubble. You can only listen to the events emitted by a direct child component. If there is a need to communicate between sibling or deeply nested components, use an external event bus or a [global state management solution](/guide/scaling-up/state-management).
+:::tip İpucu
+Yerleşik DOM olaylarının aksine, bileşen tarafından tetiklenen olaylar **yukarı doğru yayılmaz (bubble olmaz)**. Yalnızca doğrudan alt bileşen tarafından tetiklenen olayları dinleyebilirsiniz. Aynı seviyedeki veya derin şekilde iç içe geçmiş bileşenler arasında iletişim gerekiyorsa, harici bir event bus ya da [küresel durum yönetimi çözümü](/guide/scaling-up/state-management) kullanın.
 :::
 
-## Event Arguments {#event-arguments}
+## Olay Argümanları {#event-arguments}
 
-It's sometimes useful to emit a specific value with an event. For example, we may want the `<BlogPost>` component to be in charge of how much to enlarge the text by. In those cases, we can pass extra arguments to `$emit` to provide this value:
+Bazen bir olayla birlikte belirli bir değeri iletmek faydalı olabilir. Örneğin, `<BlogPost>` bileşeninin metni ne kadar büyüteceğini kendisinin belirlemesini isteyebiliriz. Bu gibi durumlarda, bu değeri iletmek için `$emit` fonksiyonuna ek argümanlar ekleyebiliriz:
 
 ```vue-html
 <button @click="$emit('increaseBy', 1)">
@@ -79,19 +79,19 @@ It's sometimes useful to emit a specific value with an event. For example, we ma
 </button>
 ```
 
-Then, when we listen to the event in the parent, we can use an inline arrow function as the listener, which allows us to access the event argument:
+Ardından, üst bileşende olayı dinlerken, dinleyici olarak satır içi bir ok fonksiyonu kullanabiliriz; bu sayede olay argümanına erişebiliriz:
 
 ```vue-html
 <MyButton @increase-by="(n) => count += n" />
 ```
 
-Or, if the event handler is a method:
+Ya da olay işleyicisi bir fonksiyonsa:
 
 ```vue-html
 <MyButton @increase-by="increaseCount" />
 ```
 
-Then the value will be passed as the first parameter of that method:
+Bu durumda değer, ilgili fonksiyonun ilk parametresi olarak iletilir:
 
 <div class="options-api">
 
@@ -114,13 +114,13 @@ function increaseCount(n) {
 
 </div>
 
-:::tip
-All extra arguments passed to `$emit()` after the event name will be forwarded to the listener. For example, with `$emit('foo', 1, 2, 3)` the listener function will receive three arguments.
+:::tip İpucu
+Olay adından sonra `$emit()` fonksiyonuna eklenen tüm ek argümanlar dinleyiciye iletilir. Örneğin, `$emit('foo', 1, 2, 3)` kullanıldığında dinleyici fonksiyonu üç argüman alır.
 :::
 
-## Declaring Emitted Events {#declaring-emitted-events}
+## Tetiklenen Olayların Bildirilmesi {#declaring-emitted-events}
 
-A component can explicitly declare the events it will emit using the <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) macro</span><span class="options-api">[`emits`](/api/options-state#emits) option</span>:
+Bir bileşen, tetikleyeceği olayları açıkça <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) makrosunu</span><span class="options-api">[`emits`](/api/options-state#emits) seçeneğini</span> kullanarak bildirebilir:
 
 <div class="composition-api">
 
@@ -130,7 +130,7 @@ defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-The `$emit` method that we used in the `<template>` isn't accessible within the `<script setup>` section of a component, but `defineEmits()` returns an equivalent function that we can use instead:
+`<template>` içinde kullandığımız `$emit` fonksiyonu, bir bileşenin `<script setup>` bölümünde doğrudan erişilebilir değildir; ancak `defineEmits()` bunun yerine kullanabileceğimiz eşdeğer bir fonksiyon döndürür:
 
 ```vue
 <script setup>
@@ -142,9 +142,9 @@ function buttonClick() {
 </script>
 ```
 
-The `defineEmits()` macro **cannot** be used inside a function, it must be placed directly within `<script setup>`, as in the example above.
+`defineEmits()` makrosu bir fonksiyon içinde **kullanılamaz**; yukarıdaki örnekte olduğu gibi doğrudan `<script setup>` içinde yer almalıdır.
 
-If you're using an explicit `setup` function instead of `<script setup>`, events should be declared using the [`emits`](/api/options-state#emits) option, and the `emit` function is exposed on the `setup()` context:
+Eğer `<script setup>` yerine açık bir `setup` fonksiyonu kullanıyorsanız, olaylar [`emits`](/api/options-state#emits) seçeneği ile bildirilmelidir ve `emit` fonksiyonu `setup()` bağlamı üzerinden erişilebilir:
 
 ```js
 export default {
@@ -155,7 +155,7 @@ export default {
 }
 ```
 
-As with other properties of the `setup()` context, `emit` can safely be destructured:
+`setup()` bağlamındaki diğer özelliklerde olduğu gibi, `emit` güvenli bir şekilde ayrıştırılabilir:
 
 ```js
 export default {
@@ -177,7 +177,7 @@ export default {
 
 </div>
 
-The `emits` option and `defineEmits()` macro also support an object syntax. If using TypeScript you can type arguments, which allows us to perform runtime validation of the payload of the emitted events:
+`emits` seçeneği ve `defineEmits()` makrosu ayrıca nesne söz dizimini de destekler. TypeScript kullanıyorsanız, argümanlara tip atayabilirsiniz; bu da tetiklenen olayların payload’ı için çalışma zamanında doğrulama yapmamıza olanak tanır:
 
 <div class="composition-api">
 
@@ -185,14 +185,14 @@ The `emits` option and `defineEmits()` macro also support an object syntax. If u
 <script setup lang="ts">
 const emit = defineEmits({
   submit(payload: { email: string, password: string }) {
-    // return `true` or `false` to indicate
-    // validation pass / fail
+    // doğrulamanın başarılı / başarısız olduğunu
+    // belirtmek için `true` veya `false` döndürülür
   }
 })
 </script>
 ```
 
-If you are using TypeScript with `<script setup>`, it's also possible to declare emitted events using pure type annotations:
+Eğer `<script setup>` ile TypeScript kullanıyorsanız, tetiklenen olayları yalnızca tip tanımlamaları kullanarak da bildirebilirsiniz:
 
 ```vue
 <script setup lang="ts">
@@ -203,7 +203,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-More details: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
+Daha fazla detay: [Bileşen Emit’lerinin Tiplenmesi](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
@@ -212,38 +212,38 @@ More details: [Typing Component Emits](/guide/typescript/composition-api#typing-
 export default {
   emits: {
     submit(payload: { email: string, password: string }) {
-      // return `true` or `false` to indicate
-      // validation pass / fail
+      // doğrulamanın başarılı / başarısız olduğunu
+      // belirtmek için `true` veya `false` döndürülür
     }
   }
 }
 ```
 
-See also: [Typing Component Emits](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
+Ayrıca göz atın: [Bileşen Emit’lerinin Tiplenmesi](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 
-Although optional, it is recommended to define all emitted events in order to better document how a component should work. It also allows Vue to exclude known listeners from [fallthrough attributes](/guide/components/attrs#v-on-listener-inheritance), avoiding edge cases caused by DOM events manually dispatched by 3rd party code.
+Her ne kadar zorunlu olmasa da, bir bileşenin nasıl çalışması gerektiğini daha iyi belgelemek için tüm tetiklenen olayların tanımlanması önerilir. Ayrıca Vue’nün, bilinen dinleyicileri [aktarılacak öznitelikler (fallthrough attributes)](/guide/components/attrs#v-on-listener-inheritance) kapsamından hariç tutmasını sağlar ve böylece üçüncü parti kodlar tarafından manuel olarak tetiklenen DOM olaylarının neden olabileceği uç durumları önler.
 
-:::tip
-If a native event (e.g., `click`) is defined in the `emits` option, the listener will now only listen to component-emitted `click` events and no longer respond to native `click` events.
+:::tip İpucu
+Eğer `emits` seçeneğinde yerleşik bir olay (örneğin `click`) tanımlanmışsa, dinleyici artık yalnızca bileşen tarafından tetiklenen `click` olaylarını dinler ve yerleşik `click` olaylarına yanıt vermez.
 :::
 
-## Events Validation {#events-validation}
+## Olay Doğrulama {#events-validation}
 
-Similar to prop type validation, an emitted event can be validated if it is defined with the object syntax instead of the array syntax.
+Prop tip doğrulamasında olduğu gibi, bir tetiklenen olay da dizi söz dizimi yerine nesne söz dizimi ile tanımlandığında doğrulanabilir.
 
-To add validation, the event is assigned a function that receives the arguments passed to the <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> call and returns a boolean to indicate whether the event is valid or not.
+Doğrulama eklemek için olaya, <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> çağrısına eklenen argümanları alan ve olayın geçerli olup olmadığını belirtmek için bir boolean değer döndüren bir fonksiyon atanır.
 
 <div class="composition-api">
 
 ```vue
 <script setup>
 const emit = defineEmits({
-  // No validation
+  // Doğrulama yok
   click: null,
 
-  // Validate submit event
+  // submit olayının doğrulanması
   submit: ({ email, password }) => {
     if (email && password) {
       return true
@@ -266,10 +266,10 @@ function submitForm(email, password) {
 ```js
 export default {
   emits: {
-    // No validation
+    // Doğrulama yok
     click: null,
 
-    // Validate submit event
+    // submit olayının doğrulanması
     submit: ({ email, password }) => {
       if (email && password) {
         return true
