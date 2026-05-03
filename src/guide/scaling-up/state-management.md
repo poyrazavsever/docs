@@ -1,8 +1,8 @@
-# State Management {#state-management}
+# Durum Yönetimi {#state-management}
 
-## What is State Management? {#what-is-state-management}
+## Durum Yönetimi Nedir? {#what-is-state-management}
 
-Technically, every Vue component instance already "manages" its own reactive state. Take a simple counter component as an example:
+Teknik olarak her Vue bileşen örneği, kendi tepkisel durumunu "yönetir". Örnek olarak basit bir sayaç bileşenini ele alalım:
 
 <div class="composition-api">
 
@@ -50,38 +50,38 @@ export default {
 
 </div>
 
-It is a self-contained unit with the following parts:
+Aşağıdaki parçalardan oluşan kendi kendine yeten bir birimdir:
 
-- The **state**, the source of truth that drives our app;
-- The **view**, a declarative mapping of the **state**;
-- The **actions**, the possible ways the state could change in reaction to user inputs from the **view**.
+- **Durum (state)**, uygulamamızı yöneten tek doğruluk kaynağıdır;
+- **Görünüm (view)**, **durumun** bildirimsel bir yansımasıdır;
+- **Eylemler (actions)**, **görünümden** gelen kullanıcı girdilerine tepki olarak durumun değişebileceği olası yollardır.
 
-This is a simple representation of the concept of "one-way data flow":
+Bu, "tek yönlü veri akışı" kavramının basit bir temsilidir:
 
 <p style="text-align: center">
-  <img alt="state flow diagram" src="./images/state-flow.png" width="252px" style="margin: 40px auto">
+  <img alt="durum akışı diyagramı" src="./images/state-flow.png" width="252px" style="margin: 40px auto">
 </p>
 
-However, the simplicity starts to break down when we have **multiple components that share a common state**:
+Ancak **ortak bir durumu paylaşan birden fazla bileşen** olduğunda bu sadelik bozulmaya başlar:
 
-1. Multiple views may depend on the same piece of state.
-2. Actions from different views may need to mutate the same piece of state.
+1. Birden fazla görünüm aynı durum parçasına bağımlı olabilir.
+2. Farklı görünümlerden gelen eylemler aynı durum parçasını değiştirmek zorunda kalabilir.
 
-For case one, a possible workaround is by "lifting" the shared state up to a common ancestor component, and then pass it down as props. However, this quickly gets tedious in component trees with deep hierarchies, leading to another problem known as [Prop Drilling](/guide/components/provide-inject#prop-drilling).
+İlk durum için olası bir geçici çözüm, paylaşılan durumu ortak bir üst bileşene "yukarı taşımak" ve ardından props olarak aşağı aktarmaktır. Ancak bu, derin hiyerarşilere sahip bileşen ağaçlarında hızla zahmetli hâle gelir ve [Prop Drilling](/guide/components/provide-inject#prop-drilling) olarak bilinen başka bir soruna yol açar.
 
-For case two, we often find ourselves resorting to solutions such as reaching for direct parent / child instances via template refs, or trying to mutate and synchronize multiple copies of the state via emitted events. Both of these patterns are brittle and quickly lead to unmaintainable code.
+İkinci durum için ise sıklıkla şablon referansları (template refs) aracılığıyla doğrudan üst/alt bileşen örneklerine erişme veya yayılan olaylar (emit) ile durumun birden fazla kopyasını değiştirip senkronize etmeye çalışma gibi çözümlere başvurduğumuzu görürüz. Bu kalıpların ikisi de kırılgandır ve hızla bakımı zor bir koda yol açar.
 
-A simpler and more straightforward solution is to extract the shared state out of the components, and manage it in a global singleton. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+Daha sade ve doğrudan bir çözüm, paylaşılan durumu bileşenlerin dışına çıkarıp global bir singleton içinde yönetmektir. Böylece bileşen ağacımız büyük bir "görünüm" hâline gelir ve ağaçta nerede olursa olsun herhangi bir bileşen duruma erişebilir veya eylemleri tetikleyebilir!
 
-## Simple State Management with Reactivity API {#simple-state-management-with-reactivity-api}
+## Reactivity API ile Basit Durum Yönetimi {#simple-state-management-with-reactivity-api}
 
 <div class="options-api">
 
-In Options API, reactive data is declared using the `data()` option. Internally, the object returned by `data()` is made reactive via the [`reactive()`](/api/reactivity-core#reactive) function, which is also available as a public API.
+Options API'de tepkisel veri, `data()` seçeneği kullanılarak tanımlanır. İçeride, `data()` tarafından döndürülen nesne, herkese açık API olarak da kullanılabilen [`reactive()`](/api/reactivity-core#reactive) fonksiyonu aracılığıyla tepkisel hâle getirilir.
 
 </div>
 
-If you have a piece of state that should be shared by multiple instances, you can use [`reactive()`](/api/reactivity-core#reactive) to create a reactive object, and then import it into multiple components:
+Birden fazla örnek tarafından paylaşılması gereken bir durum parçanız varsa, tepkisel bir nesne oluşturmak için [`reactive()`](/api/reactivity-core#reactive) kullanabilir ve ardından bunu birden fazla bileşene içe aktarabilirsiniz:
 
 ```js [store.js]
 import { reactive } from 'vue'
@@ -146,9 +146,9 @@ export default {
 
 </div>
 
-Now whenever the `store` object is mutated, both `<ComponentA>` and `<ComponentB>` will update their views automatically - we have a single source of truth now.
+Artık `store` nesnesi her değiştirildiğinde hem `<ComponentA>` hem de `<ComponentB>` görünümlerini otomatik olarak günceller; artık tek bir doğruluk kaynağımız var.
 
-However, this also means any component importing `store` can mutate it however they want:
+Ancak bu aynı zamanda `store`'u içe aktaran herhangi bir bileşenin onu istediği gibi değiştirebileceği anlamına da gelir:
 
 ```vue-html{2}
 <template>
@@ -158,7 +158,7 @@ However, this also means any component importing `store` can mutate it however t
 </template>
 ```
 
-While this works in simple cases, global state that can be arbitrarily mutated by any component is not going to be very maintainable in the long run. To ensure the state-mutating logic is centralized like the state itself, it is recommended to define methods on the store with names that express the intention of the actions:
+Bu basit durumlarda işe yarasa da, herhangi bir bileşen tarafından gelişigüzel değiştirilebilen global durum uzun vadede çok sürdürülebilir olmayacaktır. Durumu değiştiren mantığın, durumun kendisi gibi merkezi olduğundan emin olmak için store üzerinde eylemlerin niyetini ifade eden adlara sahip metotlar tanımlanması önerilir:
 
 ```js{5-7} [store.js]
 import { reactive } from 'vue'
@@ -181,20 +181,20 @@ export const store = reactive({
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNrNkk1uwyAQha8yYpNEiUzXllPVrtRTeJNSqtLGgGBsVbK4ewdwnT9FWWSTFczwmPc+xMhqa4uhl6xklRdOWQQvsbfPrVadNQ7h1dCqpcYaPp3pYFHwQyteXVxKm0tpM0krnm3IgAqUnd3vUFIFUB1Z8bNOkzoVny+wDTuNcZ1gBI/GSQhzqlQX3/5Gng81pA1t33tEo+FF7JX42bYsT1BaONlRguWqZZMU4C261CWMk3EhTK8RQphm8Twse/BscoUsvdqDkTX3kP3nI6aZwcmdQDUcMPJPabX8TQphtCf0RLqd1csxuqQAJTxtYnEUGtIpAH4pn1Ou17FDScOKhT+QNAVM)
+[Playground'da deneyin](https://play.vuejs.org/#eNrNkk1uwyAQha8yYpNEiUzXllPVrtRTeJNSqtLGgGBsVbK4ewdwnT9FWWSTFczwmPc+xMhqa4uhl6xklRdOWQQvsbfPrVadNQ7h1dCqpcYaPp3pYFHwQyteXVxKm0tpM0krnm3IgAqUnd3vUFIFUB1Z8bNOkzoVny+wDTuNcZ1gBI/GSQhzqlQX3/5Gng81pA1t33tEo+FF7JX42bYsT1BaONlRguWqZZMU4C261CWMk3EhTK8RQphm8Twse/BscoUsvdqDkTX3kP3nI6aZwcmdQDUcMPJPabX8TQphtCf0RLqd1csxuqQAJTxtYnEUGtIpAH4pn1Ou17FDScOKhT+QNAVM)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNrdU8FqhDAU/JVHLruyi+lZ3FIt9Cu82JilaTWR5CkF8d8bE5O1u1so9FYQzAyTvJnRTKTo+3QcOMlIbpgWPT5WUnS90gjPyr4ll1jAWasOdim9UMum3a20vJWWqxSgkvzTyRt+rocWYVpYFoQm8wRsJh+viHLBcyXtk9No2ALkXd/WyC0CyDfW6RVTOiancQM5ku+x7nUxgUGlOcwxn8Ppu7HJ7udqaqz3SYikOQ5aBgT+OA9slt9kasToFnb5OiAqCU+sFezjVBHvRUimeWdT7JOKrFKAl8VvYatdI6RMDRJhdlPtWdQf5mdQP+SHdtyX/IftlH9pJyS1vcQ2NK8ZivFSiL8BsQmmpMG1s1NU79frYA1k8OD+/I3pUA6+CeNdHg6hmoTMX9pPSnk=)
+[Playground'da deneyin](https://play.vuejs.org/#eNrdU8FqhDAU/JVHLruyi+lZ3FIt9Cu82JilaTWR5CkF8d8bE5O1u1so9FYQzAyTvJnRTKTo+3QcOMlIbpgWPT5WUnS90gjPyr4ll1jAWasOdim9UMum3a20vJWWqxSgkvzTyRt+rocWYVpYFoQm8wRsJh+viHLBcyXtk9No2ALkXd/WyC0CyDfW6RVTOiancQM5ku+x7nUxgUGlOcwxn8Ppu7HJ7udqaqz3SYikOQ5aBgT+OA9slt9kasToFnb5OiAqCU+sFezjVBHvRUimeWdT7JOKrFKAl8VvYatdI6RMDRJhdlPtWdQf5mdQP+SHdtyX/IftlH9pJyS1vcQ2NK8ZivFSiL8BsQmmpMG1s1NU79frYA1k8OD+/I3pUA6+CeNdHg6hmoTMX9pPSnk=)
 
 </div>
 
 :::tip
-Note the click handler uses `store.increment()` with parentheses - this is necessary to call the method with the proper `this` context since it's not a component method.
+Tıklama işleyicisinin `store.increment()` çağrısını parantezlerle kullandığına dikkat edin; bu, metot bir bileşen metodu olmadığı için onu doğru `this` bağlamıyla çağırmak adına gereklidir.
 :::
 
-Although here we are using a single reactive object as a store, you can also share reactive state created using other [Reactivity APIs](/api/reactivity-core) such as `ref()` or `computed()`, or even return global state from a [Composable](/guide/reusability/composables):
+Burada store olarak tek bir tepkisel nesne kullanıyor olsak da, `ref()` veya `computed()` gibi diğer [Reactivity API'leri](/api/reactivity-core) ile oluşturulan tepkisel durumu da paylaşabilir, hatta global durumu bir [Composable](/guide/reusability/composables) içinden döndürebilirsiniz:
 
 ```js
 import { ref } from 'vue'
@@ -213,25 +213,25 @@ export function useCount() {
 }
 ```
 
-The fact that Vue's reactivity system is decoupled from the component model makes it extremely flexible.
+Vue'nun tepkisellik sisteminin bileşen modelinden ayrılmış olması onu son derece esnek kılar.
 
-## SSR Considerations {#ssr-considerations}
+## SSR ile İlgili Dikkat Edilmesi Gerekenler {#ssr-considerations}
 
-If you are building an application that leverages [Server-Side Rendering (SSR)](./ssr), the above pattern can lead to issues due to the store being a singleton shared across multiple requests. This is discussed in [more details](./ssr#cross-request-state-pollution) in the SSR guide.
+[Sunucu Tarafında Render (SSR)](./ssr) kullanan bir uygulama geliştiriyorsanız, yukarıdaki kalıp store'un birden fazla istek arasında paylaşılan bir singleton olması nedeniyle sorunlara yol açabilir. Bu konu SSR rehberinde [daha ayrıntılı](./ssr#cross-request-state-pollution) olarak ele alınır.
 
 ## Pinia {#pinia}
 
-While our hand-rolled state management solution will suffice in simple scenarios, there are many more things to consider in large-scale production applications:
+Kendi yazdığımız durum yönetimi çözümü basit senaryolarda yeterli olsa da, büyük ölçekli üretim uygulamalarında dikkate alınması gereken çok daha fazla şey vardır:
 
-- Stronger conventions for team collaboration
-- Integrating with the Vue DevTools, including timeline, in-component inspection, and time-travel debugging
+- Ekip iş birliği için daha güçlü kurallar
+- Zaman çizelgesi, bileşen içi inceleme ve zamanda yolculuk hata ayıklaması dahil Vue DevTools ile entegrasyon
 - Hot Module Replacement
-- Server-Side Rendering support
+- Sunucu Tarafında Render desteği
 
-[Pinia](https://pinia.vuejs.org) is a state management library that implements all of the above. It is maintained by the Vue core team, and works with both Vue 2 and Vue 3.
+[Pinia](https://pinia.vuejs.org), yukarıdakilerin tümünü uygulayan bir durum yönetimi kütüphanesidir. Vue çekirdek ekibi tarafından sürdürülür ve hem Vue 2 hem de Vue 3 ile çalışır.
 
-Existing users may be familiar with [Vuex](https://vuex.vuejs.org/), the previous official state management library for Vue. With Pinia serving the same role in the ecosystem, Vuex is now in maintenance mode. It still works, but will no longer receive new features. It is recommended to use Pinia for new applications.
+Mevcut kullanıcılar, Vue'nun önceki resmi durum yönetimi kütüphanesi olan [Vuex](https://vuex.vuejs.org/) ile aşina olabilir. Pinia ekosistemde aynı rolü üstlendiği için Vuex artık bakım modundadır. Hâlâ çalışır, ancak artık yeni özellikler almayacaktır. Yeni uygulamalar için Pinia kullanılması önerilir.
 
-Pinia started out as an exploration of what the next iteration of Vuex could look like, incorporating many ideas from core team discussions for Vuex 5. Eventually, we realized that Pinia already implements most of what we wanted in Vuex 5, and decided to make it the new recommendation instead.
+Pinia, Vuex'in bir sonraki yinelemesinin nasıl görünebileceğini araştıran bir çalışma olarak başladı ve Vuex 5 için çekirdek ekip tartışmalarındaki birçok fikri içine aldı. Sonunda Pinia'nın Vuex 5'te istediğimiz şeylerin çoğunu uyguladığını fark ettik ve bunun yerine onu yeni öneri hâline getirmeye karar verdik.
 
-Compared to Vuex, Pinia provides a simpler API with less ceremony, offers Composition-API-style APIs, and most importantly, has solid type inference support when used with TypeScript.
+Vuex ile karşılaştırıldığında Pinia, daha az kod kalabalığına (boilerplate) sahip daha sade bir API sunar, Composition API tarzı API'ler sağlar ve en önemlisi TypeScript ile kullanıldığında güçlü tür çıkarımı desteğine sahiptir.
