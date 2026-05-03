@@ -94,7 +94,7 @@ Bu dokuman, ceviriyi dosya bazinda sirasiyla ilerletmek icin hazirlanmistir.
 - [ ] src/guide/reusability/plugins.md
 - [x] src/guide/scaling-up/sfc.md
 - [x] src/guide/scaling-up/tooling.md
-- [ ] src/guide/scaling-up/routing.md
+- [x] src/guide/scaling-up/routing.md
 - [ ] src/guide/scaling-up/state-management.md
 - [x] src/guide/scaling-up/testing.md
 - [x] src/guide/scaling-up/ssr.md
