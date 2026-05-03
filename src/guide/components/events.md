@@ -130,7 +130,7 @@ defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-`<template>` içinde kullandığımız `$emit` fonksiyonu, bir bileşenin `<script setup>` bölümünde doğrudan erişilebilir değildir; ancak `defineEmits()` bunun yerine kullanabileceğimiz eşdeğer bir fonksiyon döndürür:
+`<template>` içinde kullandığımız `$emit` fonksiyonuna, bir bileşenin `<script setup>` bölümünde doğrudan erişilemez; ancak `defineEmits()` bunun yerine kullanabileceğimiz eşdeğer bir fonksiyon döndürür:
 
 ```vue
 <script setup>
