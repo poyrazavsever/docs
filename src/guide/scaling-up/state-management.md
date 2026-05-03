@@ -234,4 +234,4 @@ Mevcut kullanıcılar, Vue'nun önceki resmi durum yönetimi kütüphanesi olan 
 
 Pinia, Vuex'in bir sonraki yinelemesinin nasıl görünebileceğini araştıran bir çalışma olarak başladı ve Vuex 5 için çekirdek ekip tartışmalarındaki birçok fikri içine aldı. Sonunda Pinia'nın Vuex 5'te istediğimiz şeylerin çoğunu uyguladığını fark ettik ve bunun yerine onu yeni öneri hâline getirmeye karar verdik.
 
-Vuex ile karşılaştırıldığında Pinia, daha az törensel yapıya sahip daha sade bir API sunar, Composition API tarzı API'ler sağlar ve en önemlisi TypeScript ile kullanıldığında güçlü tür çıkarımı desteğine sahiptir.
+Vuex ile karşılaştırıldığında Pinia, daha az kod kalabalığına (boilerplate) sahip daha sade bir API sunar, Composition API tarzı API'ler sağlar ve en önemlisi TypeScript ile kullanıldığında güçlü tür çıkarımı desteğine sahiptir.
