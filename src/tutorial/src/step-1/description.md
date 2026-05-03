@@ -6,11 +6,11 @@ Bu eğitimin amacı, Vue ile doğrudan tarayıcı üzerinden çalışmayı size 
 
 ## Ön Gereksinimler {#prerequisites}
 
-Bu eğitim, temel düzeyde HTML, CSS ve JavaScript bilginizin olduğunu varsayar. Eğer ön yüz (front-end) geliştirmede tamamen yeniyseniz, ilk adım olarak doğrudan bir framework ile çalışmaya başlamak iyi bir fikir olmayabilir. — Öncelikle temelleri kavrayıp ardından geri dönün! Daha önceden farklı framework'lerle çalışmış olmak öğrenme sürecini kolaylaştırsa da bir zorunluluk değildir.
+Bu eğitim, temel düzeyde HTML, CSS ve JavaScript bilginizin olduğunu varsayar. Eğer ön yüz (front-end) geliştirmede tamamen yeniyseniz, ilk adım olarak doğrudan bir framework ile çalışmaya başlamak iyi bir fikir olmayabilir. Öncelikle temelleri kavrayıp ardından geri dönün! Daha önceden farklı framework'lerle çalışmış olmak öğrenme sürecini kolaylaştırsa da bir zorunluluk değildir.
 
 ## Eğitim Aracı Nasıl Kullanılır? {#how-to-use-this-tutorial}
 
-Kodlarınızı <span class="wide">sağ tarafta bulunan alanda</span><span class="narrow">aşağıdaki alanda</span> düzenleyebilir ve sonucun eşzamanlı bir şekilde "Preview" alanında güncellendiğini görebilirsiniz. Her eğitim adımında Vue'nun temel bir özelliği tanıtılacak ve demoyu çalışır hale getirmek için kodu tamamlamanız beklenecektir. Eğer takılırsanız, çalışan kodu sizin için gösteren bir "Bana göster!" (Show me!) butonu olacaktır. Daha iyi bir öğrenme için bu butonu kullanmamaya çalışın.
+Kodlarınızı <span class="wide">sağ tarafta bulunan alanda</span><span class="narrow">aşağıdaki alanda</span> düzenleyebilir ve sonucun eşzamanlı bir şekilde "Preview" alanında güncellendiğini görebilirsiniz. Her eğitim adımında Vue'nun temel bir özelliği tanıtılacak ve demoyu çalışır hale getirmek için kodu tamamlamanız beklenecektir. Eğer takılırsanız, çalışan kodu sizin için gösteren bir "Bana göster!" (Show me!) butonu olacaktır. Bu butona çok fazla bel bağlamamaya çalışın; sorunları kendi başınıza çözerek daha hızlı öğrenirsiniz.
 
 Vue 2 veya diğer framework'lerden gelen deneyimli bir geliştiriciyseniz, bu eğitimden en iyi şekilde yararlanmak için değiştirebileceğiniz birkaç ayar bulunmaktadır. Yeni başlıyorsanız, varsayılan ayarlarla devam etmeniz önerilir.
 
