@@ -44,17 +44,17 @@ data() {
 
 ```vue-html
 <button @click="count++">1 Arttır</button>
-<p>Sayaç is: {{ count }}</p>
+<p>Sayaç: {{ count }}</p>
 ```
 
 <div class="composition-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNo9jssKgzAURH/lko0tgrbbEqX+Q5fZaLxiqHmQ3LgJ+fdqFZcD58xMYp1z1RqRvRgP0itHEJCia4VR2llPkMDjBBkmbzUUG1oII4y0JhBIGw2hh2Znbo+7MLw+WjZ/C4TaLT3hnogPkcgaeMtFyW8j2GmXpWBtN47w5PWBHLhrPzPCKfWDXRHmPsCAaOBfgSOkdH3IGUhpDBWv9/e8vsZZ/gFFhFJN)
+[Playground'da İncele](https://play.vuejs.org/#eNo9jssKgzAURH/lko0tgrbbEqX+Q5fZaLxiqHmQ3LgJ+fdqFZcD58xMYp1z1RqRvRgP0itHEJCia4VR2llPkMDjBBkmbzUUG1oII4y0JhBIGw2hh2Znbo+7MLw+WjZ/C4TaLT3hnogPkcgaeMtFyW8j2GmXpWBtN47w5PWBHLhrPzPCKfWDXRHmPsCAaOBfgSOkdH3IGUhpDBWv9/e8vsZZ/gFFhFJN)
 
 </div>
 <div class="options-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNo9jcEKgzAQRH9lyKlF0PYqqdR/6DGXaLYo1RjiRgrivzepIizLzu7sm1XUzuVLIFEKObe+d1wpS183eYahtw4DY1UWMJr15ZpmxYAnDt7uF0BxOwXL5Evc0kbxlmyxxZLFyY2CaXSDZkqKZROYJ4tnO/Tt56HEgckyJaraGNxlsVt2u6teHeF40s20EDo9oyGy+CPIYF1xULBt4H6kOZeFiwBZnOFi+wH0B1hk)
+[Playground'da İncele](https://play.vuejs.org/#eNo9jcEKgzAQRH9lyKlF0PYqqdR/6DGXaLYo1RjiRgrivzepIizLzu7sm1XUzuVLIFEKObe+d1wpS183eYahtw4DY1UWMJr15ZpmxYAnDt7uF0BxOwXL5Evc0kbxlmyxxZLFyY2CaXSDZkqKZROYJ4tnO/Tt56HEgckyJaraGNxlsVt2u6teHeF40s20EDo9oyGy+CPIYF1xULBt4H6kOZeFiwBZnOFi+wH0B1hk)
 
 </div>
 
@@ -108,12 +108,12 @@ methods: {
 
 <div class="composition-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNpVj0FLxDAQhf/KMwjtXtq7dBcFQS/qzVMOrWFao2kSkkkvpf/dJIuCEBgm771vZnbx4H23JRJ3YogqaM+IxMlfpNWrd4GxI9CMA3NwK5psbaSVVjkbGXZaCediaJv3RN1XbE5FnZNVrJ3FEoi4pY0sn7BLC0yGArfjMxnjcLsXQrdNJtFxM+Ys0PcYa2CEjuBPylNYb4THtxdUobj0jH/YX3D963gKC5WyvGZ+xR7S5jf01yPzeblhWr2ZmErHw0dizivfK6PV91mKursUl6dSh/4qZ+vQ/+XE8QODonDi)
+[Playground'da İncele](https://play.vuejs.org/#eNpVj0FLxDAQhf/KMwjtXtq7dBcFQS/qzVMOrWFao2kSkkkvpf/dJIuCEBgm771vZnbx4H23JRJ3YogqaM+IxMlfpNWrd4GxI9CMA3NwK5psbaSVVjkbGXZaCediaJv3RN1XbE5FnZNVrJ3FEoi4pY0sn7BLC0yGArfjMxnjcLsXQrdNJtFxM+Ys0PcYa2CEjuBPylNYb4THtxdUobj0jH/YX3D963gKC5WyvGZ+xR7S5jf01yPzeblhWr2ZmErHw0dizivfK6PV91mKursUl6dSh/4qZ+vQ/+XE8QODonDi)
 
 </div>
 <div class="options-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNplUE1LxDAQ/StjEbYL0t5LXRQEvag3Tz00prNtNE1CMilC6X83SUkRhJDJfLz3Jm8tHo2pFo9FU7SOW2Ho0in8MdoSDHhlXhKsnQIYGLHyvL8BLJK3KmcAis3YwOnDY/XlTnt1i2G7i/eMNOnBNRkwWkQqcUFFByVAXUNPk3A9COXEgBkGRgtFDkgDTQjcWxuAwDiJBeMsMcUxszCJlsr+BaXUcLtGwiqut930579KST1IBd5Aqlgie3p/hdTIk+IK//bMGqleEbMjxjC+BZVDIv0+m9CpcNr6MDgkhLORjDBm1H56Iq3ggUvBv++7IhnUFZfnGNt6b4fRtj5wxfYL9p+Sjw==)
+[Playground'da İncele](https://play.vuejs.org/#eNplUE1LxDAQ/StjEbYL0t5LXRQEvag3Tz00prNtNE1CMilC6X83SUkRhJDJfLz3Jm8tHo2pFo9FU7SOW2Ho0in8MdoSDHhlXhKsnQIYGLHyvL8BLJK3KmcAis3YwOnDY/XlTnt1i2G7i/eMNOnBNRkwWkQqcUFFByVAXUNPk3A9COXEgBkGRgtFDkgDTQjcWxuAwDiJBeMsMcUxszCJlsr+BaXUcLtGwiqut930579KST1IBd5Aqlgie3p/hdTIk+IK//bMGqleEbMjxjC+BZVDIv0+m9CpcNr6MDgkhLORjDBm1H56Iq3ggUvBv++7IhnUFZfnGNt6b4fRtj5wxfYL9p+Sjw==)
 
 </div>
 
@@ -132,7 +132,7 @@ Ayrıca bakınız: [Event Handler’ların Tiplemesi](/guide/typescript/options-
 
 ### Metot vs Inline Tespiti {#method-vs-inline-detection}
 
-Template compiler, `v-on` değerinin geçerli bir JavaScript identifier’ı veya property erişim yolu olup olmadığını kontrol ederek metot handler’larını tespit eder. Örneğin `foo`, `foo.bar` ve `foo['bar']` metot handler olarak değerlendirilirken, `foo()` ve `count++` inline handler olarak değerlendirilir.
+Template compiler, `v-on` değerinin geçerli bir JavaScript tanımlayıcısı (identifier) veya özellik erişim yolu (property access path) olup olmadığını kontrol ederek metot handler’larını tespit eder. Örneğin `foo`, `foo.bar` ve `foo['bar']` metot handler olarak değerlendirilirken, `foo()` ve `count++` inline handler olarak değerlendirilir.
 
 ## Inline Handler’larda Metot Çağırma {#calling-methods-in-inline-handlers}
 
@@ -166,12 +166,12 @@ methods: {
 
 <div class="composition-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNp9jTEOwjAMRa8SeSld6I5CBWdg9ZJGBiJSN2ocpKjq3UmpFDGx+Vn//b/ANYTjOxGcQEc7uyAqkqTQI98TW3ETq2jyYaQYzYNatSArZTzNUn/IK7Ludr2IBYTG4I3QRqKHJFJ6LtY7+zojbIXNk7yfmhahv5msvqS7PfnHGjJVp9w/hu7qKKwfEd1NSg==)
+[Playground'da İncele](https://play.vuejs.org/#eNp9jTEOwjAMRa8SeSld6I5CBWdg9ZJGBiJSN2ocpKjq3UmpFDGx+Vn//b/ANYTjOxGcQEc7uyAqkqTQI98TW3ETq2jyYaQYzYNatSArZTzNUn/IK7Ludr2IBYTG4I3QRqKHJFJ6LtY7+zojbIXNk7yfmhahv5msvqS7PfnHGjJVp9w/hu7qKKwfEd1NSg==)
 
 </div>
 <div class="options-api">
 
-[Playground'da dene](https://play.vuejs.org/#eNptjUEKwjAQRa8yZFO7sfsSi57B7WzGdjTBtA3NVC2ldzehEFwIw8D7vM9f1cX742tmVSsd2sl6aXDgjx8ngY7vNDuBFQeAnsWMXagToQAEWg49h0APLncDAIUcT5LzlKJsqRBfPF3ljQjCvXcknEj0bRYZBzi3zrbPE6o0UBhblKiaKy1grK52J/oA//23IcmNBD8dXeVBtX0BF0pXsg==)
+[Playground'da İncele](https://play.vuejs.org/#eNptjUEKwjAQRa8yZFO7sfsSi57B7WzGdjTBtA3NVC2ldzehEFwIw8D7vM9f1cX742tmVSsd2sl6aXDgjx8ngY7vNDuBFQeAnsWMXagToQAEWg49h0APLncDAIUcT5LzlKJsqRBfPF3ljQjCvXcknEj0bRYZBzi3zrbPE6o0UBhblKiaKy1grK52J/oA//23IcmNBD8dXeVBtX0BF0pXsg==)
 
 </div>
 
@@ -359,4 +359,4 @@ Modifier tuşlarının normal tuşlardan farklı olduğunu unutmayın ve `keyup`
 
 Bu değiştiriciler, handler’ın yalnızca belirli bir mouse düğmesi tarafından tetiklenen olaylara tepki vermesini sağlar.
 
-Ancak `.left`, `.right` ve `.middle` değiştirici adlarının yaygın sağ el mouse düzenine göre adlandırıldığını unutmayın. Gerçekte ise bunlar fiziksel düğmeleri değil, sırasıyla "ana" (main), "ikincil" (secondary) ve "yardımcı" (auxiliary) işaretleme aygıtı olay tetikleyicilerini temsil eder. Bu nedenle, solak bir mouse düzeninde "ana" düğme fiziksel olarak sağ tarafta olabilir ancak yine de `.left` değiştiricisini tetikler. Benzer şekilde bir trackpad’de tek parmak dokunuş `.left`, iki parmak dokunuş `.right`, üç parmak dokunuş ise `.middle` değiştiricisini tetikleyebilir. Aynı şekilde, "mouse" olayları üreten farklı cihazlar veya olay kaynakları, sol ve sağ kavramlarıyla doğrudan ilişkili olmayan tetikleme biçimlerine sahip olabilir.
+Ancak `.left,` `.right` ve `.middle` değiştirici adları fiziksel mouse tuşlarını birebir ifade etmez; yaygın sağ el düzenine göre tanımlanan “ana”, “ikincil” ve “yardımcı” işaretçi olaylarını temsil eder. Bu nedenle solak bir düzende ana düğme fiziksel olarak sağ tarafta olsa bile .left değiştiricisini tetikler. Benzer şekilde trackpad gibi farklı giriş aygıtlarında tek parmak dokunuş .left, iki parmak dokunuş .right, üç parmak dokunuş ise .middle olarak yorumlanabilir. Genel olarak bu olaylar, kullanılan cihazdan bağımsız şekilde sol/sağ gibi fiziksel konumlara değil, işlevsel rollere dayanır.
