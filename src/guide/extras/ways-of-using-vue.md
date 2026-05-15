@@ -1,60 +1,60 @@
-# Ways of Using Vue {#ways-of-using-vue}
+# Vue Kullanım Yolları {#ways-of-using-vue}
 
-We believe there is no "one size fits all" story for the web. This is why Vue is designed to be flexible and incrementally adoptable. Depending on your use case, Vue can be used in different ways to strike the optimal balance between stack complexity, developer experience and end performance.
+Web için "herkese uyan tek bir beden" senaryosunun olmadığına inanıyoruz. Bu nedenle Vue, esnek ve kademeli olarak benimsenebilir şekilde tasarlanmıştır. Kullanım durumunuza bağlı olarak Vue, yığın karmaşıklığı, geliştirici deneyimi ve nihai performans arasında en uygun dengeyi kurmak için farklı şekillerde kullanılabilir.
 
-## Standalone Script {#standalone-script}
+## Bağımsız Betik {#standalone-script}
 
-Vue can be used as a standalone script file - no build step required! If you have a backend framework already rendering most of the HTML, or your frontend logic isn't complex enough to justify a build step, this is the easiest way to integrate Vue into your stack. You can think of Vue as a more declarative replacement of jQuery in such cases.
+Vue, bağımsız bir betik dosyası olarak kullanılabilir - derleme adımına gerek yoktur! HTML'in büyük bir kısmını zaten render eden bir arka uç çerçeveniz varsa veya ön uç mantığınız bir derleme adımını gerektirecek kadar karmaşık değilse, bu Vue'yu yığınıza entegre etmenin en kolay yoludur. Bu tür durumlarda Vue'yu jQuery'nin daha bildirimsel bir alternatifi olarak düşünebilirsiniz.
 
-We previously provided an alternative distribution called [petite-vue](https://github.com/vuejs/petite-vue) that was specifically optimized for progressively enhancing existing HTML. However, petite-vue is no longer actively maintained, with the last version published at Vue 3.2.27. 
+Daha önce, mevcut HTML'i aşamalı olarak geliştirmek için özel olarak optimize edilmiş [petite-vue](https://github.com/vuejs/petite-vue) adında alternatif bir dağıtım sunuyorduk. Ancak, petite-vue artık aktif olarak sürdürülmemektedir ve yayınlanan son sürümü Vue 3.2.27'dir.
 
-## Embedded Web Components {#embedded-web-components}
+## Gömülü Web Bileşenleri {#embedded-web-components}
 
-You can use Vue to [build standard Web Components](/guide/extras/web-components) that can be embedded in any HTML page, regardless of how they are rendered. This option allows you to leverage Vue in a completely consumer-agnostic fashion: the resulting web components can be embedded in legacy applications, static HTML, or even applications built with other frameworks.
+Vue'yu, nasıl render edildiklerine bakılmaksızın herhangi bir HTML sayfasına gömülebilen [standart Web Bileşenleri oluşturmak](/guide/extras/web-components) için kullanabilirsiniz. Bu seçenek, Vue'yu tamamen tüketiciden bağımsız bir şekilde kullanmanıza olanak tanır: ortaya çıkan web bileşenleri eski uygulamalara, statik HTML'e ve hatta diğer çerçevelerle oluşturulmuş uygulamalara gömülebilir.
 
-## Single-Page Application (SPA) {#single-page-application-spa}
+## Tek Sayfalı Uygulama (SPA) {#single-page-application-spa}
 
-Some applications require rich interactivity, deep session depth, and non-trivial stateful logic on the frontend. The best way to build such applications is to use an architecture where Vue not only controls the entire page, but also handles data updates and navigation without having to reload the page. This type of application is typically referred to as a Single-Page Application (SPA).
+Bazı uygulamalar ön uçta zengin etkileşim, derin oturum süresi ve önemsiz olmayan durum (state) mantığı gerektirir. Bu tür uygulamaları oluşturmanın en iyi yolu, Vue'nun yalnızca tüm sayfayı kontrol etmekle kalmayıp, aynı zamanda sayfayı yeniden yüklemeye gerek kalmadan veri güncellemelerini ve gezinmeyi de işlediği bir mimari kullanmaktır. Bu tür uygulamalar genellikle Tek Sayfalı Uygulama (Single-Page Application) olarak adlandırılır.
 
-Vue provides core libraries and [comprehensive tooling support](/guide/scaling-up/tooling) with amazing developer experience for building modern SPAs, including:
+Vue, modern SPA'lar oluşturmak için harika bir geliştirici deneyimiyle birlikte çekirdek kütüphaneler ve [kapsamlı araç desteği](/guide/scaling-up/tooling) sunar, bunlara şunlar dahildir:
 
-- Client-side router
-- Blazing fast build tool chain
-- IDE support
-- Browser devtools
-- TypeScript integrations
-- Testing utilities
+- İstemci tarafı yönlendirici
+- İnanılmaz hızlı derleme araç zinciri
+- IDE desteği
+- Tarayıcı geliştirici araçları
+- TypeScript entegrasyonları
+- Test araçları
 
-SPAs typically require the backend to expose API endpoints - but you can also pair Vue with solutions like [Inertia.js](https://inertiajs.com) to get the SPA benefits while retaining a server-centric development model.
+SPA'lar genellikle arka ucun API uç noktalarını sunmasını gerektirir; ancak sunucu merkezli bir geliştirme modelini korurken SPA avantajlarını elde etmek için Vue'yu [Inertia.js](https://inertiajs.com) gibi çözümlerle de eşleştirebilirsiniz.
 
 ## Fullstack / SSR {#fullstack-ssr}
 
-Pure client-side SPAs are problematic when the app is sensitive to SEO and time-to-content. This is because the browser will receive a largely empty HTML page, and has to wait until the JavaScript is loaded before rendering anything.
+Tamamen istemci tarafı olan SPA'lar, uygulamanın SEO'ya ve içeriğin yüklenme süresine duyarlı olduğu durumlarda sorunludur. Bunun nedeni, tarayıcının büyük ölçüde boş bir HTML sayfası alması ve herhangi bir şeyi render etmeden önce JavaScript'in yüklenmesini beklemek zorunda kalmasıdır.
 
-Vue provides first-class APIs to "render" a Vue app into HTML strings on the server. This allows the server to send back already-rendered HTML, allowing end users to see the content immediately while the JavaScript is being downloaded. Vue will then "hydrate" the application on the client side to make it interactive. This is called [Server-Side Rendering (SSR)](/guide/scaling-up/ssr) and it greatly improves Core Web Vital metrics such as [Largest Contentful Paint (LCP)](https://web.dev/lcp/).
+Vue, bir Vue uygulamasını sunucuda HTML dizelerine "render etmek" için birinci sınıf API'ler sağlar. Bu, sunucunun önceden render edilmiş HTML'i geri göndermesine olanak tanıyarak son kullanıcıların JavaScript indirilirken içeriği anında görmelerini sağlar. Vue daha sonra uygulamayı etkileşimli hale getirmek için istemci tarafında "hydrate" eder. Buna [Sunucu Tarafı Render Etme (Server-Side Rendering)](/guide/scaling-up/ssr) denir ve [En Büyük Zengin İçerikli Boyama (LCP)](https://web.dev/lcp/) gibi Önemli Web Verileri metriklerini büyük ölçüde iyileştirir.
 
-There are higher-level Vue-based frameworks built on top of this paradigm, such as [Nuxt](https://nuxt.com/), which allow you to develop a fullstack application using Vue and JavaScript.
+Bu paradigma üzerine inşa edilmiş, Vue ve JavaScript kullanarak fullstack bir uygulama geliştirmenize olanak tanıyan [Nuxt](https://nuxt.com/) gibi daha üst düzey Vue tabanlı çerçeveler bulunmaktadır.
 
 ## JAMStack / SSG {#jamstack-ssg}
 
-Server-side rendering can be done ahead of time if the required data is static. This means we can pre-render an entire application into HTML and serve them as static files. This improves site performance and makes deployment a lot simpler since we no longer need to dynamically render pages on each request. Vue can still hydrate such applications to provide rich interactivity on the client. This technique is commonly referred to as Static-Site Generation (SSG), also known as [JAMStack](https://jamstack.org/what-is-jamstack/).
+Gerekli veriler statik ise, sunucu tarafı render işlemi önceden yapılabilir. Bu, tüm bir uygulamayı önceden (pre-render) HTML'e dönüştürüp bunları statik dosyalar olarak sunabileceğimiz anlamına gelir. Bu işlem, site performansını artırır ve artık her istekte sayfaları dinamik olarak render etmemize gerek kalmadığından dağıtımı çok daha basit hale getirir. Vue, istemcide zengin bir etkileşim sağlamak için bu tür uygulamaları hala hydrate edebilir. Bu teknik genellikle Statik Site Üretimi (SSG - Static-Site Generation) olarak adlandırılır ve aynı zamanda [JAMStack](https://jamstack.org/what-is-jamstack/) olarak da bilinir.
 
-There are two flavors of SSG: single-page and multi-page. Both flavors pre-render the site into static HTML, the difference is that:
+İki tür SSG vardır: tek sayfalı ve çok sayfalı. Her iki tür de siteyi statik HTML'e önceden render eder, fark şudur:
 
-- After the initial page load, a single-page SSG "hydrates" the page into an SPA. This requires more upfront JS payload and hydration cost, but subsequent navigations will be faster, since it only needs to partially update the page content instead of reloading the entire page.
+- İlk sayfa yüklendikten sonra, tek sayfalı bir SSG sayfayı hydrate ederek bir SPA'ya dönüştürür. Bu, başlangıçta daha fazla JS yükü ve hydration maliyeti gerektirir, ancak sayfayı tamamen yeniden yüklemek yerine yalnızca sayfa içeriğini kısmen güncellemesi gerektiğinden sonraki gezinmeler daha hızlı olacaktır.
 
-- A multi-page SSG loads a new page on every navigation. The upside is that it can ship minimal JS - or no JS at all if the page requires no interaction! Some multi-page SSG frameworks such as [Astro](https://astro.build/) also support "partial hydration" - which allows you to use Vue components to create interactive "islands" inside static HTML.
+- Çok sayfalı bir SSG, her gezinmede yeni bir sayfa yükler. Avantajı, sayfa herhangi bir etkileşim gerektirmiyorsa çok az JS gönderebilmesi veya hiç JS göndermemesidir! [Astro](https://astro.build/) gibi bazı çok sayfalı SSG çerçeveleri, statik HTML içinde etkileşimli "adalar" oluşturmak için Vue bileşenlerini kullanmanıza olanak tanıyan "kısmi hydration"ı (partial hydration) da destekler.
 
-Single-page SSGs are better suited if you expect non-trivial interactivity, deep session lengths, or persisted elements / state across navigations. Otherwise, multi-page SSG would be the better choice.
+Önemsiz olmayan bir etkileşim, derin oturum süreleri veya gezinmeler arasında kalıcı öğeler / durum (state) bekliyorsanız, tek sayfalı SSG'ler daha uygundur. Aksi takdirde, çok sayfalı SSG daha iyi bir seçim olacaktır.
 
-The Vue team also maintains a static-site generator called [VitePress](https://vitepress.dev/), which powers this website you are reading right now! VitePress supports both flavors of SSG. [Nuxt](https://nuxt.com/) also supports SSG. You can even mix SSR and SSG for different routes in the same Nuxt app.
+Vue ekibi aynı zamanda şu anda okuduğunuz bu web sitesine güç veren [VitePress](https://vitepress.dev/) adında bir statik site oluşturucu da sürdürmektedir! VitePress her iki SSG türünü de destekler. [Nuxt](https://nuxt.com/) da SSG'yi destekler. Hatta aynı Nuxt uygulamasında farklı rotalar için SSR ve SSG'yi karıştırarak birlikte bile kullanabilirsiniz.
 
-## Beyond the Web {#beyond-the-web}
+## Web'in Ötesi {#beyond-the-web}
 
-Although Vue is primarily designed for building web applications, it is by no means limited to just the browser. You can:
+Vue, öncelikli olarak web uygulamaları oluşturmak için tasarlanmış olsa da, kesinlikle sadece tarayıcıyla sınırlı değildir. Şunları yapabilirsiniz:
 
-- Build desktop apps with [Electron](https://www.electronjs.org/) or [Wails](https://wails.io)
-- Build mobile apps with [Ionic Vue](https://ionicframework.com/docs/vue/overview)
-- Build desktop and mobile apps from the same codebase with [Quasar](https://quasar.dev/) or [Tauri](https://tauri.app)
-- Build 3D WebGL experiences with [TresJS](https://tresjs.org/)
-- Use Vue's [Custom Renderer API](/api/custom-renderer) to build custom renderers, like those for [the terminal](https://github.com/vue-terminal/vue-termui)!
+- [Electron](https://www.electronjs.org/) veya [Wails](https://wails.io) ile masaüstü uygulamaları geliştirmek
+- [Ionic Vue](https://ionicframework.com/docs/vue/overview) ile mobil uygulamalar geliştirmek
+- Aynı kod tabanından [Quasar](https://quasar.dev/) veya [Tauri](https://tauri.app) ile masaüstü ve mobil uygulamalar geliştirmek
+- [TresJS](https://tresjs.org/) ile 3 boyutlu WebGL deneyimleri oluşturmak
+- [Terminal](https://github.com/vue-terminal/vue-termui) için olanlar gibi özel render ediciler oluşturmak için Vue'nun [Özel Render Edici API'sini (Custom Renderer API)](/api/custom-renderer) kullanmak!
